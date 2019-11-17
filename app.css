@@ -1,8 +1,16 @@
-
+:root{
+    --cell-color: #FFC300 ;
+    --text-color: #900C3F ;
+    --body-bg-color:#DAF7A6 ;
+   --dark-color:  #581845 ;
+}
+body{
+    background-color:  var(--body-bg-color);
+}
 .game-container{
     margin-left:auto; margin-right:auto;
     width: 200px;
     height: 300px;
     margin-top:auto; margin-bottom:auto;
-    background-color: #fff;
+    background-color: rgba( 247, 200, 132 , 0.7);
 }
