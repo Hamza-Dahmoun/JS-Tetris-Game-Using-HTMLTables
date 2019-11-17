@@ -36,8 +36,14 @@ td{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-align: center;
 }
 .information-container{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+}
+.information-container *{
+    margin-bottom: 5px;margin-top:5px;
 }
