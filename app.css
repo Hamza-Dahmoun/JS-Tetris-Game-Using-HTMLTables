@@ -14,3 +14,9 @@ body{
     margin-top:auto; margin-bottom:auto;
     background-color: rgba( 247, 200, 132 , 0.7);
 }
+.cell-on{
+    background-color: var(--cell-color);
+}
+.cell-off{
+    background-color: rgba( 247, 200, 132 , 0.7);/*same as .game-container bgColor*/
+}
