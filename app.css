@@ -21,6 +21,9 @@ body{
     background-color: rgba( 247, 200, 132 , 0.7);/*same as .game-container bgColor*/
 }
 
+table{
+    margin-left:auto; margin-right:auto;
+}
 td{
     height: 22px;
     width: 22px;
