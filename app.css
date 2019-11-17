@@ -31,3 +31,9 @@ td{
     height: 22px;
     width: 22px;
 }
+
+.game-tools-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
