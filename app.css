@@ -18,7 +18,7 @@ body{
     background-color: rgba( 247, 200, 132 , 0.7);    
 }
 .cell-test{
-    background-color: var(--body-bg-color);
+    background-color: red;
 }
 .cell-on{
     background-color: var(--cell-color);
