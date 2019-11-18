@@ -1,3 +1,4 @@
+//set id attributes for each cell to make it easy to track
 var td = document.getElementsByTagName("td");
 for (let i = 0; i < td.length; i++) {
     td[i].setAttribute("id", "cell" + (i + 1));
@@ -14,6 +15,7 @@ for (let i = 0; i < arr.length; i++) {
     stringToBuildTable = stringToBuildTable + "{id:\"" + arr[i].id + "\", leftBrotherId:\"" + arr[i].leftBrotherId + "\", rightBrotherId:\"" + arr[i].rightBrotherId + "\", brotherBeneathId:\"" + arr[i].brotherBeneathId + "\"},"
 }
 console.log(stringToBuildTable);*/
+//below table is built using above commented code, it contains each td id along with its brother that can receive its move
 const table =
     [
         {id:"cell1", leftBrotherId:"", rightBrotherId:"cell2", brotherBeneathId:"cell8"},
@@ -32,7 +34,7 @@ const table =
         td[i].addEventListener("click", tdClick);
     }
     function tdClick(event){
-        event.target.className = "cell-test";
+        //this function will colorize the brothers of the td clicked by the user
         for(let i=0; i<table.length; i++){
             if(table[i].id == event.target.id){
                 //so lets colorize (for 1 second) its concerned brothers who will receive his movements
@@ -47,5 +49,4 @@ const table =
                 }, 1000);
             }
         }
-        event.target.classList.remove("cell-test");
     }
