@@ -51,7 +51,19 @@ const table =
         }
     }
 
-    
+    //********** Players Objects ***********//
+    //a Player is defined by a set of cells
+    var players = {
+        0: {cell1Id: "cell4"}//Dot
+        ,1: {cell1_Id: "cell4", cell2_Id: "cell5"}//Twp Dots
+        ,2: {cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5"}//Three Dots in row
+        ,3: {cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5", cell4_Id: "cell6"}//Four Dots in row
+        ,4: {cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5", cell4_Id: "cell12"}//Four Dots form 'L'
+        ,5: {cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell11", cell4_Id: "cell12"}//Four Dots form square
+        ,6: {cell1_Id: "cell3", cell2_Id: "cell10", cell3_Id: "cell11", cell4_Id: "cell12"}//Four Dots form _|_
+        ,7: {cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell11", cell4_Id: "cell12"}//Four Dots form -|_
+    }
+    //**************************************//
 
     function moveCellDown(cellObject){
         //a cell that moves down is a cell that is going to have a new css class cell-off
