@@ -50,3 +50,14 @@ const table =
             }
         }
     }
+
+    
+
+    function moveCellDown(cellObject){
+        //a cell that moves down is a cell that is going to have a new css class cell-off
+        //and make the cell beneath a cell-on
+        var cell = document.getElementById(cellObject.id);
+        cell.className = "cell-off";
+        var cellBeneath = document.getElementById(cellObject.brotherBeneathId);
+        cellBeneath.className = "cell-on";
+    }
