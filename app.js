@@ -48,20 +48,15 @@ console.log(stringToBuildTable);*/
     }
     function tdClick(event){
         //this function will colorize the brothers of the td clicked by the user
-        for(let i=0; i<table.length; i++){
-            if(table[i].id == event.target.id){
                 //so lets colorize (for 1 second) its concerned brothers who will receive his movements
-                //console.log("found it");
-                document.getElementById(table[i].leftBrotherId).className="cell-on";
-                document.getElementById(table[i].rightBrotherId).className="cell-on";
-                document.getElementById(table[i].brotherBeneathId).className="cell-on";
+                document.getElementById(table[event.target.id].leftBrotherId).className="cell-on";
+                document.getElementById(table[event.target.id].rightBrotherId).className="cell-on";
+                document.getElementById(table[event.target.id].brotherBeneathId).className="cell-on";
                 setTimeout(function(){
-                document.getElementById(table[i].leftBrotherId).className="cell-off";
-                document.getElementById(table[i].rightBrotherId).className="cell-off";
-                document.getElementById(table[i].brotherBeneathId).className="cell-off";
+                document.getElementById(table[event.target.id].leftBrotherId).className="cell-off";
+                document.getElementById(table[event.target.id].rightBrotherId).className="cell-off";
+                document.getElementById(table[event.target.id].brotherBeneathId).className="cell-off";
                 }, 1000);
-            }
-        }
     }
 
     //********** Players Objects ***********//
@@ -95,12 +90,31 @@ console.log(stringToBuildTable);*/
             let cellID_in_currentPlayer = currentPlayer[idPropertyName_in_currentPlayer];
             document.getElementById(cellID_in_currentPlayer).className = "cell-on";
         }
-        //lets start moving this new player down
+        //lets start moving this new player down every one second
         movePlayerDown(currentPlayer);
     }
 
     function movePlayerDown(currentPlayerObject){
-        
+        //currentPlayerObject is an object that have up-to four properties
+        //this properties stpre the value of cellID
+        //by moving down a player we mean moving down all its cells he is composed of
+        //which means each property of currentPlayerObject is going to have a new cellID which is the beneathBrotherID 
+        //lets start
+        let player_propertiesCount = Object.keys(currentPlayerObject).length;
+        for(let i=1; i<=player_propertiesCount; i++){
+            //lets build the appropriate property name
+            let idPropertyName_in_currentPlayer = "cell"+i+"_Id";
+            //now lets get this cellID
+            let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
+            //now lets use cellID_in_currentPlayer to switch it off in the UI
+            document.getElementById(cellID_in_currentPlayer).className = "cell-off";
+            //now lets use cellID_in_currentPlayer to get its brotherBeneathID from'table' object
+            let brotherBeneath_thisCell = table[cellID_in_currentPlayer].brotherBeneathId;
+            //now lets take this brotherBeneath_thisCell as a cell of the currentPlayerObject instead of cellID_in_currentPlayer
+            currentPlayerObject[idPropertyName_in_currentPlayer] = brotherBeneath_thisCell;
+            //up to now, we: switched off a cell, then we considered its beneath brother instead of it, now we'll switch on this beneathBrother
+            document.getElementById(brotherBeneath_thisCell).className = "cell-on";
+        }        
     }
     //**************************************//
 
