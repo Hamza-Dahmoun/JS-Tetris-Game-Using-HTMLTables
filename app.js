@@ -38,7 +38,7 @@ const table =
         for(let i=0; i<table.length; i++){
             if(table[i].id == event.target.id){
                 //so lets colorize (for 1 second) its concerned brothers who will receive his movements
-                console.log("found it");
+                //console.log("found it");
                 document.getElementById(table[i].leftBrotherId).className="cell-on";
                 document.getElementById(table[i].rightBrotherId).className="cell-on";
                 document.getElementById(table[i].brotherBeneathId).className="cell-on";
@@ -63,6 +63,10 @@ const table =
         ,6: {cell1_Id: "cell3", cell2_Id: "cell10", cell3_Id: "cell11", cell4_Id: "cell12"}//Four Dots form _|_
         ,7: {cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell11", cell4_Id: "cell12"}//Four Dots form -|_
     }
+    function choosePlayerRandomly(){
+        var player = Math.floor(Math.random()*8);        
+    }
+    choosePlayerRandomly();
     //**************************************//
 
     function moveCellDown(cellObject){
