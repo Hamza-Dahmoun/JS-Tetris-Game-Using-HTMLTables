@@ -54,7 +54,7 @@ const table =
     //********** Players Objects ***********//
     //a Player is defined by a set of cells
     var players = {
-        0: {cell1Id: "cell4"}//Dot
+        0: {cell1_Id: "cell4"}//Dot
         ,1: {cell1_Id: "cell4", cell2_Id: "cell5"}//Twp Dots
         ,2: {cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5"}//Three Dots in row
         ,3: {cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5", cell4_Id: "cell6"}//Four Dots in row
@@ -64,9 +64,25 @@ const table =
         ,7: {cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell11", cell4_Id: "cell12"}//Four Dots form -|_
     }
     function choosePlayerRandomly(){
-        var player = Math.floor(Math.random()*8);        
+        var player = Math.floor(Math.random()*8); 
+        //console.log(player);    
+        switchOnPlayer(player);   
     }
     choosePlayerRandomly();
+
+    function switchOnPlayer(playerNumber){
+        //we'll user playerNumber parameter to get the player object from 'players' object
+        //then we'll use all the IDs stored in the player object to switch on the corresponding cells
+        var currentPlayer = players[playerNumber];
+        let player_propertiesCount = Object.keys(currentPlayer).length;
+        console.log(currentPlayer); 
+        console.log(player_propertiesCount);
+        for(let i=1; i<=player_propertiesCount; i++){
+            let idPropertyName_in_currentPlayer = "cell"+i+"_Id";
+            let cellID_in_currentPlayer = currentPlayer[idPropertyName_in_currentPlayer];
+            document.getElementById(cellID_in_currentPlayer).className = "cell-on";
+        }
+    }
     //**************************************//
 
     function moveCellDown(cellObject){
