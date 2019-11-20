@@ -119,4 +119,13 @@ for (let i = 0; i < arr.length; i++) {
     }
     //**************************************//
 
-    
+    //*************** keyDown events ***************/
+    document.addEventListener("keydown", playerBehave);
+
+    function playerBehave(e){
+        //Based on the key pressed, this function make the player move down/left/right or just make it rotate
+        if(e.keyCode == 40){
+            //move down
+            movePlayerDown(currentPlayerObject);
+        }
+    }
