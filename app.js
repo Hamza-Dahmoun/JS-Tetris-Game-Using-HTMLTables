@@ -91,7 +91,7 @@ console.log(stringToBuildTable);*/
             document.getElementById(cellID_in_currentPlayer).className = "cell-on";
         }
         //lets start moving this new player down every one second
-        movePlayerDown(currentPlayer);
+        //movePlayerDown(currentPlayer);
     }
 
     function movePlayerDown(currentPlayerObject){
@@ -100,7 +100,10 @@ console.log(stringToBuildTable);*/
         //by moving down a player we mean moving down all its cells he is composed of
         //which means each property of currentPlayerObject is going to have a new cellID which is the beneathBrotherID 
         //lets start
-        let player_propertiesCount = Object.keys(currentPlayerObject).length;
+
+      //  for(x=1; x<6; x++){        
+      //  setTimeout(function(){
+            let player_propertiesCount = Object.keys(currentPlayerObject).length;
         for(let i=1; i<=player_propertiesCount; i++){
             //lets build the appropriate property name
             let idPropertyName_in_currentPlayer = "cell"+i+"_Id";
@@ -114,7 +117,9 @@ console.log(stringToBuildTable);*/
             currentPlayerObject[idPropertyName_in_currentPlayer] = brotherBeneath_thisCell;
             //up to now, we: switched off a cell, then we considered its beneath brother instead of it, now we'll switch on this beneathBrother
             document.getElementById(brotherBeneath_thisCell).className = "cell-on";
-        }        
+        }
+    //}, x*1000);
+    //}
     }
     //**************************************//
 
