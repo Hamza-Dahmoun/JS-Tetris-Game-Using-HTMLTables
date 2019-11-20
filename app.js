@@ -64,21 +64,21 @@ for (let i = 0; i < arr.length; i++) {
         switchOnPlayer(player);   
     }
     choosePlayerRandomly();
-
+    var currentPlayerObject;
     function switchOnPlayer(playerNumber){
         //we'll user playerNumber parameter to get the player object from 'players' object
         //then we'll use all the IDs stored in the player object to switch on the corresponding cells
-        var currentPlayer = players[playerNumber];
-        let player_propertiesCount = Object.keys(currentPlayer).length;
-        console.log(currentPlayer); 
-        console.log(player_propertiesCount);
+        currentPlayerObject = players[playerNumber];
+        let player_propertiesCount = Object.keys(currentPlayerObject).length;
+        //console.log(currentPlayerObject); 
+        //console.log(player_propertiesCount);
         for(let i=1; i<=player_propertiesCount; i++){
             let idPropertyName_in_currentPlayer = "cell"+i+"_Id";
-            let cellID_in_currentPlayer = currentPlayer[idPropertyName_in_currentPlayer];
+            let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
             document.getElementById(cellID_in_currentPlayer).className = "cell-on";
         }
         //lets start moving this new player down every one second
-        //movePlayerDown(currentPlayer);
+        movePlayerDown(currentPlayerObject);
     }
 
     function movePlayerDown(currentPlayerObject){
@@ -87,10 +87,10 @@ for (let i = 0; i < arr.length; i++) {
         //by moving down a player we mean moving down all its cells he is composed of
         //which means each property of currentPlayerObject is going to have a new cellID which is the beneathBrotherID 
         //lets start
-
-      //  for(x=1; x<6; x++){        
-      //  setTimeout(function(){
-            let player_propertiesCount = Object.keys(currentPlayerObject).length;
+        
+        //getting the number of cells (td tags) in the current player
+        let player_propertiesCount = Object.keys(currentPlayerObject).length;
+        //Now lets switch off all the cells of the current player
         for(let i=1; i<=player_propertiesCount; i++){
             //lets build the appropriate property name
             let idPropertyName_in_currentPlayer = "cell"+i+"_Id";
@@ -102,11 +102,20 @@ for (let i = 0; i < arr.length; i++) {
             let brotherBeneath_thisCell = table[cellID_in_currentPlayer].brotherBeneathId;
             //now lets take this brotherBeneath_thisCell as a cell of the currentPlayerObject instead of cellID_in_currentPlayer
             currentPlayerObject[idPropertyName_in_currentPlayer] = brotherBeneath_thisCell;
-            //up to now, we: switched off a cell, then we considered its beneath brother instead of it, now we'll switch on this beneathBrother
-            document.getElementById(brotherBeneath_thisCell).className = "cell-on";
+            //up to now, we: switched off a cell, then we considered its beneath brother instead of it.. we'll switch on this beneathBrother in the next for loop
         }
-    //}, x*1000);
-    //}
+        
+        
+        //Now lets switch on all the new cells of the current player that were considered as 'brotherBeneath' in the previous for loop
+        for(let i=1; i<=player_propertiesCount; i++){
+            //lets build the appropriate property name
+            let idPropertyName_in_currentPlayer = "cell"+i+"_Id";
+            //now lets get this cellID
+            let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
+            //now lets use cellID_in_currentPlayer to switch it on in the UI
+            document.getElementById(cellID_in_currentPlayer).className = "cell-on";
+        } 
+    
     }
     //**************************************//
 
