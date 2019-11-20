@@ -78,7 +78,7 @@ for (let i = 0; i < arr.length; i++) {
             document.getElementById(cellID_in_currentPlayer).className = "cell-on";
         }
         //lets start moving this new player down every one second
-        movePlayerDown(currentPlayerObject);
+        //movePlayerDown(currentPlayerObject);
     }
 
     function movePlayerDown(currentPlayerObject){
