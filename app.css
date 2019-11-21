@@ -21,7 +21,7 @@ body{
     background-color: red;
 }
 .cell-on{
-    background-color: var(--cell-color);
+    background-color: var(--text-color);
 }
 .cell-off{
     background-color: rgba( 247, 200, 132 , 0.7);/*same as .game-container bgColor*/
