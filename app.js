@@ -167,14 +167,44 @@ for (let i = 0; i < arr.length; i++) {
                 return true;
             }
         }
-
         return b;
     }
     function existSwitchedOnCellsBelow(){
         //this functions checks whether there are switched on cells under the player
-        return false;
+        //(cells that belongs to the player aren't considered in the verification)
+
+        //How?
+        //foreach cell in the player, we'll use its 'id' to get the brotherBeneathID from the object 'table'
+        //if the td tag that have that brotherBeneathID is switched on than return true
+
+
+
+        //we'll count the number of cells forming the player
+        let player_propertiesCount = Object.keys(currentPlayerObject).length;
+        //we'll build the 'id' of each cell forming the player,
+        let b = false;        
+        for(let i=1; i<=player_propertiesCount; i++){
+            let idPropertyName_in_currentPlayer = "cell"+i+"_Id";
+            let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
+            //we've got the id of the current cell in the current player, it is 'cellID_in_currentPlayer'
+            //lets use to get the object that corresponds to this cell that is stored in the object 'table'
+            let brotherBeneathId = table[cellID_in_currentPlayer].brotherBeneathId;
+            //now lets check the cell beneath this cell if it is switched on using 'brotherBeneathId'
+            //but we shouldn't consider the cell beneath if it already belongs to the current player
+            if(JSON.stringify(currentPlayerObject).includes(brotherBeneathId)){
+                //Do nothing, becuz the beneath cell already belongs to the current player
+            }
+            else{
+                if(document.getElementById(brotherBeneathId).className.includes("cell-on")){
+                    b = true;
+                } 
+            }            
+            
+        }
+        //console.log(b);
+        return b;
     }
-    //******************** START MOVING DOWN A PLAYER ******************//
+    //******************** END MOVING DOWN A PLAYER ******************//
 
 
 
