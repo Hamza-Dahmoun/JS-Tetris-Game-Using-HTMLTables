@@ -89,12 +89,13 @@ for (let i = 0; i < arr.length; i++) {
         //which means each property of currentPlayerObject is going to have a new cellID which is the beneathBrotherID 
         //lets start
         
-        
-        //Now lets switch off all the cells of the current player
+        if(isMovingDownPossible()){
+            //Now lets switch off all the cells of the current player
         switchoffPlayerCells_andAssignNewCells(currentPlayerObject);        
         
         //Now lets switch on all the new cells of the current player that were considered as 'brotherBeneath' in the previous for loop        
         switchonPlayerCells(currentPlayerObject);
+        }                
     }
     function switchoffPlayerCells_andAssignNewCells(currentPlayerObject){
         //this function switch off all the cells of the player, and assign new cells to it (cells beneath)
@@ -137,12 +138,16 @@ for (let i = 0; i < arr.length; i++) {
 
     function isMovingDownPossible(){
         //this function returns a bool that determines wheter player can move down or not
+        if(!isTableBottomLimit() && !existSwitchedOnCellsBelow()) return true;
+        else return false;
     }
     function isTableBottomLimit(){
         //this function checks whether player (or one of its cells) is in the bottom row of the table
+        return false;
     }
     function existSwitchedOnCellsBelow(){
         //this functions checks whether there are switched on cells under the player
+        return false;
     }
     //******************** START MOVING DOWN A PLAYER ******************//
 
