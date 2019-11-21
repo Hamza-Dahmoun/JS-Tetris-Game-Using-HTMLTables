@@ -81,6 +81,7 @@ for (let i = 0; i < arr.length; i++) {
         //movePlayerDown(currentPlayerObject);
     }
 
+    //******************** START MOVING DOWN A PLAYER ******************//
     function movePlayerDown(currentPlayerObject){
         //currentPlayerObject is an object that have up-to four properties
         //this properties stpre the value of cellID
@@ -133,7 +134,31 @@ for (let i = 0; i < arr.length; i++) {
             document.getElementById(cellID_in_currentPlayer).className = "cell-on";
         } 
     }
-    //**************************************//
+
+    function isMovingDownPossible(){
+        //this function returns a bool that determines wheter player can move down or not
+    }
+    function isTableBottomLimit(){
+        //this function checks whether player (or one of its cells) is in the bottom row of the table
+    }
+    function existSwitchedOnCellsBelow(){
+        //this functions checks whether there are switched on cells under the player
+    }
+    //******************** START MOVING DOWN A PLAYER ******************//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //*************** keyDown events ***************/
     document.addEventListener("keydown", playerBehave);
