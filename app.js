@@ -66,9 +66,12 @@ for (let i = 0; i < arr.length; i++) {
     choosePlayerRandomly();
     var currentPlayerObject;
     function switchOnPlayer(playerNumber){
-        //we'll user playerNumber parameter to get the player object from 'players' object
+        //we'll use playerNumber parameter to get the player object from 'players' object
         //then we'll use all the IDs stored in the player object to switch on the corresponding cells
+
+        //assigning one of the bojects stored in 'players' object to the object 'currentPlayerObject' 
         currentPlayerObject = players[playerNumber];
+
         let player_propertiesCount = Object.keys(currentPlayerObject).length;
         //console.log(currentPlayerObject); 
         //console.log(player_propertiesCount);
@@ -95,7 +98,10 @@ for (let i = 0; i < arr.length; i++) {
         
         //Now lets switch on all the new cells of the current player that were considered as 'brotherBeneath' in the previous for loop        
         switchonPlayerCells(currentPlayerObject);
+        console.log("player moved down.");
         }                
+        else
+        console.log("player cannot move down.");
     }
     function switchoffPlayerCells_andAssignNewCells(currentPlayerObject){
         //this function switch off all the cells of the player, and assign new cells to it (cells beneath)
@@ -143,7 +149,26 @@ for (let i = 0; i < arr.length; i++) {
     }
     function isTableBottomLimit(){
         //this function checks whether player (or one of its cells) is in the bottom row of the table
-        return false;
+        //it does that by checking if the parent element of one of the cells composing
+        //the current player is the last row (tr tag) in the table
+
+        //we'll count the number of cells forming the player
+        let player_propertiesCount = Object.keys(currentPlayerObject).length;
+        //we'll build the 'id' of each cell forming the player, then use that 'id' to select the cell and get its parent
+        //then we'll check if that parent is the last tr tag in our table, if so we'll return true.
+        let b = false;        
+        for(let i=1; i<=player_propertiesCount; i++){
+            let idPropertyName_in_currentPlayer = "cell"+i+"_Id";
+            let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
+            let trElementsInTable = document.getElementsByTagName("table")[0].querySelectorAll("TR");
+            /*console.log("last row is: "); console.log(trElementsInTable[trElementsInTable.length-1]);
+            console.log("parent elt is: "); console.log(document.getElementById(cellID_in_currentPlayer).parentElement);*/
+            if(document.getElementById(cellID_in_currentPlayer).parentElement==trElementsInTable[trElementsInTable.length-1]){                
+                return true;
+            }
+        }
+
+        return b;
     }
     function existSwitchedOnCellsBelow(){
         //this functions checks whether there are switched on cells under the player
