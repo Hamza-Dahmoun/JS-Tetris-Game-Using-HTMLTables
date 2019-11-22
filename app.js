@@ -236,10 +236,32 @@ function movePlayerRight(currentPlayerObject) {
 }
 function isMovingRightPossible() {
     //this function returns a bool that determines wheter player can move right or not
-    if (!isTableRightLimit() && !existSwitchedOnCellsToRight()) return true;
+    if (!isTableRightSideLimit() && !existSwitchedOnCellsToRight()) return true;
     else return false;
 }
+function isTableRightSideLimit() {
+    //this function checks whether player (or one of its cells) is in the right boundary row of the table
+    //it does that by checking if the number inside one the cells id (eg: cell7) has modulo(7)=0
+    //example of cells in the right boundary of the table: cell7, cell14, cell21... etc
 
+    //we'll count the number of cells forming the player
+    let player_propertiesCount = Object.keys(currentPlayerObject).length;
+    //we'll build the 'id' of each cell forming the player, then use that 'id' to extraxt a number from it
+    //then we'll use that number to calculate the modulo and check it 0 or not
+    let b = false;
+    for (let i = 1; i <= player_propertiesCount; i++) {
+        let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
+        let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
+        //now we'll extract the number that is inside the id
+        let numberInsideIDString = cellID_in_currentPlayer.slice(4);
+        //if cellID_in_currentPlayer is 'cell7' then numberInsideIDString will be '7' 
+        if(numberInsideIDString % 7 == 0){
+            //so this cell has an id like 'cell7' or 'cell14' or 'cell21'.... it belongs to the right boundary of the table
+            return true;
+        }
+    }
+    return b;
+}
 function existSwitchedOnCellsToRight() {
     //this functions checks whether there are switched on cells in the right side of the player
     //(cells that belongs to the player aren't considered in the verification)
