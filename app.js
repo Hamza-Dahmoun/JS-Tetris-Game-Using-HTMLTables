@@ -215,7 +215,25 @@ function existSwitchedOnCellsBelow() {
 
 
 //******************** START MOVING DOWN A PLAYER ******************//
+function movePlayerRight(currentPlayerObject) {
+    //currentPlayerObject is an object that have up-to four properties
+    //this properties store the value of cellID
+    //by moving right a player we mean moving right all its cells he is composed of
+    //which means each property of currentPlayerObject is going to have a new cellID which is the rightBrotherID 
+    //lets start
 
+    if (isMovingRightPossible()) {
+        //Now lets switch off all the cells of the current player
+        switchoffPlayerCells_andAssignNewCells_toTheRight(currentPlayerObject);
+
+        //Now lets switch on all the new cells of the current player that were considered as 'brotherBeneath' in the previous for loop        
+        switchonPlayerCells(currentPlayerObject);
+        console.log("player moved right.");
+    }
+    else {
+        console.log("player cannot move right!");
+    }
+}
 
 
 //******************** END MOVING DOWN A PLAYER ******************//
