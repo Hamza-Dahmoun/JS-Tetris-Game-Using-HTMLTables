@@ -234,6 +234,27 @@ function movePlayerRight(currentPlayerObject) {
         console.log("player cannot move right!");
     }
 }
+function switchoffPlayerCells_andAssignNewCells_toTheRight(currentPlayerObject) {
+    //this function switch off all the cells of the player, and assign new cells to it (cells to the right)
+
+    //1- getting the number of cells (td tags) in the current player
+    let player_propertiesCount = Object.keys(currentPlayerObject).length;
+
+    //2- Now lets proceed
+    for (let i = 1; i <= player_propertiesCount; i++) {
+        //lets build the appropriate property name
+        let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
+        //now lets get this cellID
+        let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
+        //now lets use cellID_in_currentPlayer to switch it off in the UI
+        document.getElementById(cellID_in_currentPlayer).className = "cell-off";
+        //now lets use cellID_in_currentPlayer to get its rightBrotherID from'table' object
+        let rightBrother_ofThisCell = table[cellID_in_currentPlayer].rightBrotherId;
+        //now lets take this rightBrother_ofThisCell as a cell of the currentPlayerObject instead of cellID_in_currentPlayer
+        currentPlayerObject[idPropertyName_in_currentPlayer] = rightBrother_ofThisCell;
+        //up to now, we: switched off a cell, then we considered its right brother instead of it.. we'll switch on this rightBrother in the next for loop
+    }
+}
 function isMovingRightPossible() {
     //this function returns a bool that determines wheter player can move right or not
     if (!isTableRightSideLimit() && !existSwitchedOnCellsToRight()) return true;
