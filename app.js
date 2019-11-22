@@ -70,7 +70,7 @@ function switchOnPlayer(playerNumber) {
     //then we'll use all the IDs stored in the player object to switch on the corresponding cells
 
     //assigning one of the bojects stored in 'players' object to the object 'currentPlayerObject' 
-    currentPlayerObject = players[playerNumber];
+    currentPlayerObject = {...players[playerNumber]};//making a copy from players[playerNumber] to currentPlayerObject 
 
     let player_propertiesCount = Object.keys(currentPlayerObject).length;
     //console.log(currentPlayerObject); 
