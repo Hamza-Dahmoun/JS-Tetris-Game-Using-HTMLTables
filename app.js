@@ -206,15 +206,13 @@ function existSwitchedOnCellsBelow() {
     //console.log(b);
     return b;
 }
-//******************** END MOVING DOWN A PLAYER ******************//
-
-
-
-
-
-
-
-//******************** START MOVING DOWN A PLAYER ******************//
+//******************** END MOVING DOWN A PLAYER *********************//
+//
+//
+//
+//
+//
+//******************** START MOVING RIGHT A PLAYER ******************//
 function movePlayerRight(currentPlayerObject) {
     //currentPlayerObject is an object that have up-to four properties
     //this properties store the value of cellID
@@ -318,8 +316,7 @@ function existSwitchedOnCellsToRight() {
     //console.log(b);
     return b;
 }
-
-//******************** END MOVING DOWN A PLAYER ******************//
+//******************** END MOVING RIGHT A PLAYER ******************//
 
 
 
@@ -339,5 +336,9 @@ function playerBehave(e) {
     else if(e.keyCode == 39){
         //move right
         movePlayerRight(currentPlayerObject);
+    }
+    else if(e.keyCode == 37){
+        //move left
+        movePlayerLeft(currentPlayerObject);
     }
 }
