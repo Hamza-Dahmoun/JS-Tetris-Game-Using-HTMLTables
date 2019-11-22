@@ -226,13 +226,18 @@ function movePlayerRight(currentPlayerObject) {
         //Now lets switch off all the cells of the current player
         switchoffPlayerCells_andAssignNewCells_toTheRight(currentPlayerObject);
 
-        //Now lets switch on all the new cells of the current player that were considered as 'brotherBeneath' in the previous for loop        
+        //Now lets switch on all the new cells of the current player that were considered as 'rightBrother' in the previous for loop        
         switchonPlayerCells(currentPlayerObject);
         console.log("player moved right.");
     }
     else {
         console.log("player cannot move right!");
     }
+}
+function isMovingRightPossible() {
+    //this function returns a bool that determines wheter player can move right or not
+    if (!isTableRightLimit() && !existSwitchedOnCellsToRight()) return true;
+    else return false;
 }
 
 
