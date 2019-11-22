@@ -240,6 +240,41 @@ function isMovingRightPossible() {
     else return false;
 }
 
+function existSwitchedOnCellsToRight() {
+    //this functions checks whether there are switched on cells in the right side of the player
+    //(cells that belongs to the player aren't considered in the verification)
+
+    //How?
+    //foreach cell in the player, we'll use its 'id' to get the rightBrotherID from the object 'table'
+    //if the td tag that have that rightBrotherID is switched on then return true
+
+
+
+    //we'll count the number of cells forming the player
+    let player_propertiesCount = Object.keys(currentPlayerObject).length;
+    //we'll build the 'id' of each cell forming the player,
+    let b = false;
+    for (let i = 1; i <= player_propertiesCount; i++) {
+        let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
+        let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
+        //we've got the id of the current cell in the current player, it is 'cellID_in_currentPlayer'
+        //lets use to get the object that corresponds to this cell that is stored in the object 'table'
+        let rightBrotherId = table[cellID_in_currentPlayer].rightBrotherId;
+        //now lets check the cell in the right side of this cell if it is switched on using 'rightBrotherId'
+        //but we shouldn't consider the cell to the right if it already belongs to the current player
+        if (JSON.stringify(currentPlayerObject).includes(rightBrotherId)) {
+            //Do nothing, becuz the right cell already belongs to the current player
+        }
+        else {
+            if (document.getElementById(rightBrotherId).className.includes("cell-on")) {
+                b = true;
+            }
+        }
+
+    }
+    //console.log(b);
+    return b;
+}
 
 //******************** END MOVING DOWN A PLAYER ******************//
 
