@@ -342,6 +342,12 @@ function movePlayerLeft(currentPlayerObject) {
         console.log("player cannot move left!");
     }
 }
+
+function isMovingLeftPossible() {
+    //this function returns a bool that determines wheter player can move left or not
+    if (!isTableLeftSideLimit() && !existSwitchedOnCellsToLeft()) return true;
+    else return false;
+}
 //******************** END MOVING LEFT A PLAYER ******************//
 
 
