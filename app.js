@@ -317,6 +317,32 @@ function existSwitchedOnCellsToRight() {
     return b;
 }
 //******************** END MOVING RIGHT A PLAYER ******************//
+//
+//
+//
+//
+//
+//******************** START MOVING LEFT A PLAYER ******************//
+function movePlayerLeft(currentPlayerObject) {
+    //currentPlayerObject is an object that have up-to four properties
+    //this properties store the value of cellID
+    //by moving left a player we mean moving left all its cells he is composed of
+    //which means each property of currentPlayerObject is going to have a new cellID which is the leftBrotherID 
+    //lets start
+
+    if (isMovingLeftPossible()) {
+        //Now lets switch off all the cells of the current player
+        switchoffPlayerCells_andAssignNewCells_toTheLeft(currentPlayerObject);
+
+        //Now lets switch on all the new cells of the current player that were considered as 'leftBrother' in the previous for loop        
+        switchonPlayerCells(currentPlayerObject);
+        console.log("player moved left.");
+    }
+    else {
+        console.log("player cannot move left!");
+    }
+}
+//******************** END MOVING LEFT A PLAYER ******************//
 
 
 
