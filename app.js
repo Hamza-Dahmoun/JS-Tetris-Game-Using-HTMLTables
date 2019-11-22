@@ -214,7 +214,11 @@ function existSwitchedOnCellsBelow() {
 
 
 
+//******************** START MOVING DOWN A PLAYER ******************//
 
+
+
+//******************** END MOVING DOWN A PLAYER ******************//
 
 
 
@@ -230,5 +234,9 @@ function playerBehave(e) {
     if (e.keyCode == 40) {
         //move down
         movePlayerDown(currentPlayerObject);
+    }
+    else if(e.keyCode == 39){
+        //move right
+        movePlayerRight(currentPlayerObject);
     }
 }
