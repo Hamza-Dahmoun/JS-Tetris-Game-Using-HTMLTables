@@ -65,10 +65,8 @@ function choosePlayerRandomly() {
         //console.log("there is at least one row fully switched one.")
         //so there is one or more rows fully switched one, lets erase them and increment score
         
-        //first, lets switch off rows that are fully switched on
+        //first, lets switch off rows that are fully switched on, adn moved down cells above those rows and that are switched on
         eraseFullRows_moveDownNotFullRows();
-        //second, now we have entire rows switched off bcuz of previous func, lets move all the switched on cells down
-        moveDowncells_toFillGaps();
         //third, increment score based on the number of rows that were erased
         incrementScore();
     }
@@ -509,12 +507,6 @@ function eraseFullRows_moveDownNotFullRows() {
             }
         }
     }
-}
-function moveDowncells_toFillGaps(){
-    //this function will look for rows that are fully switched off, and will move down all the switched on cell above it
-    
-    //How to look for rows completely switched off?
-    //By checking if none of <td> tags has class 'cell-on'
 }
 function incrementScore() {
 
