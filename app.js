@@ -59,6 +59,10 @@ var players = {
     , 7: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell11", cell4_Id: "cell12" }//Four Dots form -|_
 }
 function choosePlayerRandomly() {
+    if (existFullRows()) {
+        eraseFullRows();
+        incrementScore();
+    }
     var player = Math.floor(Math.random() * 8);
     //console.log(player);    
     switchOnPlayer(player);
@@ -70,7 +74,7 @@ function switchOnPlayer(playerNumber) {
     //then we'll use all the IDs stored in the player object to switch on the corresponding cells
 
     //assigning one of the bojects stored in 'players' object to the object 'currentPlayerObject' 
-    currentPlayerObject = {...players[playerNumber]};//making a copy from players[playerNumber] to currentPlayerObject 
+    currentPlayerObject = { ...players[playerNumber] };//making a copy from players[playerNumber] to currentPlayerObject 
 
     let player_propertiesCount = Object.keys(currentPlayerObject).length;
     //console.log(currentPlayerObject); 
@@ -274,7 +278,7 @@ function isTableRightSideLimit() {
         //now we'll extract the number that is inside the id
         let numberInsideIDString = cellID_in_currentPlayer.slice(4);
         //if cellID_in_currentPlayer is 'cell7' then numberInsideIDString will be '7' 
-        if(numberInsideIDString % 7 == 0){
+        if (numberInsideIDString % 7 == 0) {
             //so this cell has an id like 'cell7' or 'cell14' or 'cell21'.... it belongs to the right boundary of the table
             return true;
         }
@@ -385,7 +389,7 @@ function isTableLeftSideLimit() {
         //now we'll extract the number that is inside the id
         let numberInsideIDString = cellID_in_currentPlayer.slice(4);
         //if cellID_in_currentPlayer is 'cell7' then numberInsideIDString will be '7' 
-        if(numberInsideIDString % 7 == 1){
+        if (numberInsideIDString % 7 == 1) {
             //so this cell has an id like 'cell8' or 'cell15' or 'cell22'.... it belongs to the left boundary of the table
             return true;
         }
@@ -428,6 +432,21 @@ function existSwitchedOnCellsToLeft() {
     return b;
 }
 //******************** END MOVING LEFT A PLAYER ******************//
+//
+//
+//
+//
+//******************** START ERASING FULL ROWS AND INCREMENT SCORE ******************//
+function existFullRows() {
+
+}
+function eraseFullRows() {
+
+}
+function incrementScore() {
+
+}
+//******************** END ERASING FULL ROWS AND INCREMENT SCORE ******************//
 
 
 
@@ -444,11 +463,11 @@ function playerBehave(e) {
         //move down
         movePlayerDown(currentPlayerObject);
     }
-    else if(e.keyCode == 39){
+    else if (e.keyCode == 39) {
         //move right
         movePlayerRight(currentPlayerObject);
     }
-    else if(e.keyCode == 37){
+    else if (e.keyCode == 37) {
         //move left
         movePlayerLeft(currentPlayerObject);
     }
