@@ -59,7 +59,10 @@ var players = {
     , 7: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell11", cell4_Id: "cell12" }//Four Dots form -|_
 }
 function choosePlayerRandomly() {
+    //this function choose a player randomly and call another function to switch it on
+    //first lets check if there are any rows fully switched one
     if (existFullRows()) {
+        //so there is one or more rows fully switched one, lets erase them and increment score
         eraseFullRows();
         incrementScore();
     }
@@ -438,7 +441,22 @@ function existSwitchedOnCellsToLeft() {
 //
 //******************** START ERASING FULL ROWS AND INCREMENT SCORE ******************//
 function existFullRows() {
-
+    //this function returns true if there are rows fully switched on ... return false otherwise
+    //How to?
+    //for each <tr> in <table> check if its <td> tags have all class 'cell-on'
+    let trTags = document.getElementById("stadium").querySelectorAll("tr");
+    //console.log(trTags.length);
+    for (let i = 0; i < trTags.length; i++) {
+        //now check if all <td> children of this <tr> al have a class 'cell-on'
+        let tdTags = trTags[i].querySelectorAll("td");
+        for (let j = 0; j < tdTags.length; j++) {
+            if (tdTags[j].className.includes("cell-off")) {
+                //so one of <td> if current <tr> (trTags[i]) is not switched on .. lets return false
+                return false;
+            }
+        }
+    }
+    return true;
 }
 function eraseFullRows() {
 
