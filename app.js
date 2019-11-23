@@ -62,9 +62,14 @@ function choosePlayerRandomly() {
     //this function choose a player randomly and call another function to switch it on
     //first lets check if there are any rows fully switched one
     if (existFullRows()) {
-        console.log("there is at least one row fully switched one.")
+        //console.log("there is at least one row fully switched one.")
         //so there is one or more rows fully switched one, lets erase them and increment score
-        eraseFullRows();
+        
+        //first, lets switch off rows that are fully switched on
+        eraseFullRows_moveDownNotFullRows();
+        //second, now we have entire rows switched off bcuz of previous func, lets move all the switched on cells down
+        moveDowncells_toFillGaps();
+        //third, increment score based on the number of rows that were erased
         incrementScore();
     }
     var player = Math.floor(Math.random() * 8);
@@ -468,7 +473,7 @@ function existFullRows() {
     //the code didn't return anything after checking all rows it means all rows are not fully switched on, lets return false 
     return false;
 }
-function eraseFullRows() {
+function eraseFullRows_moveDownNotFullRows() {
     //this function erase full rows
     //How to?
     //for each switched on <tr> tag switch off its cells, and recheck from the first <tr> tag
@@ -491,9 +496,25 @@ function eraseFullRows() {
                 for (let j = 0; j < tdTags.length; j++) {
                     tdTags[j].className = "cell-off";
                 }
+                //Now lets move down all switched on <td> tags of previous <tr> tags
+                for(let g=i; g>=0; g--){//we have to swtart moving down <td> tags from bottom to top
+                    let previousTDTags = trTags[g].getElementsByTagName("td");
+                    for(let h=0; h<previousTDTags.length; h++){
+                        if(previousTDTags[h].className.includes("cell-on")){
+                            previousTDTags[h].className = "cell-off";
+                            document.getElementById(table[previousTDTags[h].id].brotherBeneathId).className = "cell-on";
+                        }                        
+                    }
+                }
             }
         }
     }
+}
+function moveDowncells_toFillGaps(){
+    //this function will look for rows that are fully switched off, and will move down all the switched on cell above it
+    
+    //How to look for rows completely switched off?
+    //By checking if none of <td> tags has class 'cell-on'
 }
 function incrementScore() {
 
