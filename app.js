@@ -68,7 +68,7 @@ function choosePlayerRandomly() {
         //first, lets switch off rows that are fully switched on, adn moved down cells above those rows and that are switched on
         eraseFullRows_moveDownNotFullRows();
         //third, increment score based on the number of rows that were erased
-        incrementScore();
+        //incrementScore();
     }
     var player = Math.floor(Math.random() * 8);
     //console.log(player);    
@@ -494,6 +494,8 @@ function eraseFullRows_moveDownNotFullRows() {
                 for (let j = 0; j < tdTags.length; j++) {
                     tdTags[j].className = "cell-off";
                 }
+                //Now lets increment score once
+                incrementScore();
                 //Now lets move down all switched on <td> tags of previous <tr> tags
                 for(let g=i; g>=0; g--){//we have to swtart moving down <td> tags from bottom to top
                     let previousTDTags = trTags[g].getElementsByTagName("td");
@@ -509,7 +511,10 @@ function eraseFullRows_moveDownNotFullRows() {
     }
 }
 function incrementScore() {
-
+    let oldScore = parseInt(document.querySelector(".current-score strong").innerHTML);
+    console.log(oldScore);
+    let newScore = oldScore + 10;
+    document.querySelector(".current-score strong").innerHTML = newScore;
 }
 //******************** END ERASING FULL ROWS AND INCREMENT SCORE ******************//
 
