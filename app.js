@@ -350,7 +350,6 @@ function movePlayerLeft(currentPlayerObject) {
         console.log("player cannot move left!");
     }
 }
-
 function switchoffPlayerCells_andAssignNewCells_toTheLeft(currentPlayerObject) {
     //this function switch off all the cells of the player, and assign new cells to it (cells to the left)
 
@@ -461,7 +460,7 @@ function existFullRows() {
         }
         else {
             if (tdTags.length > 0) {//it means we have td tags of a row that are all 'cell-on'
-            //(if tdTags.length==0 it means we are checking the first row that contains only <th> tags)
+                //(if tdTags.length==0 it means we are checking the first row that contains only <th> tags)
                 return true;
             }
         }
@@ -470,7 +469,31 @@ function existFullRows() {
     return false;
 }
 function eraseFullRows() {
-
+    //this function erase full rows
+    //How to?
+    //for each switched on <tr> tag switch off its cells, and recheck from the first <tr> tag
+    let trTags = document.getElementById("stadium").getElementsByTagName("tr");
+    for (let i = 0; i < trTags.length; i++) {
+        //now check if all <td> children of this <tr> all have a class 'cell-on'
+        let tdTags = trTags[i].getElementsByTagName("td");
+        let b = true;
+        let tdTagsClassNames = "";
+        for (let j = 0; j < tdTags.length; j++) {
+            tdTagsClassNames = tdTagsClassNames + tdTags[j].className;
+        }
+        if (tdTagsClassNames.includes("cell-off")) {
+            //so one of <td> of current <tr> (trTags[i]) is not switched on .. lets assign false to b            
+            b = false;
+        }
+        else {
+            if (tdTags.length > 0) {//it means we have td tags of a row that are all 'cell-on'
+                //(if tdTags.length==0 it means we are checking the first row that contains only <th> tags)
+                for (let j = 0; j < tdTags.length; j++) {
+                    tdTags[j].className = "cell-off";
+                }
+            }
+        }
+    }
 }
 function incrementScore() {
 
