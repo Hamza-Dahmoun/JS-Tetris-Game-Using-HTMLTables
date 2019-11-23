@@ -62,6 +62,7 @@ function choosePlayerRandomly() {
     //this function choose a player randomly and call another function to switch it on
     //first lets check if there are any rows fully switched one
     if (existFullRows()) {
+        console.log("there is at least one row fully switched one.")
         //so there is one or more rows fully switched one, lets erase them and increment score
         eraseFullRows();
         incrementScore();
@@ -444,19 +445,29 @@ function existFullRows() {
     //this function returns true if there are rows fully switched on ... return false otherwise
     //How to?
     //for each <tr> in <table> check if its <td> tags have all class 'cell-on'
-    let trTags = document.getElementById("stadium").querySelectorAll("tr");
-    //console.log(trTags.length);
+    let trTags = document.getElementById("stadium").getElementsByTagName("tr");
+    //console.log(trTags.length);    
     for (let i = 0; i < trTags.length; i++) {
-        //now check if all <td> children of this <tr> al have a class 'cell-on'
-        let tdTags = trTags[i].querySelectorAll("td");
+        //now check if all <td> children of this <tr> all have a class 'cell-on'
+        let tdTags = trTags[i].getElementsByTagName("td");
+        let b = true;
+        let tdTagsClassNames = "";
         for (let j = 0; j < tdTags.length; j++) {
-            if (tdTags[j].className.includes("cell-off")) {
-                //so one of <td> if current <tr> (trTags[i]) is not switched on .. lets return false
-                return false;
+            tdTagsClassNames = tdTagsClassNames + tdTags[j].className;
+        }
+        if (tdTagsClassNames.includes("cell-off")) {
+            //so one of <td> of current <tr> (trTags[i]) is not switched on .. lets assign false to b            
+            b = false;
+        }
+        else {
+            if (tdTags.length > 0) {//it means we have td tags of a row that are all 'cell-on'
+            //(if tdTags.length==0 it means we are checking the first row that contains only <th> tags)
+                return true;
             }
         }
     }
-    return true;
+    //the code didn't return anything after checking all rows it means all rows are not fully switched on, lets return false 
+    return false;
 }
 function eraseFullRows() {
 
