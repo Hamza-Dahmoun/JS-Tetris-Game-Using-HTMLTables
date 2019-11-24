@@ -91,8 +91,15 @@ function switchOnPlayer(playerNumber) {
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
         document.getElementById(cellID_in_currentPlayer).className = "cell-on";
     }
+    //before moving down the player lets first check whether it is gameOver or not
+    //if it is gameOver we'll delete the keydown event listener of the arrows and display a game over msg
+    if(gameOver()){
+        deleteKeyDownEvents();
+        displayGameOverMsg();
+    }
     //lets start moving this new player down every one second
     //movePlayerDown(currentPlayerObject);
+
 }
 
 //******************** START MOVING DOWN A PLAYER ******************//
@@ -517,7 +524,15 @@ function incrementScore() {
     document.querySelector(".current-score strong").innerHTML = newScore;
 }
 //******************** END ERASING FULL ROWS AND INCREMENT SCORE ******************//
+//
+//
+//
+//
+//******************** START GAME OVER CHECKING ******************//
+//it is game over only if a new player is chosen and switched on when one cell of the top row is already switched on
 
+
+//******************** END GAME OVER CHECKING ******************//
 
 
 
