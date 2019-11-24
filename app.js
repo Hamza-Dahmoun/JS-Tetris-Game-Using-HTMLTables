@@ -64,7 +64,7 @@ function choosePlayerRandomly() {
     if (existFullRows()) {
         //console.log("there is at least one row fully switched one.")
         //so there is one or more rows fully switched one, lets erase them and increment score
-        
+
         //first, lets switch off rows that are fully switched on, adn moved down cells above those rows and that are switched on
         eraseFullRows_moveDownNotFullRows();
         //third, increment score based on the number of rows that were erased
@@ -76,7 +76,17 @@ function choosePlayerRandomly() {
 }
 choosePlayerRandomly();
 var currentPlayerObject;
-function switchOnPlayer(playerNumber) {
+function switchOnPlayer(playerNumber) {    
+    //before moving down the player lets first check whether it is gameOver or not
+    //if it is gameOver we'll delete the keydown event listener of the arrows and display a game over msg
+    if (gameOver()) {
+        //alert("game over!");
+        deleteKeyDownEvents();
+        displayGameOverMsg();
+        return;
+    }
+
+
     //we'll use playerNumber parameter to get the player object from 'players' object
     //then we'll use all the IDs stored in the player object to switch on the corresponding cells
 
@@ -90,12 +100,6 @@ function switchOnPlayer(playerNumber) {
         let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
         document.getElementById(cellID_in_currentPlayer).className = "cell-on";
-    }
-    //before moving down the player lets first check whether it is gameOver or not
-    //if it is gameOver we'll delete the keydown event listener of the arrows and display a game over msg
-    if(gameOver()){
-        deleteKeyDownEvents();
-        displayGameOverMsg();
     }
     //lets start moving this new player down every one second
     //movePlayerDown(currentPlayerObject);
@@ -504,13 +508,13 @@ function eraseFullRows_moveDownNotFullRows() {
                 //Now lets increment score once
                 incrementScore();
                 //Now lets move down all switched on <td> tags of previous <tr> tags
-                for(let g=i; g>=0; g--){//we have to swtart moving down <td> tags from bottom to top
+                for (let g = i; g >= 0; g--) {//we have to swtart moving down <td> tags from bottom to top
                     let previousTDTags = trTags[g].getElementsByTagName("td");
-                    for(let h=0; h<previousTDTags.length; h++){
-                        if(previousTDTags[h].className.includes("cell-on")){
+                    for (let h = 0; h < previousTDTags.length; h++) {
+                        if (previousTDTags[h].className.includes("cell-on")) {
                             previousTDTags[h].className = "cell-off";
                             document.getElementById(table[previousTDTags[h].id].brotherBeneathId).className = "cell-on";
-                        }                        
+                        }
                     }
                 }
             }
@@ -529,8 +533,26 @@ function incrementScore() {
 //
 //
 //******************** START GAME OVER CHECKING ******************//
-//it is game over only if a new player is chosen and switched on when one cell of the top row is already switched on
+//it is game over only if one cell of the top row is already switched on when we tries to choose and switch a new player
+function gameOver() {
+    //this function returns true if the game is over
+    //How to?
+    //it checks if there are any switched on cells in the top row
+    let tdTags_inTopRow = document.getElementById("stadium").getElementsByTagName("tr")[1].getElementsByTagName("td");
+    //index 0 represents the row that contains <th> tags
+    //index 1 represents the top row that contains <td> tags
+    for (let i = 0; i < tdTags_inTopRow.length; i++) {
+        if(tdTags_inTopRow[i].className.includes("cell-on"))
+        return true;
+    }
+    return false;
+}
+function deleteKeyDownEvents() {
+        
+}
+function displayGameOverMsg() {
 
+}
 
 //******************** END GAME OVER CHECKING ******************//
 
