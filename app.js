@@ -80,7 +80,7 @@ function switchOnPlayer(playerNumber) {
     //before moving down the player lets first check whether it is gameOver or not
     //if it is gameOver we'll delete the keydown event listener of the arrows and display a game over msg
     if (gameOver()) {
-        //alert("game over!");
+        alert("game over!");
         deleteKeyDownEvents();
         displayGameOverMsg();
         return;
@@ -547,8 +547,8 @@ function gameOver() {
     }
     return false;
 }
-function deleteKeyDownEvents() {
-        
+function deleteKeyDownEvents() {        
+    document.removeEventListener("keydown", playerBehave);
 }
 function displayGameOverMsg() {
 
