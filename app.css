@@ -50,3 +50,13 @@ td{
 .information-container *{
     margin-bottom: 5px;margin-top:5px;
 }
+#gameOverMsg{
+    position: fixed;
+    top:20%;
+    background-color:var(--text-color);
+    color:var(--body-bg-color);
+    padding: 15px;
+    box-shadow:0px 2px 20px var(--text-color);
+    font-size:45px;
+    border-radius:2px;
+}
