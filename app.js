@@ -75,6 +75,7 @@ function choosePlayerRandomly() {
     switchOnPlayer(player);
 }
 choosePlayerRandomly();
+var nextPlayerObject;
 var currentPlayerObject;
 function switchOnPlayer(playerNumber) {    
     //before moving down the player lets first check whether it is gameOver or not
@@ -148,7 +149,6 @@ function switchoffPlayerCells_andAssignNewCells(currentPlayerObject) {
         //up to now, we: switched off a cell, then we considered its beneath brother instead of it.. we'll switch on this beneathBrother in the next for loop
     }
 }
-
 function switchonPlayerCells(currentPlayerObject) {
     //this function switches on all cells of the player
 
@@ -165,7 +165,6 @@ function switchonPlayerCells(currentPlayerObject) {
         document.getElementById(cellID_in_currentPlayer).className = "cell-on";
     }
 }
-
 function isMovingDownPossible() {
     //this function returns a bool that determines wheter player can move down or not
     if (!isTableBottomLimit() && !existSwitchedOnCellsBelow()) return true;
@@ -561,13 +560,15 @@ function displayGameOverMsg() {
 //
 //******************** START NEXT PLAYER DISPLAY ******************//
 function chooseNextPlayer(){
-
+    //this function choose a player randomly and call another function to switch it on in next players area
+    var nextPlayer = Math.floor(Math.random() * 8);   
+    displayNextPlayer(nextPlayer);
 }
 function displayNextPlayer(){
 
 }
 function assignNextPlayer_toCurrentPlayer(){
-    
+
 }
 
 //******************** END NEXT PLAYER DISPLAY ******************//
