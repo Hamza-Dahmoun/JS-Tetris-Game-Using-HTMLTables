@@ -571,6 +571,7 @@ var nextPlayers = {
     , 6: { cell1_Id: "cell87", cell2_Id: "cell90", cell3_Id: "cell91", cell4_Id: "cell92" }//Four Dots form _|_
     , 7: { cell1_Id: "cell86", cell2_Id: "cell87", cell3_Id: "cell91", cell4_Id: "cell92" }//Four Dots form -|_
 }
+displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
 chooseNextPlayer();
 function chooseNextPlayer() {
     //this function choose a player randomly and call another function to switch it on in next players area
@@ -578,6 +579,8 @@ function chooseNextPlayer() {
     displayNextPlayer(nextPlayerNumber);
 }
 function displayNextPlayer(nextPlayerNumber) {
+    //this function display nextPlayer object in the second table
+
     //we'll use nextPlayerNumber parameter to get the player object from 'nextPlayers' object
     //then we'll use all the IDs stored in the player object to switch on the corresponding cells
 
@@ -585,21 +588,28 @@ function displayNextPlayer(nextPlayerNumber) {
     nextPlayerObject = { ...nextPlayers[nextPlayerNumber] };//making a copy from nextPlayers[nextPlayerNumber] to nextPlayerObject 
 
     let player_propertiesCount = Object.keys(nextPlayerObject).length;
-    console.log(nextPlayerObject);
-    console.log(player_propertiesCount);
+    //console.log(nextPlayerObject);
+    //console.log(player_propertiesCount);
     for (let i = 1; i <= player_propertiesCount; i++) {
         let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
-        console.log(idPropertyName_in_currentPlayer);
+        //console.log(idPropertyName_in_currentPlayer);
         let cellID_in_currentPlayer = nextPlayerObject[idPropertyName_in_currentPlayer];
-        console.log(cellID_in_currentPlayer);
+        //console.log(cellID_in_currentPlayer);
         document.getElementById(cellID_in_currentPlayer).className = "cell-on";
     }
-    //lets start moving this new player down every one second
-    //movePlayerDown(nextPlayerObject);
-
 }
-function assignNextPlayer_toCurrentPlayer() {
+function displayNextPlayer_asCurrentPlayer(nextPlayerNumber) {
+    //this function calls another function to display currentPlayerObject using nextPlayerNumber as parameter,
+    //and calls another function to choose another nextPlayer
 
+    //(this function is called in two places:
+    //a- when the game is loaded first, and the parameter used is a random number
+    //b- when a currentPlayer can no more move down)
+    
+    //1- lets display nextPlayer as currentPlayer in the stadium table
+    switchOnPlayer(nextPlayerNumber);
+    //2- lets choose a new nextPlayer and display it in the second table
+    chooseNextPlayer();
 }
 
 //******************** END NEXT PLAYER DISPLAY ******************//
