@@ -555,8 +555,22 @@ function displayGameOverMsg() {
 }
 
 //******************** END GAME OVER CHECKING ******************//
+//
+//
+//
+//
+//******************** START NEXT PLAYER DISPLAY ******************//
+function chooseNextPlayer(){
 
+}
+function displayNextPlayer(){
 
+}
+function assignNextPlayer_toCurrentPlayer(){
+    
+}
+
+//******************** END NEXT PLAYER DISPLAY ******************//
 
 
 
