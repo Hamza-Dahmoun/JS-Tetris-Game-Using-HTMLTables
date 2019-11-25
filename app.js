@@ -54,8 +54,8 @@ var players = {
     , 2: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5" }//Three Dots in row
     , 3: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5", cell4_Id: "cell6" }//Four Dots in row
     , 4: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5", cell4_Id: "cell12" }//Four Dots form 'L'
-    , 5: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell11", cell4_Id: "cell12" }//Four Dots form square
-    , 6: { cell1_Id: "cell3", cell2_Id: "cell10", cell3_Id: "cell11", cell4_Id: "cell12" }//Four Dots form _|_
+    , 5: { cell1_Id: "cell4", cell2_Id: "cell5", cell3_Id: "cell11", cell4_Id: "cell12" }//Four Dots form square
+    , 6: { cell1_Id: "cell4", cell2_Id: "cell10", cell3_Id: "cell11", cell4_Id: "cell12" }//Four Dots form _|_
     , 7: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell11", cell4_Id: "cell12" }//Four Dots form -|_
 }
 function choosePlayerRandomly() {
@@ -559,12 +559,24 @@ function displayGameOverMsg() {
 //
 //
 //******************** START NEXT PLAYER DISPLAY ******************//
+//a Player is defined by a set of cells
+//nextPlayers is an object used only to display the next player in the area of next players
+var nextPlayers = {
+    0: { cell1_Id: "cell6" }//Dot
+    , 1: { cell1_Id: "cell6", cell2_Id: "cell7" }//Twp Dots
+    , 2: { cell1_Id: "cell6", cell2_Id: "cell7", cell3_Id: "cell8" }//Three Dots in row
+    , 3: { cell1_Id: "cell5", cell2_Id: "cell6", cell3_Id: "cell7", cell4_Id: "cell8" }//Four Dots in row
+    , 4: { cell1_Id: "cell4", cell2_Id: "cell5", cell3_Id: "cell6", cell4_Id: "cell10" }//Four Dots form 'L'
+    , 5: { cell1_Id: "cell2", cell2_Id: "cell3", cell3_Id: "cell6", cell4_Id: "cell7" }//Four Dots form square
+    , 6: { cell1_Id: "cell3", cell2_Id: "cell6", cell3_Id: "cell7", cell4_Id: "cell8" }//Four Dots form _|_
+    , 7: { cell1_Id: "cell2", cell2_Id: "cell3", cell3_Id: "cell7", cell4_Id: "cell8" }//Four Dots form -|_
+}
 function chooseNextPlayer(){
     //this function choose a player randomly and call another function to switch it on in next players area
-    var nextPlayer = Math.floor(Math.random() * 8);   
-    displayNextPlayer(nextPlayer);
+    var nextPlayerNumber = Math.floor(Math.random() * 8);   
+    displayNextPlayer(nextPlayerNumber);
 }
-function displayNextPlayer(){
+function displayNextPlayer(nextPlayerNumber){
 
 }
 function assignNextPlayer_toCurrentPlayer(){
