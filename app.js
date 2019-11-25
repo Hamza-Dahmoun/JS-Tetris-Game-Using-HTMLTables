@@ -77,7 +77,7 @@ function choosePlayerRandomly() {
 choosePlayerRandomly();
 var nextPlayerObject;
 var currentPlayerObject;
-function switchOnPlayer(playerNumber) {    
+function switchOnPlayer(playerNumber) {
     //before moving down the player lets first check whether it is gameOver or not
     //if it is gameOver we'll delete the keydown event listener of the arrows and display a game over msg
     if (gameOver()) {
@@ -541,12 +541,12 @@ function gameOver() {
     //index 0 represents the row that contains <th> tags
     //index 1 represents the top row that contains <td> tags
     for (let i = 0; i < tdTags_inTopRow.length; i++) {
-        if(tdTags_inTopRow[i].className.includes("cell-on"))
-        return true;
+        if (tdTags_inTopRow[i].className.includes("cell-on"))
+            return true;
     }
     return false;
 }
-function deleteKeyDownEvents() {        
+function deleteKeyDownEvents() {
     document.removeEventListener("keydown", playerBehave);
 }
 function displayGameOverMsg() {
@@ -562,24 +562,43 @@ function displayGameOverMsg() {
 //a Player is defined by a set of cells
 //nextPlayers is an object used only to display the next player in the area of next players
 var nextPlayers = {
-    0: { cell1_Id: "cell6" }//Dot
-    , 1: { cell1_Id: "cell6", cell2_Id: "cell7" }//Twp Dots
-    , 2: { cell1_Id: "cell6", cell2_Id: "cell7", cell3_Id: "cell8" }//Three Dots in row
-    , 3: { cell1_Id: "cell5", cell2_Id: "cell6", cell3_Id: "cell7", cell4_Id: "cell8" }//Four Dots in row
-    , 4: { cell1_Id: "cell4", cell2_Id: "cell5", cell3_Id: "cell6", cell4_Id: "cell10" }//Four Dots form 'L'
-    , 5: { cell1_Id: "cell2", cell2_Id: "cell3", cell3_Id: "cell6", cell4_Id: "cell7" }//Four Dots form square
-    , 6: { cell1_Id: "cell3", cell2_Id: "cell6", cell3_Id: "cell7", cell4_Id: "cell8" }//Four Dots form _|_
-    , 7: { cell1_Id: "cell2", cell2_Id: "cell3", cell3_Id: "cell7", cell4_Id: "cell8" }//Four Dots form -|_
+    0: { cell1_Id: "cell90" }//Dot
+    , 1: { cell1_Id: "cell90", cell2_Id: "cell91" }//Twp Dots
+    , 2: { cell1_Id: "cell90", cell2_Id: "cell91", cell3_Id: "cell92" }//Three Dots in row
+    , 3: { cell1_Id: "cell89", cell2_Id: "cell90", cell3_Id: "cell91", cell4_Id: "cell92" }//Four Dots in row
+    , 4: { cell1_Id: "cell90", cell2_Id: "cell91", cell3_Id: "cell92", cell4_Id: "cell96" }//Four Dots form 'L'
+    , 5: { cell1_Id: "cell86", cell2_Id: "cell87", cell3_Id: "cell90", cell4_Id: "cell91" }//Four Dots form square
+    , 6: { cell1_Id: "cell87", cell2_Id: "cell90", cell3_Id: "cell91", cell4_Id: "cell92" }//Four Dots form _|_
+    , 7: { cell1_Id: "cell86", cell2_Id: "cell87", cell3_Id: "cell91", cell4_Id: "cell92" }//Four Dots form -|_
 }
-function chooseNextPlayer(){
+chooseNextPlayer();
+function chooseNextPlayer() {
     //this function choose a player randomly and call another function to switch it on in next players area
-    var nextPlayerNumber = Math.floor(Math.random() * 8);   
+    var nextPlayerNumber = Math.floor(Math.random() * 8);
     displayNextPlayer(nextPlayerNumber);
 }
-function displayNextPlayer(nextPlayerNumber){
+function displayNextPlayer(nextPlayerNumber) {
+    //we'll use nextPlayerNumber parameter to get the player object from 'nextPlayers' object
+    //then we'll use all the IDs stored in the player object to switch on the corresponding cells
+
+    //assigning one of the bojects stored in 'nextPlayers' object to the object 'nextPlayerObject' 
+    nextPlayerObject = { ...nextPlayers[nextPlayerNumber] };//making a copy from nextPlayers[nextPlayerNumber] to nextPlayerObject 
+
+    let player_propertiesCount = Object.keys(nextPlayerObject).length;
+    console.log(nextPlayerObject);
+    console.log(player_propertiesCount);
+    for (let i = 1; i <= player_propertiesCount; i++) {
+        let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
+        console.log(idPropertyName_in_currentPlayer);
+        let cellID_in_currentPlayer = nextPlayerObject[idPropertyName_in_currentPlayer];
+        console.log(cellID_in_currentPlayer);
+        document.getElementById(cellID_in_currentPlayer).className = "cell-on";
+    }
+    //lets start moving this new player down every one second
+    //movePlayerDown(nextPlayerObject);
 
 }
-function assignNextPlayer_toCurrentPlayer(){
+function assignNextPlayer_toCurrentPlayer() {
 
 }
 
