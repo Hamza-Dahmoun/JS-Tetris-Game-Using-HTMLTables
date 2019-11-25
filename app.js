@@ -60,6 +60,7 @@ var players = {
     , 7: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell11", cell4_Id: "cell12" }//Four Dots form -|_
 }
 var nextPlayerObject;
+var nextPlayerNumber;
 //nextPlayers is an object used only to display the next player in the area of next players
 var nextPlayers = {
     0: { cell1_Id: "cell90" }//Dot
@@ -95,8 +96,19 @@ function choosePlayerRandomly() {
 displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
 chooseNextPlayer();
 
-
 function switchOnPlayer(playerNumber) {
+    //first lets check if there are any rows fully switched one
+    if (existFullRows()) {
+        //console.log("there is at least one row fully switched one.")
+        //so there is one or more rows fully switched one, lets erase them and increment score
+
+        //first, lets switch off rows that are fully switched on, adn moved down cells above those rows and that are switched on
+        eraseFullRows_moveDownNotFullRows();
+        //third, increment score based on the number of rows that were erased
+        //incrementScore();
+    }
+
+
     //before moving down the player lets first check whether it is gameOver or not
     //if it is gameOver we'll delete the keydown event listener of the arrows and display a game over msg
     if (gameOver()) {
@@ -121,9 +133,6 @@ function switchOnPlayer(playerNumber) {
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
         document.getElementById(cellID_in_currentPlayer).className = "cell-on";
     }
-    //lets start moving this new player down every one second
-    //movePlayerDown(currentPlayerObject);
-
 }
 
 //******************** START MOVING DOWN A PLAYER ******************//
@@ -145,7 +154,7 @@ function movePlayerDown(currentPlayerObject) {
     else {
         console.log("player cannot move down. I created a new one!");
         //choosePlayerRandomly();
-        displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
+        displayNextPlayer_asCurrentPlayer(nextPlayerNumber);
         chooseNextPlayer();
     }
 }
@@ -585,7 +594,7 @@ function displayGameOverMsg() {
 
 function chooseNextPlayer() {
     //this function choose a player randomly and call another function to switch it on in next players area
-    var nextPlayerNumber = Math.floor(Math.random() * 8);
+    nextPlayerNumber = Math.floor(Math.random() * 8);
     //lets now display the chosen nextPlayer in the second table
     displayNextPlayer(nextPlayerNumber);
 }
@@ -626,7 +635,7 @@ function displayNextPlayer_asCurrentPlayer(nextPlayerNumber) {
     //a- when the game is loaded first, and the parameter used is a random number
     //b- when a currentPlayer can no more move down, so we have to use the nextPlayer already chosen to become a currentPlayer)
 
-    //1- lets display nextPlayer as currentPlayer in the stadium table
+    //1- lets display nextPlayer as currentPlayer in the stadium table    
     switchOnPlayer(nextPlayerNumber);
     //2- lets choose a new nextPlayer and display it in the second table
     chooseNextPlayer();
