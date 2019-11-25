@@ -47,6 +47,7 @@ function tdClick(event) {
 }
 
 //********** Players Objects ***********//
+var currentPlayerObject;
 //a Player is defined by a set of cells
 var players = {
     0: { cell1_Id: "cell4" }//Dot
@@ -58,6 +59,19 @@ var players = {
     , 6: { cell1_Id: "cell4", cell2_Id: "cell10", cell3_Id: "cell11", cell4_Id: "cell12" }//Four Dots form _|_
     , 7: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell11", cell4_Id: "cell12" }//Four Dots form -|_
 }
+var nextPlayerObject;
+//nextPlayers is an object used only to display the next player in the area of next players
+var nextPlayers = {
+    0: { cell1_Id: "cell90" }//Dot
+    , 1: { cell1_Id: "cell90", cell2_Id: "cell91" }//Twp Dots
+    , 2: { cell1_Id: "cell90", cell2_Id: "cell91", cell3_Id: "cell92" }//Three Dots in row
+    , 3: { cell1_Id: "cell89", cell2_Id: "cell90", cell3_Id: "cell91", cell4_Id: "cell92" }//Four Dots in row
+    , 4: { cell1_Id: "cell90", cell2_Id: "cell91", cell3_Id: "cell92", cell4_Id: "cell96" }//Four Dots form 'L'
+    , 5: { cell1_Id: "cell86", cell2_Id: "cell87", cell3_Id: "cell90", cell4_Id: "cell91" }//Four Dots form square
+    , 6: { cell1_Id: "cell87", cell2_Id: "cell90", cell3_Id: "cell91", cell4_Id: "cell92" }//Four Dots form _|_
+    , 7: { cell1_Id: "cell86", cell2_Id: "cell87", cell3_Id: "cell91", cell4_Id: "cell92" }//Four Dots form -|_
+}
+
 function choosePlayerRandomly() {
     //this function choose a player randomly and call another function to switch it on
     //first lets check if there are any rows fully switched one
@@ -74,9 +88,14 @@ function choosePlayerRandomly() {
     //console.log(player);    
     switchOnPlayer(player);
 }
-choosePlayerRandomly();
-var nextPlayerObject;
-var currentPlayerObject;
+
+
+
+//choosePlayerRandomly();
+displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
+chooseNextPlayer();
+
+
 function switchOnPlayer(playerNumber) {
     //before moving down the player lets first check whether it is gameOver or not
     //if it is gameOver we'll delete the keydown event listener of the arrows and display a game over msg
@@ -125,7 +144,9 @@ function movePlayerDown(currentPlayerObject) {
     }
     else {
         console.log("player cannot move down. I created a new one!");
-        choosePlayerRandomly();
+        //choosePlayerRandomly();
+        displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
+        chooseNextPlayer();
     }
 }
 function switchoffPlayerCells_andAssignNewCells(currentPlayerObject) {
@@ -560,22 +581,12 @@ function displayGameOverMsg() {
 //
 //******************** START NEXT PLAYER DISPLAY ******************//
 //a Player is defined by a set of cells
-//nextPlayers is an object used only to display the next player in the area of next players
-var nextPlayers = {
-    0: { cell1_Id: "cell90" }//Dot
-    , 1: { cell1_Id: "cell90", cell2_Id: "cell91" }//Twp Dots
-    , 2: { cell1_Id: "cell90", cell2_Id: "cell91", cell3_Id: "cell92" }//Three Dots in row
-    , 3: { cell1_Id: "cell89", cell2_Id: "cell90", cell3_Id: "cell91", cell4_Id: "cell92" }//Four Dots in row
-    , 4: { cell1_Id: "cell90", cell2_Id: "cell91", cell3_Id: "cell92", cell4_Id: "cell96" }//Four Dots form 'L'
-    , 5: { cell1_Id: "cell86", cell2_Id: "cell87", cell3_Id: "cell90", cell4_Id: "cell91" }//Four Dots form square
-    , 6: { cell1_Id: "cell87", cell2_Id: "cell90", cell3_Id: "cell91", cell4_Id: "cell92" }//Four Dots form _|_
-    , 7: { cell1_Id: "cell86", cell2_Id: "cell87", cell3_Id: "cell91", cell4_Id: "cell92" }//Four Dots form -|_
-}
-displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
-chooseNextPlayer();
+
+
 function chooseNextPlayer() {
     //this function choose a player randomly and call another function to switch it on in next players area
     var nextPlayerNumber = Math.floor(Math.random() * 8);
+    //lets now display the chosen nextPlayer in the second table
     displayNextPlayer(nextPlayerNumber);
 }
 function displayNextPlayer(nextPlayerNumber) {
@@ -583,6 +594,9 @@ function displayNextPlayer(nextPlayerNumber) {
 
     //we'll use nextPlayerNumber parameter to get the player object from 'nextPlayers' object
     //then we'll use all the IDs stored in the player object to switch on the corresponding cells
+
+    //before displaying the nextPlayer in the second table lets switch off all the cells of the table
+    switchoffNextPlayerArea();
 
     //assigning one of the bojects stored in 'nextPlayers' object to the object 'nextPlayerObject' 
     nextPlayerObject = { ...nextPlayers[nextPlayerNumber] };//making a copy from nextPlayers[nextPlayerNumber] to nextPlayerObject 
@@ -598,14 +612,20 @@ function displayNextPlayer(nextPlayerNumber) {
         document.getElementById(cellID_in_currentPlayer).className = "cell-on";
     }
 }
+function switchoffNextPlayerArea(){
+    let tdTags_inSecondTable = document.getElementById("nextPlayersArea").getElementsByTagName("td");
+    for (let i=0; i<tdTags_inSecondTable.length; i++){
+        tdTags_inSecondTable[i].className = "cell-off";
+    }
+}
 function displayNextPlayer_asCurrentPlayer(nextPlayerNumber) {
     //this function calls another function to display currentPlayerObject using nextPlayerNumber as parameter,
     //and calls another function to choose another nextPlayer
 
     //(this function is called in two places:
     //a- when the game is loaded first, and the parameter used is a random number
-    //b- when a currentPlayer can no more move down)
-    
+    //b- when a currentPlayer can no more move down, so we have to use the nextPlayer already chosen to become a currentPlayer)
+
     //1- lets display nextPlayer as currentPlayer in the stadium table
     switchOnPlayer(nextPlayerNumber);
     //2- lets choose a new nextPlayer and display it in the second table
