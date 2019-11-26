@@ -158,6 +158,7 @@ function movePlayerDown(currentPlayerObject) {
     else {
         console.log("player cannot move down. I created a new one!");
         //choosePlayerRandomly();
+        //lets stop the layer from moving down automatically every second
         clearInterval(myInterval);
         displayNextPlayer_asCurrentPlayer(nextPlayerNumber);
         chooseNextPlayer();
@@ -642,6 +643,8 @@ function displayNextPlayer_asCurrentPlayer(nextPlayerNumber) {
 
     //1- lets display nextPlayer as currentPlayer in the stadium table    
     switchOnPlayer(nextPlayerNumber);
+    //now lets start moving the player down every second
+    myInterval= window.setInterval(function(){movePlayerDown(currentPlayerObject);},timeInterval);
     //2- lets choose a new nextPlayer and display it in the second table
     chooseNextPlayer();
 }
