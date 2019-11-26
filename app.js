@@ -97,7 +97,7 @@ displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
 chooseNextPlayer();
 var timeInterval=1000;
 const myInterval= window.setInterval(function(){movePlayerDown(currentPlayerObject);},timeInterval);
-setTimeout(function(){clearInterval(myInterval);},5*timeInterval);
+//setTimeout(function(){clearInterval(myInterval);},5*timeInterval);
 
 
 function switchOnPlayer(playerNumber) {
@@ -158,6 +158,7 @@ function movePlayerDown(currentPlayerObject) {
     else {
         console.log("player cannot move down. I created a new one!");
         //choosePlayerRandomly();
+        clearInterval(myInterval);
         displayNextPlayer_asCurrentPlayer(nextPlayerNumber);
         chooseNextPlayer();
     }
