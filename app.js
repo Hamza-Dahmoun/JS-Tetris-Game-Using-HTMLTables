@@ -95,6 +95,10 @@ function choosePlayerRandomly() {
 //choosePlayerRandomly();
 displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
 chooseNextPlayer();
+var timeInterval=1000;
+const myInterval= window.setInterval(function(){movePlayerDown(currentPlayerObject);},timeInterval);
+setTimeout(function(){clearInterval(myInterval);},5*timeInterval);
+
 
 function switchOnPlayer(playerNumber) {
     //first lets check if there are any rows fully switched one
@@ -642,7 +646,16 @@ function displayNextPlayer_asCurrentPlayer(nextPlayerNumber) {
 }
 
 //******************** END NEXT PLAYER DISPLAY ******************//
-
+//
+//
+//
+//
+//******************** START PLAYER MOVES DOWN EVERY PERIOD OF TIME ******************//
+/*var timeInterval = 1000;
+const myInterval= window.setInterval(function(){console.log("hi");},timeInterval);
+setTimeout(function(){clearInterval(myInterval);},5*timeInterval);
+;*/
+//******************** END PLAYER MOVES DOWN EVERY PERIOD OF TIME ******************//
 
 
 
