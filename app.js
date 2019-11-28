@@ -83,7 +83,7 @@ displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
 //we'll move down the player every second, the player is passed in as a parameter
 //'currentPlayerObject' was assigned a random player in the function switchOnPlayer() 
 var timeInterval=1000;
-const myInterval= window.setInterval(function(){movePlayerDown(currentPlayerObject);},timeInterval);
+var myInterval= window.setInterval(function(){movePlayerDown(currentPlayerObject);},timeInterval);
 //setTimeout(function(){clearInterval(myInterval);},5*timeInterval);
 
 
@@ -144,11 +144,8 @@ function movePlayerDown(currentPlayerObject) {
     }
     else {
         console.log("player cannot move down. I created a new one!");
-        //choosePlayerRandomly();
         //lets stop the layer from moving down automatically every second
-        clearInterval(myInterval);
         displayNextPlayer_asCurrentPlayer(nextPlayerNumber);
-        //chooseNextPlayer();
         }
 }
 function switchoffPlayerCells_andAssignNewCells(currentPlayerObject) {
