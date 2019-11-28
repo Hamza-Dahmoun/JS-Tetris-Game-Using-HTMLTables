@@ -5,10 +5,14 @@
    --dark-color:  #581845 ;
 }
 body{
-    background-color:  var(--body-bg-color);
+    background-color:  var(--body-bg-color);    
+}
+.container{
+    width:600px;margin-left: auto; margin-right: auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .game-container{
     margin-right: 20px;
@@ -50,6 +54,11 @@ td{
 .information-container *{
     margin-bottom: 5px;margin-top:5px;
 }
+.buttons-container{
+    width:300px;
+}
+
+
 #gameOverMsg{
     position: fixed;
     top:20%;
