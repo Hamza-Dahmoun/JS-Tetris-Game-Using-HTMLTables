@@ -60,6 +60,15 @@ td{
     text-align:center;
     padding: 2%;
 }
+.buttons-container button{
+    height:35px;
+    width: 100px;
+    border:none;
+    background-color: var(--text-color);
+    color:var(--body-bg-color);
+    font-size:15px;
+    cursor:pointer;
+}
 
 
 #gameOverMsg{
