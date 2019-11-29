@@ -68,8 +68,13 @@ td{
     color:var(--body-bg-color);
     font-size:15px;
     cursor:pointer;
+    transition-duration: 0.5s;
 }
-
+.buttons-container button:hover{
+    transition-duration: 0.5s;
+    color: var(--text-color);
+    background-color:var(--body-bg-color);
+}
 
 #gameOverMsg{
     position: fixed;
