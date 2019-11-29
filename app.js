@@ -636,12 +636,10 @@ function displayNextPlayer_asCurrentPlayer(nextPlayerNumber) {
 //
 //
 //
-//******************** START PLAYER MOVES DOWN EVERY PERIOD OF TIME ******************//
-/*var timeInterval = 1000;
-const myInterval= window.setInterval(function(){console.log("hi");},timeInterval);
-setTimeout(function(){clearInterval(myInterval);},5*timeInterval);
-;*/
-//******************** END PLAYER MOVES DOWN EVERY PERIOD OF TIME ******************//
+//******************** BEGIN: START AND PAUSE BUTTONS ******************//
+document.getElementById("startBtn").addEventListener("click", startGame);
+document.getElementById("pauseBtn").addEventListener("click", pauseGame);
+//******************** END: START AND PAUSE BUTTONS ******************//
 
 
 
