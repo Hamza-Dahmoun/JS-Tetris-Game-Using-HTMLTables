@@ -636,11 +636,11 @@ function displayNextPlayer_asCurrentPlayer(nextPlayerNumber) {
 //
 //
 //******************** BEGIN: START AND PAUSE BUTTONS ******************//
-document.getElementById("startBtn").addEventListener("click", startGame);
+document.getElementById("startBtn").addEventListener("click", startNewGame);
 document.getElementById("pauseBtn").addEventListener("click", pauseGame);
 var myInterval;
 var isGamePaused = false;
-function startGame() {    
+function startNewGame() {    
     //initializeGame();
     //Inside the following function will switch on a player and randomly choose a new player
     //we'll pass in a random number to represent a random player
