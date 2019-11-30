@@ -145,7 +145,7 @@ function movePlayerDown(currentPlayerObject) {
         console.log("player cannot move down. I created a new one!");
         //lets stop the layer from moving down automatically every second
         displayNextPlayer_asCurrentPlayer(nextPlayerNumber);
-        }
+    }
 }
 function switchoffPlayerCells_andAssignNewCells(currentPlayerObject) {
     //this function switch off all the cells of the player, and assign new cells to it (cells beneath)
@@ -610,9 +610,9 @@ function displayNextPlayer(nextPlayerNumber) {
         document.getElementById(cellID_in_currentPlayer).className = "cell-on";
     }
 }
-function switchoffNextPlayerArea(){
+function switchoffNextPlayerArea() {
     let tdTags_inSecondTable = document.getElementById("nextPlayersArea").getElementsByTagName("td");
-    for (let i=0; i<tdTags_inSecondTable.length; i++){
+    for (let i = 0; i < tdTags_inSecondTable.length; i++) {
         tdTags_inSecondTable[i].className = "cell-off";
     }
 }
@@ -627,7 +627,7 @@ function displayNextPlayer_asCurrentPlayer(nextPlayerNumber) {
     //1- lets display nextPlayer as currentPlayer in the stadium table    
     switchOnPlayer(nextPlayerNumber);
     //2- lets choose a new nextPlayer and display it in the second table
-    chooseNextPlayer();    
+    chooseNextPlayer();
 }
 
 //******************** END NEXT PLAYER DISPLAY ******************//
@@ -637,26 +637,36 @@ function displayNextPlayer_asCurrentPlayer(nextPlayerNumber) {
 //
 //******************** BEGIN: START AND PAUSE BUTTONS ******************//
 document.getElementById("startBtn").addEventListener("click", startGame);
-var myInterval;
-function startGame(){
-//initializeGame();
-//Inside the following function will switch on a player and randomly choose a new player
-//we'll pass in a random number to represent a random player
-displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
-//we'll move down the player every second, the player is passed in as a parameter
-//'currentPlayerObject' was assigned a random player in the function switchOnPlayer() 
-var timeInterval=1000;
-myInterval= window.setInterval(function(){movePlayerDown(currentPlayerObject);},timeInterval);
-//now lets add a click event fot the pause button
 document.getElementById("pauseBtn").addEventListener("click", pauseGame);
-document.getElementById("pauseBtn").removeAttribute("disabled");
-//now lets make the cursor on the pause button as pointer
-document.getElementById("pauseBtn").style.cursor = "pointer";
+var myInterval;
+var isGamePaused = false;
+function startGame() {    
+    //initializeGame();
+    //Inside the following function will switch on a player and randomly choose a new player
+    //we'll pass in a random number to represent a random player
+    displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
+    //we'll move down the player every second, the player is passed in as a parameter
+    //'currentPlayerObject' was assigned a random player in the function switchOnPlayer() 
+    var timeInterval = 1000;
+    myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
+    //now lets activate the pause button
+    activatePauseBtn();
 }
-function pauseGame(){
+function pauseGame() {
     //console.log("going to pause the game");
     window.clearInterval(myInterval);
+    //lets deactivate pause button
+    deactivatePauseBtn();
     //console.log("game paused!");
+}
+function activatePauseBtn() {
+    document.getElementById("pauseBtn").removeAttribute("disabled");
+    //now lets make the cursor on the pause button as pointer
+    document.getElementById("pauseBtn").style.cursor = "pointer";
+}
+function deactivatePauseBtn() {
+    document.getElementById("pauseBtn").setAttribute("disabled", "");
+    document.getElementById("pauseBtn").style.cursor = "not-allowed";
 }
 //******************** END: START AND PAUSE BUTTONS ******************//
 
