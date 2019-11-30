@@ -75,6 +75,9 @@ td{
     color: var(--text-color);
     background-color:var(--body-bg-color);
 }
+.buttons-container #pauseBtn{
+    cursor: not-allowed;
+}
 
 #gameOverMsg{
     position: fixed;
