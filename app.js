@@ -637,23 +637,26 @@ function displayNextPlayer_asCurrentPlayer(nextPlayerNumber) {
 //
 //******************** BEGIN: START AND PAUSE BUTTONS ******************//
 document.getElementById("startBtn").addEventListener("click", startGame);
-
+var myInterval;
 function startGame(){
+//initializeGame();
 //Inside the following function will switch on a player and randomly choose a new player
 //we'll pass in a random number to represent a random player
 displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
 //we'll move down the player every second, the player is passed in as a parameter
 //'currentPlayerObject' was assigned a random player in the function switchOnPlayer() 
 var timeInterval=1000;
-var myInterval= window.setInterval(function(){movePlayerDown(currentPlayerObject);},timeInterval);
+myInterval= window.setInterval(function(){movePlayerDown(currentPlayerObject);},timeInterval);
 //now lets add a click event fot the pause button
 document.getElementById("pauseBtn").addEventListener("click", pauseGame);
-document.getElementById("pauseBtn").setAttribute("disabled", false);
+document.getElementById("pauseBtn").removeAttribute("disabled");
 //now lets make the cursor on the pause button as pointer
 document.getElementById("pauseBtn").style.cursor = "pointer";
 }
 function pauseGame(){
-    
+    //console.log("going to pause the game");
+    window.clearInterval(myInterval);
+    //console.log("game paused!");
 }
 //******************** END: START AND PAUSE BUTTONS ******************//
 
