@@ -642,7 +642,7 @@ var myInterval;
 var timeInterval = 1000;
 var isGamePaused = false;
 function startNewGame() {
-    //initializeGame();
+    initializeAllGameElts();
     //Inside the following function will switch on a player and randomly choose a new player
     //we'll pass in a random number to represent a random player
     displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
@@ -652,7 +652,7 @@ function startNewGame() {
     //now lets activate the pause button
     activatePauseBtn();
 }
-function pauseGame() {    
+function pauseGame() {
     window.clearInterval(myInterval);
     isGamePaused = true;
     //lets deactivate pause button
@@ -662,9 +662,20 @@ function pauseGame() {
     document.getElementById("startBtn").addEventListener("click", startGame);
 }
 function startGame() {
+    //lets restart the game
     myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
+    //lets readd the click event to the start button for starting a new game
+    document.getElementById("startBtn").addEventListener("click", startNewGame);
     //lets activate pause button
-    activatePauseBtn();    
+    activatePauseBtn();
+}
+function initializeAllGameElts() {
+    let cells = document.getElementById("stadium").querySelectorAll("td");
+    for(let i =0; i<cells.length; i++){
+        cells[i].className = "cell-off";
+    };
+    timeInterval = 1000;
+    isGamePaused = false;
 }
 function activatePauseBtn() {
     document.getElementById("pauseBtn").removeAttribute("disabled");
