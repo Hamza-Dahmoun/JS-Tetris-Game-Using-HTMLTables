@@ -639,25 +639,32 @@ function displayNextPlayer_asCurrentPlayer(nextPlayerNumber) {
 document.getElementById("startBtn").addEventListener("click", startNewGame);
 document.getElementById("pauseBtn").addEventListener("click", pauseGame);
 var myInterval;
+var timeInterval = 1000;
 var isGamePaused = false;
-function startNewGame() {    
+function startNewGame() {
     //initializeGame();
     //Inside the following function will switch on a player and randomly choose a new player
     //we'll pass in a random number to represent a random player
     displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
     //we'll move down the player every second, the player is passed in as a parameter
-    //'currentPlayerObject' was assigned a random player in the function switchOnPlayer() 
-    var timeInterval = 1000;
+    //'currentPlayerObject' was assigned a random player in the function switchOnPlayer()     
     myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
     //now lets activate the pause button
     activatePauseBtn();
 }
-function pauseGame() {
-    //console.log("going to pause the game");
+function pauseGame() {    
     window.clearInterval(myInterval);
+    isGamePaused = true;
     //lets deactivate pause button
     deactivatePauseBtn();
-    //console.log("game paused!");
+    //now lets add the function 'startGame()' to the click event of start game button
+    document.getElementById("startBtn").removeEventListener("click", startNewGame);
+    document.getElementById("startBtn").addEventListener("click", startGame);
+}
+function startGame() {
+    myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
+    //lets activate pause button
+    activatePauseBtn();    
 }
 function activatePauseBtn() {
     document.getElementById("pauseBtn").removeAttribute("disabled");
