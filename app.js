@@ -642,6 +642,9 @@ var myInterval;
 var timeInterval = 1000;
 var isGamePaused = false;
 function startNewGame() {
+    //lets add the keu down event listener for keyboard arrows
+    document.addEventListener("keydown", playerBehave);
+
     initializeAllGameElts();
     //Inside the following function will switch on a player and randomly choose a new player
     //we'll pass in a random number to represent a random player
@@ -701,7 +704,7 @@ function rotateShape() {
 //
 //
 //*************** keyDown events ***************/
-document.addEventListener("keydown", playerBehave);
+
 
 function playerBehave(e) {
     //Based on the key pressed, this function make the player move down/left/right or just make it rotate
