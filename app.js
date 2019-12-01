@@ -655,7 +655,7 @@ function startNewGame() {
     //now lets activate the pause button
     activatePauseBtn();
 }
-function pauseGame() {
+function pauseGame() {    
     window.clearInterval(myInterval);
     isGamePaused = true;
     //lets deactivate pause button
@@ -663,11 +663,13 @@ function pauseGame() {
     //now lets add the function 'startGame()' to the click event of start game button
     document.getElementById("startBtn").removeEventListener("click", startNewGame);
     document.getElementById("startBtn").addEventListener("click", startGame);
+    //now lets remove key down event listener from arrows so that user can't play anymore
+    document.removeEventListener("keydown", playerBehave);
 }
 function startGame() {
     //lets add the key down event listener for keyboard arrows
     document.addEventListener("keydown", playerBehave);
-    
+
     //lets restart the game
     myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
     //lets readd the click event to the start button for starting a new game
