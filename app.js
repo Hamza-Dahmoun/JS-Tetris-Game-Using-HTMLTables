@@ -118,7 +118,7 @@ function switchOnPlayer(playerNumber) {
     let player_propertiesCount = Object.keys(currentPlayerObject).length;
     //console.log(currentPlayerObject); 
     //console.log(player_propertiesCount);
-    for (let i = 1; i <= player_propertiesCount; i++) {
+    for (let i = 1; i < player_propertiesCount; i++) {
         let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
         document.getElementById(cellID_in_currentPlayer).className = "cell-on";
@@ -701,7 +701,15 @@ function deactivatePauseBtn() {
 //
 //******************** BEGIN: ROTATE SHAPE AREA ******************//
 function rotateShape() {
-    console.log("going to rotate the shape: " + currentPlayerObject.cell1_Id);
+    console.log("going to rotate the shape: " + currentPlayerObject.type);
+    /*switch (currentPlayerObject.) {
+        case value:
+            
+            break;
+    
+        default:
+            break;
+    }*/
 }
 function rotateDot(){
     //it is a player composed of one td tag, so there is no real rotating ... do nothing
