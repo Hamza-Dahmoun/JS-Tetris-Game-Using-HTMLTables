@@ -225,7 +225,7 @@ function existSwitchedOnCellsBelow() {
     let player_propertiesCount = Object.keys(currentPlayerObject).length;
     //we'll build the 'id' of each cell forming the player,
     let b = false;
-    for (let i = 1; i <= player_propertiesCount; i++) {
+    for (let i = 1; i < player_propertiesCount; i++) {
         let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
         //we've got the id of the current cell in the current player, it is 'cellID_in_currentPlayer'
