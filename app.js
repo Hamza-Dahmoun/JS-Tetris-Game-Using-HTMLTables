@@ -642,7 +642,7 @@ var myInterval;
 var timeInterval = 1000;
 var isGamePaused = false;
 function startNewGame() {
-    //lets add the keu down event listener for keyboard arrows
+    //lets add the key down event listener for keyboard arrows
     document.addEventListener("keydown", playerBehave);
 
     initializeAllGameElts();
@@ -665,6 +665,9 @@ function pauseGame() {
     document.getElementById("startBtn").addEventListener("click", startGame);
 }
 function startGame() {
+    //lets add the key down event listener for keyboard arrows
+    document.addEventListener("keydown", playerBehave);
+    
     //lets restart the game
     myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
     //lets readd the click event to the start button for starting a new game
