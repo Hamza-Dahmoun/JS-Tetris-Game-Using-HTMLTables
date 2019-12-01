@@ -154,7 +154,7 @@ function switchoffPlayerCells_andAssignNewCells(currentPlayerObject) {
     let player_propertiesCount = Object.keys(currentPlayerObject).length;
 
     //2- Now lets proceed
-    for (let i = 1; i <= player_propertiesCount; i++) {
+    for (let i = 1; i < player_propertiesCount; i++) {
         //lets build the appropriate property name
         let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
         //now lets get this cellID
