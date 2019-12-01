@@ -199,7 +199,7 @@ function isTableBottomLimit() {
     //we'll build the 'id' of each cell forming the player, then use that 'id' to select the cell and get its parent
     //then we'll check if that parent is the last tr tag in our table, if so we'll return true.
     let b = false;
-    for (let i = 1; i <= player_propertiesCount; i++) {
+    for (let i = 1; i < player_propertiesCount; i++) {
         let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
         let trElementsInTable = document.getElementsByTagName("table")[0].querySelectorAll("TR");
