@@ -34,7 +34,7 @@ const table =
 var currentPlayerObject;
 //a Player is defined by a set of cells
 var players = {
-    0: { cell1_Id: "cell4", type: "oneDot"}//Dot
+    0: { cell1_Id: "cell4", type: "oneDot" }//Dot
     , 1: { cell1_Id: "cell4", cell2_Id: "cell5", type: "twoDots" }//Two Dots
     , 2: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5", type: "threeDots" }//Three Dots in row
     , 3: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5", cell4_Id: "cell6", type: "fourDotsStick" }//Four Dots in row
@@ -655,7 +655,7 @@ function startNewGame() {
     //now lets activate the pause button
     activatePauseBtn();
 }
-function pauseGame() {    
+function pauseGame() {
     window.clearInterval(myInterval);
     isGamePaused = true;
     //lets deactivate pause button
@@ -702,20 +702,40 @@ function deactivatePauseBtn() {
 //******************** BEGIN: ROTATE SHAPE AREA ******************//
 function rotateShape() {
     console.log("going to rotate the shape: " + currentPlayerObject.type);
-    /*switch (currentPlayerObject.) {
-        case value:
-            
+    switch (currentPlayerObject.type) {
+        case "oneDot":
+            rotateDot();
             break;
-    
+        case "twoDots":
+
+            break;
+        case "threeDots":
+
+            break;
+        case "fourDotsStick":
+
+            break;
+        case "fourDotsLetter_L":
+
+            break;
+        case "fourDotsSquare":
+            rotateSquare();
+            break;
+        case "fourDots_threePlusOne":
+
+            break;
+        case "fourDotsLetter_Z":
+
+            break;
         default:
             break;
-    }*/
+    }
 }
-function rotateDot(){
+function rotateDot() {
     //it is a player composed of one td tag, so there is no real rotating ... do nothing
     return;
 }
-function rotateSquare(){
+function rotateSquare() {
     //it is a player that looks like a square, so there is no real rotating ... do nothing
     return;
 }
