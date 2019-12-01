@@ -418,7 +418,7 @@ function isTableLeftSideLimit() {
     //we'll build the 'id' of each cell forming the player, then use that 'id' to extraxt a number from it
     //then we'll use that number to calculate the modulo and check it 1 or not
     let b = false;
-    for (let i = 1; i <= player_propertiesCount; i++) {
+    for (let i = 1; i < player_propertiesCount; i++) {
         let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
         //now we'll extract the number that is inside the id
