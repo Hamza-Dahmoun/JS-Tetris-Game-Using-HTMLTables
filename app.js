@@ -707,6 +707,10 @@ function rotateDot(){
     //it is a player composed of one td tag, so there is no real rotating ... do nothing
     return;
 }
+function rotateSquare(){
+    //it is a player that looks like a square, so there is no real rotating ... do nothing
+    return;
+}
 //******************** END: ROTATE SHAPE AREA ******************//
 //
 //
