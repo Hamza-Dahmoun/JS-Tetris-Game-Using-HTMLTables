@@ -34,14 +34,14 @@ const table =
 var currentPlayerObject;
 //a Player is defined by a set of cells
 var players = {
-    0: { cell1_Id: "cell4" }//Dot
-    , 1: { cell1_Id: "cell4", cell2_Id: "cell5" }//Twp Dots
-    , 2: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5" }//Three Dots in row
-    , 3: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5", cell4_Id: "cell6" }//Four Dots in row
-    , 4: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5", cell4_Id: "cell12" }//Four Dots form 'L'
-    , 5: { cell1_Id: "cell4", cell2_Id: "cell5", cell3_Id: "cell11", cell4_Id: "cell12" }//Four Dots form square
-    , 6: { cell1_Id: "cell4", cell2_Id: "cell10", cell3_Id: "cell11", cell4_Id: "cell12" }//Four Dots form _|_
-    , 7: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell11", cell4_Id: "cell12" }//Four Dots form -|_
+    0: { cell1_Id: "cell4", type: "oneDot"}//Dot
+    , 1: { cell1_Id: "cell4", cell2_Id: "cell5", type: "twoDots" }//Two Dots
+    , 2: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5", type: "threeDots" }//Three Dots in row
+    , 3: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5", cell4_Id: "cell6", type: "fourDotsStick" }//Four Dots in row
+    , 4: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell5", cell4_Id: "cell12", type: "fourDotsLetter_L" }//Four Dots form 'L'
+    , 5: { cell1_Id: "cell4", cell2_Id: "cell5", cell3_Id: "cell11", cell4_Id: "cell12", type: "fourDotsSquare" }//Four Dots form square
+    , 6: { cell1_Id: "cell4", cell2_Id: "cell10", cell3_Id: "cell11", cell4_Id: "cell12", type: "fourDots_threePlusOne" }//Four Dots form _|_
+    , 7: { cell1_Id: "cell3", cell2_Id: "cell4", cell3_Id: "cell11", cell4_Id: "cell12", type: "fourDotsLetter_Z" }//Four Dots form -|_
 }
 var nextPlayerObject;
 var nextPlayerNumber;
