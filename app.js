@@ -701,7 +701,11 @@ function deactivatePauseBtn() {
 //
 //******************** BEGIN: ROTATE SHAPE AREA ******************//
 function rotateShape() {
-    console.log("going to rotate the shape");
+    console.log("going to rotate the shape: " + currentPlayerObject.cell1_Id);
+}
+function rotateDot(){
+    //it is a player composed of one td tag, so there is no real rotating ... do nothing
+    return;
 }
 //******************** END: ROTATE SHAPE AREA ******************//
 //
