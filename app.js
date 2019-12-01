@@ -671,7 +671,7 @@ function startGame() {
 }
 function initializeAllGameElts() {
     let cells = document.getElementById("stadium").querySelectorAll("td");
-    for(let i =0; i<cells.length; i++){
+    for (let i = 0; i < cells.length; i++) {
         cells[i].className = "cell-off";
     };
     timeInterval = 1000;
@@ -687,9 +687,19 @@ function deactivatePauseBtn() {
     document.getElementById("pauseBtn").style.cursor = "not-allowed";
 }
 //******************** END: START AND PAUSE BUTTONS ******************//
-
-
-
+//
+//
+//
+//
+//******************** BEGIN: ROTATE SHAPE AREA ******************//
+function rotateShape() {
+    console.log("going to rotate the shape");
+}
+//******************** END: ROTATE SHAPE AREA ******************//
+//
+//
+//
+//
 //*************** keyDown events ***************/
 document.addEventListener("keydown", playerBehave);
 
@@ -706,5 +716,9 @@ function playerBehave(e) {
     else if (e.keyCode == 37) {
         //move left
         movePlayerLeft(currentPlayerObject);
+    }
+    else if (e.keyCode == 38) {
+        //rotate the current shape
+        rotateShape();
     }
 }
