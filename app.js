@@ -776,10 +776,21 @@ function is_twoDots_Horizental(){
         else return false;
 }
 function are_twoDots_rightBrothers_switchedOn(){
-    //this function checks if one of the right brothers of a two dots shape is switched on
+    //this function checks if one of the right brothers of a vertical two dots shape is switched on
     let rightBro1 = document.getElementById(table[currentPlayerObject.cell1_Id].rightBrotherId);
     let rightBro2 = document.getElementById(table[currentPlayerObject.cell2_Id].rightBrotherId);
     if(rightBro1.className.includes("cell-on") || rightBro2.className.includes("cell-on")){
+        return true;
+    }
+    else return false;
+}
+function are_twoDots_topBrothers_switchedOn(){
+    //thi function checks if one of the top borthers of an horizental two dots shape is switched on
+    let topBro1ID = "cell" + parseInt(currentPlayerObject.cell1_Id.splice(0,4)) - 7;
+    let topBro2ID = "cell" + parseInt(currentPlayerObject.cell2_Id.splice(0,4)) - 7;
+    let topBro1 = document.getElementById(topBro1ID);
+    let topBro2 = document.getElementById(topBro2ID);
+    if(topBro1.className.includes("cell-on") || topBro2.className.includes("cell-on")){
         return true;
     }
     else return false;
