@@ -742,10 +742,10 @@ function rotateSquare() {
 function rotate_twoDots(){
     //vertical twoDots shape will be rotated to be horizental only if right brothers <td> tags are not switched on
     //horizental twoDots shape will be rotated to be vertical only if top brothers <td> tags are not switched on 
-    if(isVertical() && !are_rightBrothers_switchedOn()){
+    if(is_twoDots_Vertical() && !are_twoDots_rightBrothers_switchedOn()){
         makeTwoDotsHorizental();
     }
-    else if(isHorizental() && !are_topBrothers_switchedOn()){
+    else if(is_twoDots_Horizental() && !are_twoDots_topBrothers_switchedOn()){
         makeTwoDotsVertical();
     }
     else{
@@ -753,7 +753,7 @@ function rotate_twoDots(){
         return;
     }
 }
-function isVertical(){
+function is_twoDots_Vertical(){
     //this function checks if the twoDots shape is vertical
     //it is vertical when one cell is the brotherBeneath of the other one
     if(table[currentPlayerObject.cell1_Id].brotherBeneathId == currentPlayerObject.cell2_Id
@@ -764,7 +764,7 @@ function isVertical(){
         }
         else return false;
 }
-function isHorizental(){
+function is_twoDots_Horizental(){
     //this function checks if the twoDots shape is horizental
     //it is horizental when one cell is the leftBrother of the other one
     if(table[currentPlayerObject.cell1_Id].leftBrotherId == currentPlayerObject.cell2_Id
@@ -774,6 +774,15 @@ function isHorizental(){
             return true;
         }
         else return false;
+}
+function are_twoDots_rightBrothers_switchedOn(){
+    //this function checks if one of the right brothers of a two dots shape is switched on
+    let rightBro1 = document.getElementById(table[currentPlayerObject.cell1_Id].rightBrotherId);
+    let rightBro2 = document.getElementById(table[currentPlayerObject.cell2_Id].rightBrotherId);
+    if(rightBro1.className.includes("cell-on") || rightBro2.className.includes("cell-on")){
+        return true;
+    }
+    else return false;
 }
 //******************** END: ROTATE SHAPE AREA ******************//
 //
