@@ -707,7 +707,7 @@ function rotateShape() {
             rotateDot();
             break;
         case "twoDots":
-
+            rotate_twoDots();
             break;
         case "threeDots":
 
@@ -738,6 +738,20 @@ function rotateDot() {
 function rotateSquare() {
     //it is a player that looks like a square, so there is no real rotating ... do nothing
     return;
+}
+function rotate_twoDots(){
+    //vertical twoDots shape will be rotated to be horizental only if right brothers <td> tags are not switched on
+    //horizental twoDots shape will be rotated to be vertical only if top brothers <td> tags are not switched on 
+    if(isVertical() && !are_rightBrothers_switchedOn()){
+        makeTwoDotsHorizental();
+    }
+    else if(isHorizental() && !are_topBrothers_switchedOn()){
+        makeTwoDotsVertical();
+    }
+    else{
+        //do nothing ... it is not possible to rotate this two dots shape
+        return;
+    }
 }
 //******************** END: ROTATE SHAPE AREA ******************//
 //
