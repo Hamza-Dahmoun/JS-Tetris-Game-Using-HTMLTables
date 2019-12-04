@@ -764,6 +764,17 @@ function isVertical(){
         }
         else return false;
 }
+function isHorizental(){
+    //this function checks if the twoDots shape is horizental
+    //it is horizental when one cell is the leftBrother of the other one
+    if(table[currentPlayerObject.cell1_Id].leftBrotherId == currentPlayerObject.cell2_Id
+        ||
+        table[currentPlayerObject.cell2_Id].leftBrotherId == currentPlayerObject.cell1_Id)
+        {
+            return true;
+        }
+        else return false;
+}
 //******************** END: ROTATE SHAPE AREA ******************//
 //
 //
