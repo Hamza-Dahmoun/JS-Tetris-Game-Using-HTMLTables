@@ -753,6 +753,17 @@ function rotate_twoDots(){
         return;
     }
 }
+function isVertical(){
+    //this function checks if the twoDots shape is vertical
+    //it is vertical when one cell is the brotherBeneath of the other one
+    if(table[currentPlayerObject.cell1_Id].brotherBeneathId == currentPlayerObject.cell2_Id
+        ||
+        table[currentPlayerObject.cell2_Id].brotherBeneathId == currentPlayerObject.cell1_Id)
+        {
+            return true;
+        }
+        else return false;
+}
 //******************** END: ROTATE SHAPE AREA ******************//
 //
 //
