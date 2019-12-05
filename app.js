@@ -783,32 +783,6 @@ function isTwoDots_rightBrothers_switchedOn() {
     }
     else return false;
 }
-function areStickShape_rightBrothers_switchedOn() {
-    //this function checks if one of the right brothers of a vertical stick shape (twoDots, threeDots or fourDotsStick player) is switched on
-    let rightBro1 = document.getElementById(table[currentPlayerObject.cell1_Id].rightBrotherId);
-    let rightBro2 = document.getElementById(table[currentPlayerObject.cell2_Id].rightBrotherId);
-    if (rightBro1.className.includes("cell-on") || rightBro2.className.includes("cell-on")) {
-        //so whatever the stick is it has at least a brother switched on
-        return true;
-    }
-    else if (currentPlayerObject.hasOwnProperty('cell3_Id')) {
-        //so this stick player has at least three dots, lets check if a right brother of the third dot is switched on
-        let rightBro3 = document.getElementById(table[currentPlayerObject.cell3_Id].rightBrotherId);
-        if (rightBro3.className.includes("cell-on")) {
-            //the right brother of the third dot of the stick is switched, lets return true
-            return true;
-        }
-    }
-    else if (currentPlayerObject.hasOwnProperty('cell4_Id')) {
-        //so this stick player has at least four dots, lets check if a right brother of the fourth dot is switched on
-        let rightBro4 = document.getElementById(table[currentPlayerObject.cell4_Id].rightBrotherId);
-        if (rightBro4.className.includes("cell-on")) {
-            //the right brother of the fourth dot of the stick is switched, lets return true
-            return true;
-        }
-    }
-    return false;
-}
 function isTwoDots_topBrothers_switchedOn() {
     //this function checks if one of the top borthers of an horizental twoDots shape is switched on
     let digit_in_topBro1ID = parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
