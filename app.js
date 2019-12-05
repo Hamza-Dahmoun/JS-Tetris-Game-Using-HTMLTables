@@ -794,7 +794,7 @@ function isTwoDots_topBrothers_switchedOn() {
         return true;
     }
     let topBro1ID = "cell" + digit_in_topBro1ID;
-    let topBro2ID = "cell" + digit_in_topBro2ID;    
+    let topBro2ID = "cell" + digit_in_topBro2ID;
     let topBro1 = document.getElementById(topBro1ID);
     let topBro2 = document.getElementById(topBro2ID);
     if (topBro1.className.includes("cell-on") || topBro2.className.includes("cell-on")) {
@@ -803,7 +803,23 @@ function isTwoDots_topBrothers_switchedOn() {
     return false;
 }
 function makeTwoDotsHorizental() {
-
+    //this function takes a twoDots stick that is vertical and makes it horizental
+    //How?
+    //it replaces the upper dot by the right brother of the lower dot
+    if (parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) > parseInt(currentPlayerObject.cell2_Id.splice(0, 4))) {
+        //so the upper dot of the shape is currentPlayerObject.cell2_Id
+        //lets 1- switch it off, 2- assign it the right brother of currentPlayerObject.cell1_Id and then 3- switch it on
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+        currentPlayerObject.cell2_Id = table[currentPlayerObject.cell1_Id].rightBrotherId;
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+    }
+    else{
+        //so the upper dot of the shape is currentPlayerObject.cell1_Id
+        //lets 1- switch it off, 2- assign it the right brother of currentPlayerObject.cell2_Id and then 3- switch it on
+        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
+        currentPlayerObject.cell1_Id = table[currentPlayerObject.cell2_Id].rightBrotherId;
+        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
+    }
 }
 function makeTwoDotsVertical() {
 
