@@ -739,83 +739,112 @@ function rotateSquare() {
     //it is a player that looks like a square, so there is no real rotating ... do nothing
     return;
 }
-function rotate_twoDots(){
+function rotate_twoDots() {
     //vertical twoDots shape will be rotated to be horizental only if right brothers <td> tags are not switched on
     //horizental twoDots shape will be rotated to be vertical only if top brothers <td> tags are not switched on 
-    if(is_twoDots_Vertical() && !are_twoDots_rightBrothers_switchedOn()){
+    if (is_twoDots_Vertical() && !are_twoDots_rightBrothers_switchedOn()) {
         makeTwoDotsHorizental();
     }
-    else if(is_twoDots_Horizental() && !are_twoDots_topBrothers_switchedOn()){
+    else if (is_twoDots_Horizental() && !are_twoDots_topBrothers_switchedOn()) {
         makeTwoDotsVertical();
     }
-    else{
+    else {
         //do nothing ... it is not possible to rotate this two dots shape
         return;
     }
 }
-function isStickShape_Vertical(){
+function isStickShape_Vertical() {
     //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is vertical
     //it is vertical when one cell is the brotherBeneath of the other one
-    if(table[currentPlayerObject.cell1_Id].brotherBeneathId == currentPlayerObject.cell2_Id
+    if (table[currentPlayerObject.cell1_Id].brotherBeneathId == currentPlayerObject.cell2_Id
         ||
-        table[currentPlayerObject.cell2_Id].brotherBeneathId == currentPlayerObject.cell1_Id)
-        {
-            return true;
-        }
-        else return false;
+        table[currentPlayerObject.cell2_Id].brotherBeneathId == currentPlayerObject.cell1_Id) {
+        return true;
+    }
+    else return false;
 }
-function isStickShape_Horizental(){
+function isStickShape_Horizental() {
     //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is horizental
     //it is horizental when one cell is the leftBrother of the other one
-    if(table[currentPlayerObject.cell1_Id].leftBrotherId == currentPlayerObject.cell2_Id
+    if (table[currentPlayerObject.cell1_Id].leftBrotherId == currentPlayerObject.cell2_Id
         ||
-        table[currentPlayerObject.cell2_Id].leftBrotherId == currentPlayerObject.cell1_Id)
-        {
-            return true;
-        }
-        else return false;
+        table[currentPlayerObject.cell2_Id].leftBrotherId == currentPlayerObject.cell1_Id) {
+        return true;
+    }
+    else return false;
 }
-function areStickShape_rightBrothers_switchedOn(){
+function areStickShape_rightBrothers_switchedOn() {
     //this function checks if one of the right brothers of a vertical stick shape (twoDots, threeDots or fourDotsStick player) is switched on
     let rightBro1 = document.getElementById(table[currentPlayerObject.cell1_Id].rightBrotherId);
     let rightBro2 = document.getElementById(table[currentPlayerObject.cell2_Id].rightBrotherId);
-    if(rightBro1.className.includes("cell-on") || rightBro2.className.includes("cell-on")){
+    if (rightBro1.className.includes("cell-on") || rightBro2.className.includes("cell-on")) {
         //so whatever the stick is it has at least a brother switched on
         return true;
     }
-    else if(currentPlayerObject.hasOwnProperty('cell3_Id')){
+    else if (currentPlayerObject.hasOwnProperty('cell3_Id')) {
         //so this stick player has at least three dots, lets check if a right brother of the third dot is switched on
         let rightBro3 = document.getElementById(table[currentPlayerObject.cell3_Id].rightBrotherId);
-        if(rightBro3.className.includes("cell-on")){
+        if (rightBro3.className.includes("cell-on")) {
             //the right brother of the third dot of the stick is switched, lets return true
             return true;
         }
     }
-    else if(currentPlayerObject.hasOwnProperty('cell4_Id')){
+    else if (currentPlayerObject.hasOwnProperty('cell4_Id')) {
         //so this stick player has at least four dots, lets check if a right brother of the fourth dot is switched on
         let rightBro4 = document.getElementById(table[currentPlayerObject.cell4_Id].rightBrotherId);
-        if(rightBro4.className.includes("cell-on")){
+        if (rightBro4.className.includes("cell-on")) {
             //the right brother of the fourth dot of the stick is switched, lets return true
             return true;
         }
     }
     return false;
 }
-function are_twoDots_topBrothers_switchedOn(){
-    //thi function checks if one of the top borthers of an horizental two dots shape is switched on
-    let topBro1ID = "cell" + parseInt(currentPlayerObject.cell1_Id.splice(0,4)) - 7;
-    let topBro2ID = "cell" + parseInt(currentPlayerObject.cell2_Id.splice(0,4)) - 7;
+function areStickShape_topBrothers_switchedOn() {
+    //thi function checks if one of the top borthers of an horizental stick shape (twoDots, threeDots or fourDotsStick player) is switched on
+    let topBro1ID = "cell" + parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
+    let topBro2ID = "cell" + parseInt(currentPlayerObject.cell2_Id.splice(0, 4)) - 7;
+    //what if the stick shape is located in the first tr tag?? lets check it
+    if(parseInt(topBro1ID)<=0 || parseInt(topBro2ID)<=0){
+        //so the stick shape is fully located in the first tr tag, lets return false bcuz there are no top brothers
+        return false;
+    }
     let topBro1 = document.getElementById(topBro1ID);
     let topBro2 = document.getElementById(topBro2ID);
-    if(topBro1.className.includes("cell-on") || topBro2.className.includes("cell-on")){
+    if (topBro1.className.includes("cell-on") || topBro2.className.includes("cell-on")) {
         return true;
     }
-    else return false;
+    else if (currentPlayerObject.hasOwnProperty('cell3_Id')) {
+        //so this stick player has at least three dots, lets check if a top brother of the third dot is switched on
+        let topBro3ID = "cell" + parseInt(currentPlayerObject.cell3_Id.splice(0, 4)) - 7;
+        if(parseInt(topBro3ID)<=0){
+            //so the stick shape is fully located in the first tr tag, lets return false bcuz there are no top brothers
+            return false;
+        }
+        let topBro3 = document.getElementById(topBro3ID);
+        if (rightBro3.className.includes("cell-on")) {
+            //the right brother of the third dot of the stick is switched, lets return true
+            return true;
+        }
+    }
+    else if (currentPlayerObject.hasOwnProperty('cell4_Id')) {
+        //so this stick player has at least four dots, lets check if a top brother of the fourth dot is switched on
+        let topBro4ID = "cell" + parseInt(currentPlayerObject.cell4_Id.splice(0, 4)) - 7;
+        if(parseInt(topBro4ID)<=0){
+            //so the stick shape is fully located in the first tr tag, lets return false bcuz there are no top brothers
+            return false;
+        }
+        let topBro4 = document.getElementById(topBro4ID);
+        if (rightBro4.className.includes("cell-on")) {
+            //the right brother of the fourth dot of the stick is switched, lets return true
+            return true;
+        }
+    }
+    return false;
 }
-function makeTwoDotsHorizental(){
+function makeTwoDotsHorizental() {
 
 }
-function makeTwoDotsVertical(){
+function makeTwoDotsVertical() {
 
 }
 //******************** END: ROTATE SHAPE AREA ******************//
