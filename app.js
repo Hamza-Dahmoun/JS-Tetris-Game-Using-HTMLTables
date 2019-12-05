@@ -764,8 +764,8 @@ function isStickShape_Vertical(){
         }
         else return false;
 }
-function is_twoDots_Horizental(){
-    //this function checks if the twoDots shape is horizental
+function isStickShape_Horizental(){
+    //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is horizental
     //it is horizental when one cell is the leftBrother of the other one
     if(table[currentPlayerObject.cell1_Id].leftBrotherId == currentPlayerObject.cell2_Id
         ||
