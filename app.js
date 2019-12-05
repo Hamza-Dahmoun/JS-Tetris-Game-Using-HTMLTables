@@ -742,7 +742,7 @@ function rotateSquare() {
 function rotate_twoDots() {
     //vertical twoDots shape will be rotated to be horizental only if right brothers <td> tags are not switched on
     //horizental twoDots shape will be rotated to be vertical only if top brothers <td> tags are not switched on 
-    if (is_twoDots_Vertical() && !are_twoDots_rightBrothers_switchedOn()) {
+    if (is_twoDots_Vertical() && !are_twoDots_rightBrothers_switchedOn() && !isTableRightSideLimit()) {
         makeTwoDotsHorizental();
     }
     else if (is_twoDots_Horizental() && !are_twoDots_topBrothers_switchedOn()) {
