@@ -773,6 +773,16 @@ function isStickShape_Horizental() {
     }
     else return false;
 }
+function isTwoDots_rightBrothers_switchedOn() {
+    //this function checks if one of the right brothers of a vertical twoDots shape is switched on
+    let rightBro1 = document.getElementById(table[currentPlayerObject.cell1_Id].rightBrotherId);
+    let rightBro2 = document.getElementById(table[currentPlayerObject.cell2_Id].rightBrotherId);
+    if (rightBro1.className.includes("cell-on") || rightBro2.className.includes("cell-on")) {
+        //so whatever the stick is it has at least a brother switched on
+        return true;
+    }
+    else return false;
+}
 function areStickShape_rightBrothers_switchedOn() {
     //this function checks if one of the right brothers of a vertical stick shape (twoDots, threeDots or fourDotsStick player) is switched on
     let rightBro1 = document.getElementById(table[currentPlayerObject.cell1_Id].rightBrotherId);
@@ -799,45 +809,22 @@ function areStickShape_rightBrothers_switchedOn() {
     }
     return false;
 }
-function areStickShape_topBrothers_switchedOn() {
-    //thi function checks if one of the top borthers of an horizental stick shape (twoDots, threeDots or fourDotsStick player) is switched on
-    let topBro1ID = "cell" + parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
-    let topBro2ID = "cell" + parseInt(currentPlayerObject.cell2_Id.splice(0, 4)) - 7;
+function isTwoDots_topBrothers_switchedOn() {
+    //this function checks if one of the top borthers of an horizental twoDots shape is switched on
+    let digit_in_topBro1ID = parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
+    let digit_in_topBro2ID = parseInt(currentPlayerObject.cell2_Id.splice(0, 4)) - 7;
     //what if the stick shape is located in the first tr tag?? lets check it
-    if(parseInt(topBro1ID)<=0 || parseInt(topBro2ID)<=0){
-        //so the stick shape is fully located in the first tr tag, lets return false bcuz there are no top brothers
-        return false;
+    if (parseInt(digit_in_topBro2ID) <= 0 || parseInt(digit_in_topBro1ID) <= 0) {
+        //so the stick shape is fully located in the first tr tag, lets return false bcuz
+        //there are no top brothers to rotate on, it is like there are switch on top brothers
+        return true;
     }
+    let topBro1ID = "cell" + digit_in_topBro1ID;
+    let topBro2ID = "cell" + digit_in_topBro2ID;    
     let topBro1 = document.getElementById(topBro1ID);
     let topBro2 = document.getElementById(topBro2ID);
     if (topBro1.className.includes("cell-on") || topBro2.className.includes("cell-on")) {
         return true;
-    }
-    else if (currentPlayerObject.hasOwnProperty('cell3_Id')) {
-        //so this stick player has at least three dots, lets check if a top brother of the third dot is switched on
-        let topBro3ID = "cell" + parseInt(currentPlayerObject.cell3_Id.splice(0, 4)) - 7;
-        if(parseInt(topBro3ID)<=0){
-            //so the stick shape is fully located in the first tr tag, lets return false bcuz there are no top brothers
-            return false;
-        }
-        let topBro3 = document.getElementById(topBro3ID);
-        if (rightBro3.className.includes("cell-on")) {
-            //the right brother of the third dot of the stick is switched, lets return true
-            return true;
-        }
-    }
-    else if (currentPlayerObject.hasOwnProperty('cell4_Id')) {
-        //so this stick player has at least four dots, lets check if a top brother of the fourth dot is switched on
-        let topBro4ID = "cell" + parseInt(currentPlayerObject.cell4_Id.splice(0, 4)) - 7;
-        if(parseInt(topBro4ID)<=0){
-            //so the stick shape is fully located in the first tr tag, lets return false bcuz there are no top brothers
-            return false;
-        }
-        let topBro4 = document.getElementById(topBro4ID);
-        if (rightBro4.className.includes("cell-on")) {
-            //the right brother of the fourth dot of the stick is switched, lets return true
-            return true;
-        }
     }
     return false;
 }
