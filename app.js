@@ -753,8 +753,8 @@ function rotate_twoDots(){
         return;
     }
 }
-function is_twoDots_Vertical(){
-    //this function checks if the twoDots shape is vertical
+function isStickShape_Vertical(){
+    //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is vertical
     //it is vertical when one cell is the brotherBeneath of the other one
     if(table[currentPlayerObject.cell1_Id].brotherBeneathId == currentPlayerObject.cell2_Id
         ||
@@ -794,6 +794,12 @@ function are_twoDots_topBrothers_switchedOn(){
         return true;
     }
     else return false;
+}
+function makeTwoDotsHorizental(){
+
+}
+function makeTwoDotsVertical(){
+
 }
 //******************** END: ROTATE SHAPE AREA ******************//
 //
