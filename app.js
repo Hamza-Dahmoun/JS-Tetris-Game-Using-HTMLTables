@@ -709,8 +709,8 @@ function rotateShape() {
         case "twoDots":
             rotate_twoDots();
             break;
-        case "threeDots":
-
+        case "threeDots":            
+        rotate_threeDots();    
             break;
         case "fourDotsStick":
 
@@ -816,6 +816,21 @@ function makeTwoDotsVertical() {
         let topBro1ID = "cell" + digit_in_topBro1ID;
         currentPlayerObject.cell2_Id = topBro1ID;
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+    }
+}
+//***/
+function rotate_threeDots(){
+    //vertical threeDots shape will be rotated to be horizental only if right brothers <td> tags are not switched on
+    //horizental threeDots shape will be rotated to be vertical only if top brothers <td> tags are not switched on 
+    if (isStickShape_Vertical() && !isThreeDots_rightBrothers_switchedOn() && !isTableRightSideLimit()) {
+        makeThreeDotsHorizental();
+    }
+    else if (isStickShape_Horizental() && !isThreeDots_topBrothers_switchedOn()) {
+        makeThreeDotsVertical();
+    }
+    else {
+        //do nothing ... it is not possible to rotate this ThreeDots shape
+        return;
     }
 }
 function isStickShape_Vertical() {
