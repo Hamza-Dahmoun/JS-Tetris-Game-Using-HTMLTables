@@ -833,6 +833,20 @@ function rotate_threeDots(){
         return;
     }
 }
+function isThreeDots_rightBrothers_switchedOn() {
+    //this function checks if one of the right brothers of a vertical ThreeDots shape is switched on
+    let rightBro1 = document.getElementById(table[currentPlayerObject.cell1_Id].rightBrotherId);
+    let rightBro2 = document.getElementById(table[currentPlayerObject.cell2_Id].rightBrotherId);    
+    let rightBro3 = document.getElementById(table[currentPlayerObject.cell3_Id].rightBrotherId);
+    if (rightBro1.className.includes("cell-on")
+    || rightBro2.className.includes("cell-on")
+    || rightBro3.className.includes("cell-on")) {
+        //so whatever the stick is it has at least a brother switched on
+        return true;
+    }
+    else return false;
+}
+//***/
 function isStickShape_Vertical() {
     //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is vertical
     //it is vertical when one cell is the brotherBeneath of the other one
