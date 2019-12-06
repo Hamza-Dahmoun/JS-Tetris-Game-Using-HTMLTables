@@ -880,19 +880,43 @@ function makeThreeDotsHorizental() {
     if (parseInt(currentPlayerObject.cell1_Id.slice(4)) > parseInt(currentPlayerObject.cell2_Id.slice(4))) {
         //so the dots of this threeDots stick from top to down are in the following order:
         //currentPlayerObject.cell3_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell1_Id
-        /*
-        //lets 1- switch it off, 2- assign it the right brother of currentPlayerObject.cell1_Id and then 3- switch it on
+        
+        //lets 1- switch it off: currentPlayerObject.cell3_Id & currentPlayerObject.cell2_Id,
+        //2- assign it the right brother of currentPlayerObject.cell1_Id to currentPlayerObject.cell2_Id
+        //3- assign it the right brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell3_Id 
+        //4- switch on currentPlayerObject.cell3_Id & currentPlayerObject.cell2_Id
+        
+        //1-
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
+        //2-
         currentPlayerObject.cell2_Id = table[currentPlayerObject.cell1_Id].rightBrotherId;
+        //3-
+        currentPlayerObject.cell3_Id = table[currentPlayerObject.cell2_Id].rightBrotherId;
+        //4-
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-        */
+        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
     }
     else{
-        //so the upper dot of the shape is currentPlayerObject.cell1_Id
-        //lets 1- switch it off, 2- assign it the right brother of currentPlayerObject.cell2_Id and then 3- switch it on
+        //so the dots of this threeDots stick from top to down are in the following order:
+        //currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id
+
+        //lets 1- switch it off: currentPlayerObject.cell1_Id & currentPlayerObject.cell2_Id,
+        //2- assign it the right brother of currentPlayerObject.cell3_Id to currentPlayerObject.cell2_Id
+        //3- assign it the right brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell1_Id 
+        //4- switch on currentPlayerObject.cell1_Id & currentPlayerObject.cell2_Id
+
+        
+        //1-
         document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+        //2-
+        currentPlayerObject.cell2_Id = table[currentPlayerObject.cell3_Id].rightBrotherId;
+        //3-
         currentPlayerObject.cell1_Id = table[currentPlayerObject.cell2_Id].rightBrotherId;
+        //4-
         document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
     }
 }
 //***/
