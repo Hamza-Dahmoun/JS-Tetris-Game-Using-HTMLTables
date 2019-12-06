@@ -740,12 +740,13 @@ function rotateSquare() {
     return;
 }
 function rotate_twoDots() {
+    console.log("function rotate_twoDots() called");
     //vertical twoDots shape will be rotated to be horizental only if right brothers <td> tags are not switched on
     //horizental twoDots shape will be rotated to be vertical only if top brothers <td> tags are not switched on 
-    if (is_twoDots_Vertical() && !are_twoDots_rightBrothers_switchedOn() && !isTableRightSideLimit()) {
+    if (isStickShape_Vertical() && !isTwoDots_rightBrothers_switchedOn() && !isTableRightSideLimit()) {
         makeTwoDotsHorizental();
     }
-    else if (is_twoDots_Horizental() && !are_twoDots_topBrothers_switchedOn()) {
+    else if (isStickShape_Horizental() && !isTwoDots_topBrothers_switchedOn()) {
         makeTwoDotsVertical();
     }
     else {
