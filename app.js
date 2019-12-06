@@ -872,6 +872,29 @@ function isThreeDots_topBrothers_switchedOn() {
     }
     return false;
 }
+function makeThreeDotsHorizental() {
+    //this function takes a ThreeDots stick that is vertical and makes it horizental
+    //How?
+    //it replaces the middle dot by the right brother of the lower dot, and replaces the upper dot by the rightBrother of the NEW middle dot
+    //if (parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) > parseInt(currentPlayerObject.cell2_Id.splice(0, 4)))
+    if (parseInt(currentPlayerObject.cell1_Id.slice(4)) > parseInt(currentPlayerObject.cell2_Id.slice(4))) {
+        //so the dots of this threeDots stick from top to down are in the following order:
+        //currentPlayerObject.cell3_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell1_Id
+        /*
+        //lets 1- switch it off, 2- assign it the right brother of currentPlayerObject.cell1_Id and then 3- switch it on
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+        currentPlayerObject.cell2_Id = table[currentPlayerObject.cell1_Id].rightBrotherId;
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+        */
+    }
+    else{
+        //so the upper dot of the shape is currentPlayerObject.cell1_Id
+        //lets 1- switch it off, 2- assign it the right brother of currentPlayerObject.cell2_Id and then 3- switch it on
+        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
+        currentPlayerObject.cell1_Id = table[currentPlayerObject.cell2_Id].rightBrotherId;
+        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
+    }
+}
 //***/
 function isStickShape_Vertical() {
     //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is vertical
