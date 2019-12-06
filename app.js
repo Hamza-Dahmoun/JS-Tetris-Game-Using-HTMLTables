@@ -786,8 +786,8 @@ function isTwoDots_rightBrothers_switchedOn() {
 }
 function isTwoDots_topBrothers_switchedOn() {
     //this function checks if one of the top borthers of an horizental twoDots shape is switched on
-    let digit_in_topBro1ID = parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
-    let digit_in_topBro2ID = parseInt(currentPlayerObject.cell2_Id.splice(0, 4)) - 7;
+    let digit_in_topBro1ID = parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
+    let digit_in_topBro2ID = parseInt(currentPlayerObject.cell2_Id.slice(4)) - 7;;//parseInt(currentPlayerObject.cell2_Id.splice(0, 4)) - 7;
     //what if the stick shape is located in the first tr tag?? lets check it
     if (parseInt(digit_in_topBro2ID) <= 0 || parseInt(digit_in_topBro1ID) <= 0) {
         //so the stick shape is fully located in the first tr tag, lets return false bcuz
@@ -807,7 +807,8 @@ function makeTwoDotsHorizental() {
     //this function takes a twoDots stick that is vertical and makes it horizental
     //How?
     //it replaces the upper dot by the right brother of the lower dot
-    if (parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) > parseInt(currentPlayerObject.cell2_Id.splice(0, 4))) {
+    //if (parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) > parseInt(currentPlayerObject.cell2_Id.splice(0, 4)))
+    if (parseInt(currentPlayerObject.cell1_Id.slice(4)) > parseInt(currentPlayerObject.cell2_Id.slice(4))) {
         //so the upper dot of the shape is currentPlayerObject.cell2_Id
         //lets 1- switch it off, 2- assign it the right brother of currentPlayerObject.cell1_Id and then 3- switch it on
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
@@ -826,11 +827,12 @@ function makeTwoDotsVertical() {
     //this function takes a twoDots stick that is horizental and makes it vertical
     //How?
     //it replaces the right dot of the shape by the top brother of the left dot of the shape
-    if (parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) < parseInt(currentPlayerObject.cell2_Id.splice(0, 4))){
+    //if (parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) < parseInt(currentPlayerObject.cell2_Id.splice(0, 4)))
+    if (parseInt(currentPlayerObject.cell1_Id.slice(4)) < parseInt(currentPlayerObject.cell2_Id.slice(4))){
         //so the right dot of the shape is currentPlayerObject.cell2_Id
         //lets 1- switch it off, 2- assign it the upper brother of the currentPlayerObject.cell1_Id
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-        let digit_in_topBro1ID = parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
+        let digit_in_topBro1ID = parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
         let topBro1ID = "cell" + digit_in_topBro1ID;
         currentPlayerObject.cell2_Id = document.getElementById(topBro1ID);
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
