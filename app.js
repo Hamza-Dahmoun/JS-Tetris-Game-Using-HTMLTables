@@ -651,7 +651,7 @@ function startNewGame() {
     displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
     //we'll move down the player every second, the player is passed in as a parameter
     //'currentPlayerObject' was assigned a random player in the function switchOnPlayer()     
-    myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
+    //myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
     //now lets activate the pause button
     activatePauseBtn();
 }
@@ -671,7 +671,7 @@ function startGame() {
     document.addEventListener("keydown", playerBehave);
 
     //lets restart the game
-    myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
+    //myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
     //lets readd the click event to the start button for starting a new game
     document.getElementById("startBtn").addEventListener("click", startNewGame);
     //lets activate pause button
@@ -740,7 +740,6 @@ function rotateSquare() {
     return;
 }
 function rotate_twoDots() {
-    console.log("function rotate_twoDots() called");
     //vertical twoDots shape will be rotated to be horizental only if right brothers <td> tags are not switched on
     //horizental twoDots shape will be rotated to be vertical only if top brothers <td> tags are not switched on 
     if (isStickShape_Vertical() && !isTwoDots_rightBrothers_switchedOn() && !isTableRightSideLimit()) {
