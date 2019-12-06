@@ -739,6 +739,7 @@ function rotateSquare() {
     //it is a player that looks like a square, so there is no real rotating ... do nothing
     return;
 }
+//*** BEGIN: ROTATE STICK SHAPE ***//
 function rotate_twoDots() {
     //vertical twoDots shape will be rotated to be horizental only if right brothers <td> tags are not switched on
     //horizental twoDots shape will be rotated to be vertical only if top brothers <td> tags are not switched on 
@@ -752,26 +753,6 @@ function rotate_twoDots() {
         //do nothing ... it is not possible to rotate this two dots shape
         return;
     }
-}
-function isStickShape_Vertical() {
-    //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is vertical
-    //it is vertical when one cell is the brotherBeneath of the other one
-    if (table[currentPlayerObject.cell1_Id].brotherBeneathId == currentPlayerObject.cell2_Id
-        ||
-        table[currentPlayerObject.cell2_Id].brotherBeneathId == currentPlayerObject.cell1_Id) {
-        return true;
-    }
-    else return false;
-}
-function isStickShape_Horizental() {
-    //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is horizental
-    //it is horizental when one cell is the leftBrother of the other one
-    if (table[currentPlayerObject.cell1_Id].leftBrotherId == currentPlayerObject.cell2_Id
-        ||
-        table[currentPlayerObject.cell2_Id].leftBrotherId == currentPlayerObject.cell1_Id) {
-        return true;
-    }
-    else return false;
 }
 function isTwoDots_rightBrothers_switchedOn() {
     //this function checks if one of the right brothers of a vertical twoDots shape is switched on
@@ -833,10 +814,31 @@ function makeTwoDotsVertical() {
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
         let digit_in_topBro1ID = parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
         let topBro1ID = "cell" + digit_in_topBro1ID;
-        currentPlayerObject.cell2_Id = document.getElementById(topBro1ID);
+        currentPlayerObject.cell2_Id = topBro1ID;
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
     }
 }
+function isStickShape_Vertical() {
+    //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is vertical
+    //it is vertical when one cell is the brotherBeneath of the other one
+    if (table[currentPlayerObject.cell1_Id].brotherBeneathId == currentPlayerObject.cell2_Id
+        ||
+        table[currentPlayerObject.cell2_Id].brotherBeneathId == currentPlayerObject.cell1_Id) {
+        return true;
+    }
+    else return false;
+}
+function isStickShape_Horizental() {
+    //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is horizental
+    //it is horizental when one cell is the leftBrother of the other one
+    if (table[currentPlayerObject.cell1_Id].leftBrotherId == currentPlayerObject.cell2_Id
+        ||
+        table[currentPlayerObject.cell2_Id].leftBrotherId == currentPlayerObject.cell1_Id) {
+        return true;
+    }
+    else return false;
+}
+//*** END: ROTATE STICK SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
 //
