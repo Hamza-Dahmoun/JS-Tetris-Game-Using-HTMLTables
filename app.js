@@ -846,6 +846,32 @@ function isThreeDots_rightBrothers_switchedOn() {
     }
     else return false;
 }
+function isThreeDots_topBrothers_switchedOn() {
+    //this function checks if one of the top borthers of an horizental ThreeDots shape is switched on
+    let digit_in_topBro1ID = parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
+    let digit_in_topBro2ID = parseInt(currentPlayerObject.cell2_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell2_Id.splice(0, 4)) - 7;
+    let digit_in_topBro3ID = parseInt(currentPlayerObject.cell3_Id.slice(4)) - 7;
+    //what if the stick shape is located in the first tr tag?? lets check it
+    if (parseInt(digit_in_topBro1ID) <= 0
+    || parseInt(digit_in_topBro2ID) <= 0
+    || parseInt(digit_in_topBro3ID) <= 0) {
+        //so the stick shape is fully located in the first tr tag, lets return false bcuz
+        //there are no top brothers to rotate on, it is like there are switch on top brothers
+        return true;
+    }
+    let topBro1ID = "cell" + digit_in_topBro1ID;
+    let topBro2ID = "cell" + digit_in_topBro2ID;
+    let topBro3ID = "cell" + digit_in_topBro3ID;
+    let topBro1 = document.getElementById(topBro1ID);
+    let topBro2 = document.getElementById(topBro2ID);
+    let topBro3 = document.getElementById(topBro3ID);
+    if (topBro1.className.includes("cell-on")
+    || topBro2.className.includes("cell-on")
+    || topBro3.className.includes("cell-on")) {
+        return true;
+    }
+    return false;
+}
 //***/
 function isStickShape_Vertical() {
     //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is vertical
