@@ -882,8 +882,8 @@ function makeThreeDotsHorizental() {
         //currentPlayerObject.cell3_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell1_Id
         
         //lets 1- switch it off: currentPlayerObject.cell3_Id & currentPlayerObject.cell2_Id,
-        //2- assign it the right brother of currentPlayerObject.cell1_Id to currentPlayerObject.cell2_Id
-        //3- assign it the right brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell3_Id 
+        //2- assign the right brother of currentPlayerObject.cell1_Id to currentPlayerObject.cell2_Id
+        //3- assign the right brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell3_Id 
         //4- switch on currentPlayerObject.cell3_Id & currentPlayerObject.cell2_Id
         
         //1-
@@ -902,8 +902,8 @@ function makeThreeDotsHorizental() {
         //currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id
 
         //lets 1- switch it off: currentPlayerObject.cell1_Id & currentPlayerObject.cell2_Id,
-        //2- assign it the right brother of currentPlayerObject.cell3_Id to currentPlayerObject.cell2_Id
-        //3- assign it the right brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell1_Id 
+        //2- assign the right brother of currentPlayerObject.cell3_Id to currentPlayerObject.cell2_Id
+        //3- assign the right brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell1_Id 
         //4- switch on currentPlayerObject.cell1_Id & currentPlayerObject.cell2_Id
 
         
@@ -917,6 +917,39 @@ function makeThreeDotsHorizental() {
         //4-
         document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+    }
+}
+function makeThreeDotsVertical() {
+    //this function takes a ThreeDots stick that is horizental and makes it vertical
+    //How?
+    //it replaces the middle dot of the shape by the top brother of the first dot of the shape,
+    //and replaces the right dot of the shape by the top brother of the new middle dot of the shape
+    if (parseInt(currentPlayerObject.cell1_Id.slice(4)) > parseInt(currentPlayerObject.cell2_Id.slice(4))) {
+        //so the dots of this threeDots stick from left to right are in the following order:
+        //currentPlayerObject.cell3_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell1_Id
+        
+        //lets 1- switch off: currentPlayerObject.cell2_Id & currentPlayerObject.cell1_Id,
+        //2- assign the top brother of currentPlayerObject.cell3_Id to currentPlayerObject.cell2_Id
+        //3- assign the top brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell1_Id 
+        //4- switch on currentPlayerObject.cell2_Id & currentPlayerObject.cell1_Id
+        
+        //1-
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
+        //2-
+        let digit_in_topBro3ID = parseInt(currentPlayerObject.cell3_Id.slice(4)) - 7;
+        let topBro3ID = "cell" + digit_in_topBro3ID;
+        currentPlayerObject.cell2_Id = topBro3ID;
+        //3-
+        let digit_in_topBro2ID = parseInt(currentPlayerObject.cell2_Id.slice(4)) - 7;
+        let topBro2ID = "cell" + digit_in_topBro2ID;
+        currentPlayerObject.cell1_Id = topBro2ID;
+        //4-
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
+    }
+    else{
+
     }
 }
 //***/
