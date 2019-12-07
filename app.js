@@ -822,7 +822,7 @@ function makeTwoDotsVertical() {
 function rotate_threeDots(){
     //vertical threeDots shape will be rotated to be horizental only if right brothers <td> tags are not switched on
     //horizental threeDots shape will be rotated to be vertical only if top brothers <td> tags are not switched on 
-    if (isStickShape_Vertical() && !isThreeDots_rightBrothers_switchedOn() && !isTableRightSideLimit()) {
+    if (isStickShape_Vertical() && !isThreeDots_rightBrothers_switchedOn() && !isThreeDots_tableRightSideLimit()) {
         makeThreeDotsHorizental();
     }
     else if (isStickShape_Horizental() && !isThreeDots_topBrothers_switchedOn()) {
@@ -845,6 +845,24 @@ function isThreeDots_rightBrothers_switchedOn() {
         return true;
     }
     else return false;
+}
+function isThreeDots_tableRightSideLimit(){
+    //this function returns true if the right side limit of the table is only two cells far
+    //this function is used when trying to rotate a threeDotsStick FROM VERTICAL TO HORIZENTAL so that the stick doesn't step out of the table
+
+    //How?
+    //threeDotsStick is vertical
+    //if what seperate this threeDotsStick from the rightSideLimit of the table is only two cells off, then, return true
+    //else return false
+    //But How??
+    //if (integerOf(cellID)+1) modulo 7 == 0 then return true
+    let integer_inID = parseInt(currentPlayerObject.cell1_Id.slice(4)); 
+    if((integer_inID+1)%7 == 0){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 function isThreeDots_topBrothers_switchedOn() {
     //this function checks if one of the top borthers of an horizental ThreeDots shape is switched on
