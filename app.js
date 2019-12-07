@@ -827,8 +827,10 @@ function rotate_threeDots(){
             makeThreeDotsHorizental();
         }        
     }
-    else if (isStickShape_Horizental() && !isThreeDots_topBrothers_switchedOn()) {
-        makeThreeDotsVertical();
+    else if (isStickShape_Horizental() && !isThreeDots_tableTopLimit()) {
+        if(!isThreeDots_topBrothers_switchedOn()){
+            makeThreeDotsVertical();
+        }        
     }
     else {
         //do nothing ... it is not possible to rotate this ThreeDots shape
@@ -897,6 +899,24 @@ function isThreeDots_topBrothers_switchedOn() {
         return true;
     }
     return false;
+}
+function isThreeDots_tableTopLimit(){
+    //this function returns true only if the top limit of the table is only one row far
+    //this functino is used when trying to rotate a threeDotsStick FROM HORIZENTAL TO VERTICAL
+
+    //How?
+    //if what seperates the top limit of the table from the top dot of threeDotsStick is only one row thren return true
+
+    //But How??
+    //the integer in the id of the top dot of the threeDotsStick should be more or equal to fifteen
+
+    //cell1 and cell3, one of them is supposed to be the top dot of the shape
+    let integer_inTopCellID1 = parseInt(currentPlayerObject.cell1_Id.slice(4));
+    let integer_inTopCellID3 = parseInt(currentPlayerObject.cell3_Id.slice(4));
+    if(integer_inTopCellID1<15 || integer_inTopCellID3<15){
+        return true;
+    } 
+    else return false;
 }
 function makeThreeDotsHorizental() {
     //this function takes a ThreeDots stick that is vertical and makes it horizental
