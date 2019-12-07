@@ -822,8 +822,10 @@ function makeTwoDotsVertical() {
 function rotate_threeDots(){
     //vertical threeDots shape will be rotated to be horizental only if right brothers <td> tags are not switched on
     //horizental threeDots shape will be rotated to be vertical only if top brothers <td> tags are not switched on 
-    if (isStickShape_Vertical() && !isThreeDots_rightBrothers_switchedOn() && !isThreeDots_tableRightSideLimit()) {
-        makeThreeDotsHorizental();
+    if (isStickShape_Vertical() && !isThreeDots_tableRightSideLimit()) {
+        if(!isThreeDots_rightBrothers_switchedOn()){
+            makeThreeDotsHorizental();
+        }        
     }
     else if (isStickShape_Horizental() && !isThreeDots_topBrothers_switchedOn()) {
         makeThreeDotsVertical();
@@ -834,13 +836,19 @@ function rotate_threeDots(){
     }
 }
 function isThreeDots_rightBrothers_switchedOn() {
-    //this function checks if one of the right brothers of a vertical ThreeDots shape is switched on
+    //this function checks if one of the six right brothers of a vertical ThreeDots shape is switched on
     let rightBro1 = document.getElementById(table[currentPlayerObject.cell1_Id].rightBrotherId);
     let rightBro2 = document.getElementById(table[currentPlayerObject.cell2_Id].rightBrotherId);    
     let rightBro3 = document.getElementById(table[currentPlayerObject.cell3_Id].rightBrotherId);
+    let rightBro4 = document.getElementById(table[rightBro1.id].rightBrotherId);
+    let rightBro5 = document.getElementById(table[rightBro2.id].rightBrotherId);    
+    let rightBro6 = document.getElementById(table[rightBro3.id].rightBrotherId);
     if (rightBro1.className.includes("cell-on")
     || rightBro2.className.includes("cell-on")
-    || rightBro3.className.includes("cell-on")) {
+    || rightBro3.className.includes("cell-on")
+    || rightBro4.className.includes("cell-on")
+    || rightBro5.className.includes("cell-on")
+    || rightBro6.className.includes("cell-on")) {
         //so whatever the stick is it has at least a brother switched on
         return true;
     }
