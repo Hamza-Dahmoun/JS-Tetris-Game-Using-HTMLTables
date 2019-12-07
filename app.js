@@ -949,7 +949,28 @@ function makeThreeDotsVertical() {
         document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
     }
     else{
-
+        //so the dots of this threeDots stick from left to right are in the following order:
+        //currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id
+        
+        //lets 1- switch off: currentPlayerObject.cell2_Id & currentPlayerObject.cell3_Id,
+        //2- assign the top brother of currentPlayerObject.cell1_Id to currentPlayerObject.cell2_Id
+        //3- assign the top brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell3_Id 
+        //4- switch on currentPlayerObject.cell2_Id & currentPlayerObject.cell3_Id
+        
+        //1-
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
+        //2-
+        let digit_in_topBro1ID = parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;
+        let topBro1ID = "cell" + digit_in_topBro1ID;
+        currentPlayerObject.cell2_Id = topBro1ID;
+        //3-
+        let digit_in_topBro2ID = parseInt(currentPlayerObject.cell2_Id.slice(4)) - 7;
+        let topBro2ID = "cell" + digit_in_topBro2ID;
+        currentPlayerObject.cell3_Id = topBro2ID;
+        //4-
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
     }
 }
 //***/
