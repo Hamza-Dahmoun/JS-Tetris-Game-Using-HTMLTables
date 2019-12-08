@@ -1164,6 +1164,64 @@ function isFourDotsStick_tableTopLimit() {
     }
     else return false;
 }
+function makeFourDotsStickHorizental() {
+    //this function takes a fourDots stick that is vertical and makes it horizental
+    //How?
+    //it replaces the second dot (from down to top) by the right brother of the lower dot,
+    //and replaces the third dot (from down to top) by the rightBrother of the NEW second dot
+    //and replaces the fourth dot (from down to top) by the rightBrother of the NEW third dot    
+    if (numberInCellId(currentPlayerObject.cell1_Id) > numberInCellId(currentPlayerObject.cell2_Id)) {
+        //so the dots of this fourDots stick from top to down are in the following order:
+        //currentPlayerObject.cell3_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell1_Id
+
+        //lets 1- switch off: currentPlayerObject.cell4_Id & currentPlayerObject.cell3_Id & currentPlayerObject.cell2_Id,
+        //2- assign the right brother of currentPlayerObject.cell1_Id to currentPlayerObject.cell2_Id
+        //3- assign the right brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell3_Id
+        //4- assign the right brother of the new currentPlayerObject.cell3_Id to currentPlayerObject.cell4_Id 
+        //5- switch on currentPlayerObject.cell4_Id & currentPlayerObject.cell3_Id & currentPlayerObject.cell2_Id
+
+        //1-
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
+        document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
+        //2-
+        currentPlayerObject.cell2_Id = table[currentPlayerObject.cell1_Id].rightBrotherId;
+        //3-
+        currentPlayerObject.cell3_Id = table[currentPlayerObject.cell2_Id].rightBrotherId;
+        //4-
+        currentPlayerObject.cell4_Id = table[currentPlayerObject.cell3_Id].rightBrotherId;
+        //5-
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
+        document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
+    }
+    else {
+        //so the dots of this fourDots stick from top to down are in the following order:
+        //currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id
+
+        //lets 1- switch off: currentPlayerObject.cell1_Id & currentPlayerObject.cell2_Id & currentPlayerObject.cell3_Id,
+        //2- assign the right brother of currentPlayerObject.cell4_Id to currentPlayerObject.cell3_Id
+        //3- assign the right brother of the new currentPlayerObject.cell3_Id to currentPlayerObject.cell2_Id
+        //4- assign the right brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell1_Id 
+        //5- switch on currentPlayerObject.cell1_Id & currentPlayerObject.cell2_Id & currentPlayerObject.cell3_Id
+
+
+        //1-
+        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
+        //2-
+        currentPlayerObject.cell4_Id = table[currentPlayerObject.cell4_Id].rightBrotherId;
+        //3-
+        currentPlayerObject.cell2_Id = table[currentPlayerObject.cell3_Id].rightBrotherId;
+        //4-
+        currentPlayerObject.cell1_Id = table[currentPlayerObject.cell2_Id].rightBrotherId;
+        //5-
+        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
+    }
+}
 //***/
 function isStickShape_Vertical() {
     //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is vertical
