@@ -1063,6 +1063,40 @@ function rotate_fourDotsStick(){
         return;
     }
 }
+function isFourDotsStick_rightBrothers_switchedOn() {
+    //this function checks if one of the twelve right brothers of a vertical FourDotsStick shape is switched on
+    let rightBro1 = document.getElementById(table[currentPlayerObject.cell1_Id].rightBrotherId);
+    let rightBro2 = document.getElementById(table[currentPlayerObject.cell2_Id].rightBrotherId);
+    let rightBro3 = document.getElementById(table[currentPlayerObject.cell3_Id].rightBrotherId);
+    let rightBro4 = document.getElementById(table[currentPlayerObject.cell4_Id].rightBrotherId);
+    
+    let rightBro5 = document.getElementById(table[rightBro1.id].rightBrotherId);
+    let rightBro6 = document.getElementById(table[rightBro2.id].rightBrotherId);
+    let rightBro7 = document.getElementById(table[rightBro3.id].rightBrotherId);
+    let rightBro8 = document.getElementById(table[rightBro4.id].rightBrotherId);
+    
+    let rightBro9 = document.getElementById(table[rightBro5.id].rightBrotherId);
+    let rightBro10 = document.getElementById(table[rightBro6.id].rightBrotherId);
+    let rightBro11 = document.getElementById(table[rightBro7.id].rightBrotherId);
+    let rightBro12 = document.getElementById(table[rightBro8.id].rightBrotherId);
+
+    if (rightBro1.className.includes("cell-on")
+        || rightBro2.className.includes("cell-on")
+        || rightBro3.className.includes("cell-on")
+        || rightBro4.className.includes("cell-on")
+        || rightBro5.className.includes("cell-on")
+        || rightBro6.className.includes("cell-on")
+        || rightBro7.className.includes("cell-on")
+        || rightBro8.className.includes("cell-on")
+        || rightBro9.className.includes("cell-on")
+        || rightBro10.className.includes("cell-on")
+        || rightBro11.className.includes("cell-on")
+        || rightBro12.className.includes("cell-on")) {
+        //so whatever the stick is it has at least a brother switched on
+        return true;
+    }
+    else return false;
+}
 //***/
 function isStickShape_Vertical() {
     //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is vertical
