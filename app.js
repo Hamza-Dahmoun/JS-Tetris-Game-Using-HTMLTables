@@ -931,7 +931,7 @@ function isThreeDots_tableTopLimit() {
     //if what seperates the top limit of the table from the top dot of threeDotsStick is only one row thren return true
 
     //But How??
-    //the integer in the id of the top dot of the threeDotsStick should be more or equal to fifteen
+    //the integer in the id of the top dot of the threeDotsStick should be less or equal to fifteen (two tr tags)
 
     //cell1 and cell3, one of them is supposed to be the top dot of the shape
     let integer_inTopCellID1 = numberInCellId(currentPlayerObject.cell1_Id);//parseInt(currentPlayerObject.cell1_Id.slice(4));
@@ -1145,6 +1145,24 @@ function isFourDotsStick_topBrothers_switchedOn() {
         return true;
     }
     return false;
+}
+function isFourDotsStick_tableTopLimit() {
+    //this function returns true only if the top limit of the table is only one row far
+    //this functino is used when trying to rotate a fourDotsStick FROM HORIZENTAL TO VERTICAL
+
+    //How?
+    //if what seperates the top limit of the table from the top dot of fourDotsStick is only one row thren return true
+
+    //But How??
+    //the integer in the id of the top dot of the fourDotsStick should be less or equal to twenty one (three tr tags)
+
+    //cell1 and cell3, one of them is supposed to be the top dot of the shape
+    let integer_inTopCellID1 = numberInCellId(currentPlayerObject.cell1_Id);
+    let integer_inTopCellID4 = numberInCellId(currentPlayerObject.cell4_Id);
+    if (integer_inTopCellID1 < 22 || integer_inTopCellID4 < 22) {
+        return true;
+    }
+    else return false;
 }
 //***/
 function isStickShape_Vertical() {
