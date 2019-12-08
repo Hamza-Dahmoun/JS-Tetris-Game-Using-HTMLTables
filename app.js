@@ -1115,6 +1115,37 @@ function isFourDotsStick_tableRightSideLimit() {
         return false;
     }
 }
+function isFourDotsStick_topBrothers_switchedOn() {
+    //this function checks if one of the top borthers of an horizental fourDotsStick shape is switched on
+    let digit_in_topBro1ID = numberInCellId(currentPlayerObject.cell1_Id) - 7;
+    let digit_in_topBro2ID = numberInCellId(currentPlayerObject.cell2_Id) - 7;
+    let digit_in_topBro3ID = numberInCellId(currentPlayerObject.cell3_Id) - 7;
+    let digit_in_topBro4ID = numberInCellId(currentPlayerObject.cell4_Id) - 7;
+    //what if the stick shape is located in the first tr tag?? lets check it
+    if (parseInt(digit_in_topBro1ID) <= 0
+        || parseInt(digit_in_topBro2ID) <= 0
+        || parseInt(digit_in_topBro3ID) <= 0
+        || parseInt(digit_in_topBro4ID) <= 0) {
+        //so the stick shape is fully located in the first tr tag, lets return false bcuz
+        //there are no top brothers to rotate on, it is like there are switched on top brothers
+        return true;
+    }
+    let topBro1ID = "cell" + digit_in_topBro1ID;
+    let topBro2ID = "cell" + digit_in_topBro2ID;
+    let topBro3ID = "cell" + digit_in_topBro3ID;
+    let topBro4ID = "cell" + digit_in_topBro4ID;
+    let topBro1 = document.getElementById(topBro1ID);
+    let topBro2 = document.getElementById(topBro2ID);
+    let topBro3 = document.getElementById(topBro3ID);
+    let topBro4 = document.getElementById(topBro4ID);
+    if (topBro1.className.includes("cell-on")
+        || topBro2.className.includes("cell-on")
+        || topBro3.className.includes("cell-on")
+        || topBro4.className.includes("cell-on")) {
+        return true;
+    }
+    return false;
+}
 //***/
 function isStickShape_Vertical() {
     //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is vertical
