@@ -713,7 +713,7 @@ function rotateShape() {
             rotate_threeDots();
             break;
         case "fourDotsStick":
-
+                rotate_fourDotsStick();
             break;
         case "fourDotsLetter_L":
 
@@ -1042,6 +1042,25 @@ function makeThreeDotsVertical() {
         //4-
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
         document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
+    }
+}
+//***/
+function rotate_fourDotsStick(){
+    //vertical fourDotsStick shape will be rotated to be horizental only if right brothers <td> tags are not switched on
+    //horizental fourDotsStick shape will be rotated to be vertical only if top brothers <td> tags are not switched on 
+    if (isStickShape_Vertical() && !isFourDotsStick_tableRightSideLimit()) {
+        if (!isFourDotsStick_rightBrothers_switchedOn()) {
+            makeFourDotsStickHorizental();
+        }
+    }
+    else if (isStickShape_Horizental() && !isFourDotsStick_tableTopLimit()) {
+        if (!isFourDotsStick_topBrothers_switchedOn()) {
+            makeFourDotsStickVertical();
+        }
+    }
+    else {
+        //do nothing ... it is not possible to rotate this FourDotsStick shape
+        return;
     }
 }
 //***/
