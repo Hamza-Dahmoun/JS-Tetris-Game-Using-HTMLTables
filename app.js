@@ -864,12 +864,12 @@ function isThreeDots_tableRightSideLimit() {
 
     //How?
     //threeDotsStick is vertical
-    //if what seperate this threeDotsStick from the rightSideLimit of the table is only two cells off, then, return true
+    //if what seperate this threeDotsStick from the rightSideLimit of the table is only one or zero cell off, then, return true
     //else return false
     //But How??
-    //if (integerOf(cellID)+1) modulo 7 == 0 then return true
+    //if (integerOf(cellID)+1) modulo 7 == 0 OR integerOf(cellID) modulo 7 == 0 then return true
     let integer_inID = numberInCellId(currentPlayerObject.cell1_Id);//parseInt(currentPlayerObject.cell1_Id.slice(4));
-    if ((integer_inID + 1) % 7 == 0) {
+    if ((integer_inID + 1) % 7 == 0 || integer_inID % 7 == 0) {
         return true;
     }
     else {
