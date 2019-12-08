@@ -880,7 +880,7 @@ function isThreeDots_rightBrothers_switchedOn() {
     else return false;
 }
 function isThreeDots_tableRightSideLimit() {
-    //this function returns true if the right side limit of the table is only two cells far
+    //this function returns true if the right side limit of the table is only one cells far, or less
     //this function is used when trying to rotate a threeDotsStick FROM VERTICAL TO HORIZENTAL so that the stick doesn't step out of the table
 
     //How?
@@ -1096,6 +1096,24 @@ function isFourDotsStick_rightBrothers_switchedOn() {
         return true;
     }
     else return false;
+}
+function isFourDotsStick_tableRightSideLimit() {
+    //this function returns true if the right side limit of the table is only two cells far, or less
+    //this function is used when trying to rotate a fourDotsStick FROM VERTICAL TO HORIZENTAL so that the stick doesn't step out of the table
+
+    //How?
+    //fourDotsStick is vertical
+    //if what seperate this fourDotsStick from the rightSideLimit of the table is only two cells off or less, then, return true
+    //else return false
+    //But How??
+    //if (integerOf(cellID)+2) modulo 7 == 0 OR integerOf(cellID)+1) modulo 7 == 0 OR integerOf(cellID) modulo 7 == 0) then return true
+    let integer_inID = numberInCellId(currentPlayerObject.cell1_Id);
+    if ((integer_inID + 2) % 7 == 0 || (integer_inID + 1) % 7 == 0 || integer_inID % 7 == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 //***/
 function isStickShape_Vertical() {
