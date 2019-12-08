@@ -709,8 +709,8 @@ function rotateShape() {
         case "twoDots":
             rotate_twoDots();
             break;
-        case "threeDots":            
-        rotate_threeDots();    
+        case "threeDots":
+            rotate_threeDots();
             break;
         case "fourDotsStick":
 
@@ -795,7 +795,7 @@ function makeTwoDotsHorizental() {
         currentPlayerObject.cell2_Id = table[currentPlayerObject.cell1_Id].rightBrotherId;
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
     }
-    else{
+    else {
         //so the upper dot of the shape is currentPlayerObject.cell1_Id
         //lets 1- switch it off, 2- assign it the right brother of currentPlayerObject.cell2_Id and then 3- switch it on
         document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
@@ -808,7 +808,7 @@ function makeTwoDotsVertical() {
     //How?
     //it replaces the right dot of the shape by the top brother of the left dot of the shape
     //if (parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) < parseInt(currentPlayerObject.cell2_Id.splice(0, 4)))
-    if (parseInt(currentPlayerObject.cell1_Id.slice(4)) < parseInt(currentPlayerObject.cell2_Id.slice(4))){
+    if (parseInt(currentPlayerObject.cell1_Id.slice(4)) < parseInt(currentPlayerObject.cell2_Id.slice(4))) {
         //so the right dot of the shape is currentPlayerObject.cell2_Id
         //lets 1- switch it off, 2- assign it the upper brother of the currentPlayerObject.cell1_Id
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
@@ -819,18 +819,18 @@ function makeTwoDotsVertical() {
     }
 }
 //***/
-function rotate_threeDots(){
+function rotate_threeDots() {
     //vertical threeDots shape will be rotated to be horizental only if right brothers <td> tags are not switched on
     //horizental threeDots shape will be rotated to be vertical only if top brothers <td> tags are not switched on 
     if (isStickShape_Vertical() && !isThreeDots_tableRightSideLimit()) {
-        if(!isThreeDots_rightBrothers_switchedOn()){
+        if (!isThreeDots_rightBrothers_switchedOn()) {
             makeThreeDotsHorizental();
-        }        
+        }
     }
     else if (isStickShape_Horizental() && !isThreeDots_tableTopLimit()) {
-        if(!isThreeDots_topBrothers_switchedOn()){
+        if (!isThreeDots_topBrothers_switchedOn()) {
             makeThreeDotsVertical();
-        }        
+        }
     }
     else {
         //do nothing ... it is not possible to rotate this ThreeDots shape
@@ -840,23 +840,23 @@ function rotate_threeDots(){
 function isThreeDots_rightBrothers_switchedOn() {
     //this function checks if one of the six right brothers of a vertical ThreeDots shape is switched on
     let rightBro1 = document.getElementById(table[currentPlayerObject.cell1_Id].rightBrotherId);
-    let rightBro2 = document.getElementById(table[currentPlayerObject.cell2_Id].rightBrotherId);    
+    let rightBro2 = document.getElementById(table[currentPlayerObject.cell2_Id].rightBrotherId);
     let rightBro3 = document.getElementById(table[currentPlayerObject.cell3_Id].rightBrotherId);
     let rightBro4 = document.getElementById(table[rightBro1.id].rightBrotherId);
-    let rightBro5 = document.getElementById(table[rightBro2.id].rightBrotherId);    
+    let rightBro5 = document.getElementById(table[rightBro2.id].rightBrotherId);
     let rightBro6 = document.getElementById(table[rightBro3.id].rightBrotherId);
     if (rightBro1.className.includes("cell-on")
-    || rightBro2.className.includes("cell-on")
-    || rightBro3.className.includes("cell-on")
-    || rightBro4.className.includes("cell-on")
-    || rightBro5.className.includes("cell-on")
-    || rightBro6.className.includes("cell-on")) {
+        || rightBro2.className.includes("cell-on")
+        || rightBro3.className.includes("cell-on")
+        || rightBro4.className.includes("cell-on")
+        || rightBro5.className.includes("cell-on")
+        || rightBro6.className.includes("cell-on")) {
         //so whatever the stick is it has at least a brother switched on
         return true;
     }
     else return false;
 }
-function isThreeDots_tableRightSideLimit(){
+function isThreeDots_tableRightSideLimit() {
     //this function returns true if the right side limit of the table is only two cells far
     //this function is used when trying to rotate a threeDotsStick FROM VERTICAL TO HORIZENTAL so that the stick doesn't step out of the table
 
@@ -866,11 +866,11 @@ function isThreeDots_tableRightSideLimit(){
     //else return false
     //But How??
     //if (integerOf(cellID)+1) modulo 7 == 0 then return true
-    let integer_inID = parseInt(currentPlayerObject.cell1_Id.slice(4)); 
-    if((integer_inID+1)%7 == 0){
+    let integer_inID = parseInt(currentPlayerObject.cell1_Id.slice(4));
+    if ((integer_inID + 1) % 7 == 0) {
         return true;
     }
-    else{
+    else {
         return false;
     }
 }
@@ -881,8 +881,8 @@ function isThreeDots_topBrothers_switchedOn() {
     let digit_in_topBro3ID = parseInt(currentPlayerObject.cell3_Id.slice(4)) - 7;
     //what if the stick shape is located in the first tr tag?? lets check it
     if (parseInt(digit_in_topBro1ID) <= 0
-    || parseInt(digit_in_topBro2ID) <= 0
-    || parseInt(digit_in_topBro3ID) <= 0) {
+        || parseInt(digit_in_topBro2ID) <= 0
+        || parseInt(digit_in_topBro3ID) <= 0) {
         //so the stick shape is fully located in the first tr tag, lets return false bcuz
         //there are no top brothers to rotate on, it is like there are switch on top brothers
         return true;
@@ -894,13 +894,13 @@ function isThreeDots_topBrothers_switchedOn() {
     let topBro2 = document.getElementById(topBro2ID);
     let topBro3 = document.getElementById(topBro3ID);
     if (topBro1.className.includes("cell-on")
-    || topBro2.className.includes("cell-on")
-    || topBro3.className.includes("cell-on")) {
+        || topBro2.className.includes("cell-on")
+        || topBro3.className.includes("cell-on")) {
         return true;
     }
     return false;
 }
-function isThreeDots_tableTopLimit(){
+function isThreeDots_tableTopLimit() {
     //this function returns true only if the top limit of the table is only one row far
     //this functino is used when trying to rotate a threeDotsStick FROM HORIZENTAL TO VERTICAL
 
@@ -913,9 +913,9 @@ function isThreeDots_tableTopLimit(){
     //cell1 and cell3, one of them is supposed to be the top dot of the shape
     let integer_inTopCellID1 = parseInt(currentPlayerObject.cell1_Id.slice(4));
     let integer_inTopCellID3 = parseInt(currentPlayerObject.cell3_Id.slice(4));
-    if(integer_inTopCellID1<15 || integer_inTopCellID3<15){
+    if (integer_inTopCellID1 < 15 || integer_inTopCellID3 < 15) {
         return true;
-    } 
+    }
     else return false;
 }
 function makeThreeDotsHorizental() {
@@ -926,12 +926,12 @@ function makeThreeDotsHorizental() {
     if (parseInt(currentPlayerObject.cell1_Id.slice(4)) > parseInt(currentPlayerObject.cell2_Id.slice(4))) {
         //so the dots of this threeDots stick from top to down are in the following order:
         //currentPlayerObject.cell3_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell1_Id
-        
+
         //lets 1- switch it off: currentPlayerObject.cell3_Id & currentPlayerObject.cell2_Id,
         //2- assign the right brother of currentPlayerObject.cell1_Id to currentPlayerObject.cell2_Id
         //3- assign the right brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell3_Id 
         //4- switch on currentPlayerObject.cell3_Id & currentPlayerObject.cell2_Id
-        
+
         //1-
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
         document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
@@ -943,7 +943,7 @@ function makeThreeDotsHorizental() {
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
         document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
     }
-    else{
+    else {
         //so the dots of this threeDots stick from top to down are in the following order:
         //currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id
 
@@ -952,7 +952,7 @@ function makeThreeDotsHorizental() {
         //3- assign the right brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell1_Id 
         //4- switch on currentPlayerObject.cell1_Id & currentPlayerObject.cell2_Id
 
-        
+
         //1-
         document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
@@ -973,12 +973,12 @@ function makeThreeDotsVertical() {
     if (parseInt(currentPlayerObject.cell1_Id.slice(4)) > parseInt(currentPlayerObject.cell2_Id.slice(4))) {
         //so the dots of this threeDots stick from left to right are in the following order:
         //currentPlayerObject.cell3_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell1_Id
-        
+
         //lets 1- switch off: currentPlayerObject.cell2_Id & currentPlayerObject.cell1_Id,
         //2- assign the top brother of currentPlayerObject.cell3_Id to currentPlayerObject.cell2_Id
         //3- assign the top brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell1_Id 
         //4- switch on currentPlayerObject.cell2_Id & currentPlayerObject.cell1_Id
-        
+
         //1-
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
         document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
@@ -994,15 +994,15 @@ function makeThreeDotsVertical() {
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
         document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
     }
-    else{
+    else {
         //so the dots of this threeDots stick from left to right are in the following order:
         //currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id
-        
+
         //lets 1- switch off: currentPlayerObject.cell2_Id & currentPlayerObject.cell3_Id,
         //2- assign the top brother of currentPlayerObject.cell1_Id to currentPlayerObject.cell2_Id
         //3- assign the top brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell3_Id 
         //4- switch on currentPlayerObject.cell2_Id & currentPlayerObject.cell3_Id
-        
+
         //1-
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
         document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
@@ -1067,4 +1067,7 @@ function playerBehave(e) {
         //rotate the current shape
         rotateShape();
     }
+}
+function numberInCellId(cellIDString) {
+    return parseInt(cellIDString.slice(4));
 }
