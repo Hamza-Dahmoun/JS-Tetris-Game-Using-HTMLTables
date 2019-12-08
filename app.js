@@ -312,7 +312,7 @@ function isTableRightSideLimit() {
         let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
         //now we'll extract the number that is inside the id
-        let numberInsideIDString = cellID_in_currentPlayer.slice(4);
+        let numberInsideIDString = numberInCellId(cellID_in_currentPlayer);// cellID_in_currentPlayer.slice(4);
         //if cellID_in_currentPlayer is 'cell7' then numberInsideIDString will be '7' 
         if (numberInsideIDString % 7 == 0) {
             //so this cell has an id like 'cell7' or 'cell14' or 'cell21'.... it belongs to the right boundary of the table
@@ -422,7 +422,7 @@ function isTableLeftSideLimit() {
         let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
         //now we'll extract the number that is inside the id
-        let numberInsideIDString = cellID_in_currentPlayer.slice(4);
+        let numberInsideIDString = numberInCellId(cellID_in_currentPlayer);//cellID_in_currentPlayer.slice(4);
         //if cellID_in_currentPlayer is 'cell7' then numberInsideIDString will be '7' 
         if (numberInsideIDString % 7 == 1) {
             //so this cell has an id like 'cell8' or 'cell15' or 'cell22'.... it belongs to the left boundary of the table
@@ -766,8 +766,8 @@ function isTwoDots_rightBrothers_switchedOn() {
 }
 function isTwoDots_topBrothers_switchedOn() {
     //this function checks if one of the top borthers of an horizental twoDots shape is switched on
-    let digit_in_topBro1ID = parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
-    let digit_in_topBro2ID = parseInt(currentPlayerObject.cell2_Id.slice(4)) - 7;;//parseInt(currentPlayerObject.cell2_Id.splice(0, 4)) - 7;
+    let digit_in_topBro1ID = numberInCellId(currentPlayerObject.cell1_Id)-7;//parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
+    let digit_in_topBro2ID = numberInCellId(currentPlayerObject.cell2_Id)-7;;//parseInt(currentPlayerObject.cell2_Id.slice(4)) - 7;;//parseInt(currentPlayerObject.cell2_Id.splice(0, 4)) - 7;
     //what if the stick shape is located in the first tr tag?? lets check it
     if (parseInt(digit_in_topBro2ID) <= 0 || parseInt(digit_in_topBro1ID) <= 0) {
         //so the stick shape is fully located in the first tr tag, lets return false bcuz
@@ -788,7 +788,8 @@ function makeTwoDotsHorizental() {
     //How?
     //it replaces the upper dot by the right brother of the lower dot
     //if (parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) > parseInt(currentPlayerObject.cell2_Id.splice(0, 4)))
-    if (parseInt(currentPlayerObject.cell1_Id.slice(4)) > parseInt(currentPlayerObject.cell2_Id.slice(4))) {
+    //if (parseInt(currentPlayerObject.cell1_Id.slice(4)) > parseInt(currentPlayerObject.cell2_Id.slice(4)))
+    if(numberInCellId(currentPlayerObject.cell1_Id)>numberInCellId(currentPlayerObject.cell2_Id)) {
         //so the upper dot of the shape is currentPlayerObject.cell2_Id
         //lets 1- switch it off, 2- assign it the right brother of currentPlayerObject.cell1_Id and then 3- switch it on
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
@@ -808,11 +809,12 @@ function makeTwoDotsVertical() {
     //How?
     //it replaces the right dot of the shape by the top brother of the left dot of the shape
     //if (parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) < parseInt(currentPlayerObject.cell2_Id.splice(0, 4)))
-    if (parseInt(currentPlayerObject.cell1_Id.slice(4)) < parseInt(currentPlayerObject.cell2_Id.slice(4))) {
+    //if (parseInt(currentPlayerObject.cell1_Id.slice(4)) < parseInt(currentPlayerObject.cell2_Id.slice(4))) 
+    if(numberInCellId(currentPlayerObject.cell1_Id) < numberInCellId(currentPlayerObject.cell2_Id)){
         //so the right dot of the shape is currentPlayerObject.cell2_Id
         //lets 1- switch it off, 2- assign it the upper brother of the currentPlayerObject.cell1_Id
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-        let digit_in_topBro1ID = parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
+        let digit_in_topBro1ID = numberInCellId(currentPlayerObject.cell1_Id)-7;//parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
         let topBro1ID = "cell" + digit_in_topBro1ID;
         currentPlayerObject.cell2_Id = topBro1ID;
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
@@ -866,7 +868,7 @@ function isThreeDots_tableRightSideLimit() {
     //else return false
     //But How??
     //if (integerOf(cellID)+1) modulo 7 == 0 then return true
-    let integer_inID = parseInt(currentPlayerObject.cell1_Id.slice(4));
+    let integer_inID = numberInCellId(currentPlayerObject.cell1_Id);//parseInt(currentPlayerObject.cell1_Id.slice(4));
     if ((integer_inID + 1) % 7 == 0) {
         return true;
     }
@@ -876,9 +878,9 @@ function isThreeDots_tableRightSideLimit() {
 }
 function isThreeDots_topBrothers_switchedOn() {
     //this function checks if one of the top borthers of an horizental ThreeDots shape is switched on
-    let digit_in_topBro1ID = parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
-    let digit_in_topBro2ID = parseInt(currentPlayerObject.cell2_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell2_Id.splice(0, 4)) - 7;
-    let digit_in_topBro3ID = parseInt(currentPlayerObject.cell3_Id.slice(4)) - 7;
+    let digit_in_topBro1ID = numberInCellId(currentPlayerObject.cell1_Id)-7;//parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
+    let digit_in_topBro2ID = numberInCellId(currentPlayerObject.cell2_Id)-7;//parseInt(currentPlayerObject.cell2_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell2_Id.splice(0, 4)) - 7;
+    let digit_in_topBro3ID = numberInCellId(currentPlayerObject.cell3_Id)-7;//parseInt(currentPlayerObject.cell3_Id.slice(4)) - 7;
     //what if the stick shape is located in the first tr tag?? lets check it
     if (parseInt(digit_in_topBro1ID) <= 0
         || parseInt(digit_in_topBro2ID) <= 0
@@ -911,8 +913,8 @@ function isThreeDots_tableTopLimit() {
     //the integer in the id of the top dot of the threeDotsStick should be more or equal to fifteen
 
     //cell1 and cell3, one of them is supposed to be the top dot of the shape
-    let integer_inTopCellID1 = parseInt(currentPlayerObject.cell1_Id.slice(4));
-    let integer_inTopCellID3 = parseInt(currentPlayerObject.cell3_Id.slice(4));
+    let integer_inTopCellID1 = numberInCellId(currentPlayerObject.cell1_Id);//parseInt(currentPlayerObject.cell1_Id.slice(4));
+    let integer_inTopCellID3 = numberInCellId(currentPlayerObject.cell3_Id);//parseInt(currentPlayerObject.cell3_Id.slice(4));
     if (integer_inTopCellID1 < 15 || integer_inTopCellID3 < 15) {
         return true;
     }
@@ -923,7 +925,8 @@ function makeThreeDotsHorizental() {
     //How?
     //it replaces the middle dot by the right brother of the lower dot, and replaces the upper dot by the rightBrother of the NEW middle dot
     //if (parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) > parseInt(currentPlayerObject.cell2_Id.splice(0, 4)))
-    if (parseInt(currentPlayerObject.cell1_Id.slice(4)) > parseInt(currentPlayerObject.cell2_Id.slice(4))) {
+    //if (parseInt(currentPlayerObject.cell1_Id.slice(4)) > parseInt(currentPlayerObject.cell2_Id.slice(4)))
+    if(numberInCellId(currentPlayerObject.cell1_Id) > numberInCellId(currentPlayerObject.cell2_Id)){
         //so the dots of this threeDots stick from top to down are in the following order:
         //currentPlayerObject.cell3_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell1_Id
 
@@ -970,7 +973,8 @@ function makeThreeDotsVertical() {
     //How?
     //it replaces the middle dot of the shape by the top brother of the first dot of the shape,
     //and replaces the right dot of the shape by the top brother of the new middle dot of the shape
-    if (parseInt(currentPlayerObject.cell1_Id.slice(4)) > parseInt(currentPlayerObject.cell2_Id.slice(4))) {
+    //if (parseInt(currentPlayerObject.cell1_Id.slice(4)) > parseInt(currentPlayerObject.cell2_Id.slice(4)))
+    if(numberInCellId(currentPlayerObject.cell1_Id)>numberInCellId(currentPlayerObject.cell2_Id)) {
         //so the dots of this threeDots stick from left to right are in the following order:
         //currentPlayerObject.cell3_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell1_Id
 
@@ -983,11 +987,11 @@ function makeThreeDotsVertical() {
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
         document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
         //2-
-        let digit_in_topBro3ID = parseInt(currentPlayerObject.cell3_Id.slice(4)) - 7;
+        let digit_in_topBro3ID = numberInCellId(currentPlayerObject.cell3_Id)-7;//parseInt(currentPlayerObject.cell3_Id.slice(4)) - 7;
         let topBro3ID = "cell" + digit_in_topBro3ID;
         currentPlayerObject.cell2_Id = topBro3ID;
         //3-
-        let digit_in_topBro2ID = parseInt(currentPlayerObject.cell2_Id.slice(4)) - 7;
+        let digit_in_topBro2ID = numberInCellId(currentPlayerObject.cell2_Id)-7;//parseInt(currentPlayerObject.cell2_Id.slice(4)) - 7;
         let topBro2ID = "cell" + digit_in_topBro2ID;
         currentPlayerObject.cell1_Id = topBro2ID;
         //4-
@@ -1007,11 +1011,11 @@ function makeThreeDotsVertical() {
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
         document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
         //2-
-        let digit_in_topBro1ID = parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;
+        let digit_in_topBro1ID = numberInCellId(currentPlayerObject.cell1_Id)-7;//parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;
         let topBro1ID = "cell" + digit_in_topBro1ID;
         currentPlayerObject.cell2_Id = topBro1ID;
         //3-
-        let digit_in_topBro2ID = parseInt(currentPlayerObject.cell2_Id.slice(4)) - 7;
+        let digit_in_topBro2ID = numberInCellId(currentPlayerObject.cell2_Id)-7;//parseInt(currentPlayerObject.cell2_Id.slice(4)) - 7;
         let topBro2ID = "cell" + digit_in_topBro2ID;
         currentPlayerObject.cell3_Id = topBro2ID;
         //4-
