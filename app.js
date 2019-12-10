@@ -1222,6 +1222,79 @@ function makeFourDotsStickHorizental() {
         document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
     }
 }
+function makeFourDotsStickVertical() {
+    //this function takes a FourDots stick that is horizental and makes it vertical
+    //How?
+    //it replaces the second dot (from down to top) by the right brother of the lower dot,
+    //and replaces the third dot (from down to top) by the rightBrother of the NEW second dot
+    //and replaces the fourth dot (from down to top) by the rightBrother of the NEW third dot  
+
+    //it replaces the second dot of the shape by the top brother of the first dot of the shape,
+    //and replaces the third dot of the shape by the top brother of the new second dot of the shape,
+    //and replaces the fourth dot of the shape by the top brother of the new third dot of the shape,
+    if (numberInCellId(currentPlayerObject.cell1_Id) > numberInCellId(currentPlayerObject.cell2_Id)) {
+        //so the dots of this fourDots stick from left to right are in the following order:
+        //currentPlayerObject.cell4_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell1_Id
+
+        //lets 1- switch off: currentPlayerObject.cell3_Id & currentPlayerObject.cell2_Id & currentPlayerObject.cell1_Id,
+        //2- assign the top brother of currentPlayerObject.cell4_Id to currentPlayerObject.cell3_Id
+        //3- assign the top brother of currentPlayerObject.cell3_Id to currentPlayerObject.cell2_Id
+        //4- assign the top brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell1_Id 
+        //5- switch on currentPlayerObject.cell3_Id & currentPlayerObject.cell2_Id & currentPlayerObject.cell1_Id
+
+        //1-
+        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
+        //2-
+        let digit_in_topBro4ID = numberInCellId(currentPlayerObject.cell4_Id) - 7;
+        let topBro4ID = "cell" + digit_in_topBro4ID;
+        currentPlayerObject.cell3_Id = topBro4ID;
+        //3-
+        let digit_in_topBro3ID = numberInCellId(currentPlayerObject.cell3_Id) - 7;
+        let topBro3ID = "cell" + digit_in_topBro3ID;
+        currentPlayerObject.cell2_Id = topBro3ID;
+        //4-
+        let digit_in_topBro2ID = numberInCellId(currentPlayerObject.cell2_Id) - 7;
+        let topBro2ID = "cell" + digit_in_topBro2ID;
+        currentPlayerObject.cell1_Id = topBro2ID;
+        //5-
+        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
+    }
+    else {
+        //so the dots of this fourDots stick from left to right are in the following order:
+        //currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id
+
+        //lets 1- switch off: currentPlayerObject.cell2_Id & currentPlayerObject.cell3_Id & currentPlayerObject.cell4_Id,
+        //2- assign the top brother of currentPlayerObject.cell1_Id to currentPlayerObject.cell2_Id
+        //3- assign the top brother of the new currentPlayerObject.cell2_Id to currentPlayerObject.cell3_Id
+        //3- assign the top brother of the new currentPlayerObject.cell3_Id to currentPlayerObject.cell4_Id 
+        //4- switch on currentPlayerObject.cell2_Id & currentPlayerObject.cell3_Id & currentPlayerObject.cell4_Id
+
+        //1-
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
+        document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
+        //2-
+        let digit_in_topBro1ID = numberInCellId(currentPlayerObject.cell1_Id) - 7;
+        let topBro1ID = "cell" + digit_in_topBro1ID;
+        currentPlayerObject.cell2_Id = topBro1ID;
+        //3-
+        let digit_in_topBro2ID = numberInCellId(currentPlayerObject.cell2_Id) - 7;
+        let topBro2ID = "cell" + digit_in_topBro2ID;
+        currentPlayerObject.cell3_Id = topBro2ID;
+        //4-
+        let digit_in_topBro3ID = numberInCellId(currentPlayerObject.cell3_Id) - 7;
+        let topBro3ID = "cell" + digit_in_topBro3ID;
+        currentPlayerObject.cell4_Id = topBro3ID;
+        //5-
+        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
+        document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
+    }
+}
 //***/
 function isStickShape_Vertical() {
     //this function checks if the stick shape (twoDots, threeDots or fourDotsStick player) is vertical
