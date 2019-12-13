@@ -1324,13 +1324,13 @@ function rotateFourDotsLetter_Z(){
     //vertical FourDotsLetter_Z shape will be rotated to be horizental only if some brothers <td> tags are not switched on
     //horizental FourDotsLetter_Z shape will be rotated to be vertical only if some brothers <td> tags are not switched on 
     if (isFourDotsLetter_Z_Vertical() && !isFourDotsLetter_Z_tableRightSideLimit()) {
-        if (!isFourDotsLetter_Z_Brothers_switchedOn()) {
-            makeFourDotsLetter_ZHorizental();
+        if (!isFourDotsLetter_Z_Brothers_switchedOn("vertical to horizental")) {
+            makeFourDotsLetter_Z_Horizental();
         }
     }
     else if (isFourDotsLetter_Z_Horizental() && !isFourDotsLetter_Z_tableTopLimit()) {
-        if (!isFourDotsLetter_Z_Brothers_switchedOn()) {
-            makeFourDotsLetter_ZVertical();
+        if (!isFourDotsLetter_Z_Brothers_switchedOn("horizental to vertical")) {
+            makeFourDotsLetter_Z_Vertical();
         }
     }
     else {
@@ -1389,6 +1389,52 @@ function isFourDotsLetter_Z_tableTopLimit() {
         return true;
     }
     else return false;
+}
+function isFourDotsLetter_Z_Brothers_switchedOn(str){
+    //based on the rotation direction, we'll check two cells if they are switched on or not
+    switch (str) {
+        case "vertical to horizental":
+            //so the player FourDotsLetter_Z is vertical and is going to be rotated to horizental
+
+            //the two cells that we're going to check are:
+            //1- rightBrother of cell3
+            //2- rightBrother of cell4
+            let cell3RightBrother = document.getElementById(table[currentPlayerObject.cell3_Id].rightBrotherId);
+            let cell4RightBrother = document.getElementById(table[currentPlayerObject.cell4_Id].rightBrotherId);
+            if(cell3RightBrother.className.includes("cell-on") || cell4RightBrother.className.includes("cell-on")){
+                return true;
+            }
+            else{
+                return false;
+            }
+            break;
+    
+        case "horizental to vertical":
+            //so the player FourDotsLetter_Z is horizental and is going to be rotated to vertical
+
+            //the two cells that we're going to check are:
+            //1- topBrother of cell4
+            //2- topBrother of topBrother of cell4
+
+            let integer_inCell4ID = numberInCellId(currentPlayerObject.cell4_Id);
+            let topBrother_ofCell4 = integer_inCell4ID -7;
+            let topBrother_of_topBrother_ofCell4 = topBrother_ofCell4 -7;
+            if(topBrother_ofCell<0 || topBrother_of_topBrother_ofCell4<0){
+                //so here we are already out of the table from the top side .. it will be considered as there are switched on cells
+                return true;
+            }
+            else{
+                let topCell1 = document.getElementById("cell" + topBrother_ofCell4);
+                let topCell2 = document.getElementById("cell" + topBrother_of_topBrother_ofCell4);
+                if(topCell1.className.includes("cell-on") || topCell1.className.includes("cell-on")){
+                    return true;
+                }        
+                else{
+                    return false;
+                }
+            }
+            break;
+    }
 }
 //*** END: ROTATE Z SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
