@@ -725,7 +725,7 @@ function rotateShape() {
 
             break;
         case "fourDotsLetter_Z":
-
+            rotateFourDotsLetter_Z();
             break;
         default:
             break;
@@ -1317,6 +1317,28 @@ function isStickShape_Horizental() {
     else return false;
 }
 //*** END: ROTATE STICK SHAPE ***//
+//
+//
+//*** BEGIN: ROTATE Z SHAPE ***//
+function rotateFourDotsLetter_Z(){
+    //vertical FourDotsLetter_Z shape will be rotated to be horizental only if some brothers <td> tags are not switched on
+    //horizental FourDotsLetter_Z shape will be rotated to be vertical only if some brothers <td> tags are not switched on 
+    if (isFourDotsLetter_Z_Vertical() && !isFourDotsLetter_Z_tableRightSideLimit()) {
+        if (!isFourDotsLetter_Z_Brothers_switchedOn()) {
+            makeFourDotsLetter_ZHorizental();
+        }
+    }
+    else if (isFourDotsLetter_Z_Horizental() && !isFourDotsLetter_Z_tableTopLimit()) {
+        if (!isFourDotsLetter_Z_Brothers_switchedOn()) {
+            makeFourDotsLetter_ZVertical();
+        }
+    }
+    else {
+        //do nothing ... it is not possible to rotate this FourDotsLetter_Z shape
+        return;
+    }
+}
+//*** END: ROTATE Z SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
 //
