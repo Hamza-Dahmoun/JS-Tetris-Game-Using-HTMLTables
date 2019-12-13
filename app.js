@@ -1338,6 +1338,14 @@ function rotateFourDotsLetter_Z(){
         return;
     }
 }
+function isFourDotsLetter_Z_Vertical() {
+    //this function checks if the FourDotsLetter_Z is vertical
+    //it is vertical when 'cell2_Id' is the brotherBeneath of 'cell2_Id' in the player object
+    if (table[currentPlayerObject.cell1_Id].rightBrotherId == currentPlayerObject.cell2_Id) {
+        return true;
+    }
+    else return false;
+}
 //*** END: ROTATE Z SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
