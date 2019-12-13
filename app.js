@@ -1372,6 +1372,24 @@ function isFourDotsLetter_Z_tableRightSideLimit() {
         return false;
     }
 }
+function isFourDotsLetter_Z_tableTopLimit() {
+    //this function returns true only if the top limit of the table is just above the shape
+    //this functino is used when trying to rotate a FourDotsLetter_Z FROM HORIZENTAL TO VERTICAL
+
+    //How?
+    //if what seperates the top limit of the table from the top dot of FourDotsLetter_Z is nothing then return true
+
+    //But How??
+    //the integer in the id of the top two dots of the FourDotsLetter_Z (cell1_Id and cell2_Id) should be less or equal to 7 (first tr tag)
+
+    //cell1 and cell2, both of them are supposed to be the top dot of the shape
+    let integer_inTopCellID1 = numberInCellId(currentPlayerObject.cell1_Id);
+    let integer_inTopCellID2 = numberInCellId(currentPlayerObject.cell2_Id);
+    if (integer_inTopCellID1 < 8 || integer_inTopCellID2 < 8) {
+        return true;
+    }
+    else return false;
+}
 //*** END: ROTATE Z SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
