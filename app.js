@@ -1354,6 +1354,24 @@ function isFourDotsLetter_Z_Vertical() {
     }
     else return false;
 }
+function isFourDotsLetter_Z_tableRightSideLimit() {
+    //this function returns true if the right side limit of the table is only two cells far, or less
+    //this function is used when trying to rotate a FourDotsLetter_Z FROM VERTICAL TO HORIZENTAL so that the player doesn't step out of the table
+
+    //How?
+    //FourDotsLetter_Z is vertical
+    //if what seperate this FourDotsLetter_Z from the rightSideLimit of the table is only two cells off or less, then, return true
+    //else return false
+    //But How??
+    //if (integerOf(cellID)+2) modulo 7 == 0 OR integerOf(cellID)+1) modulo 7 == 0 OR integerOf(cellID) modulo 7 == 0) then return true
+    let integer_inID = numberInCellId(currentPlayerObject.cell4_Id);
+    if ((integer_inID + 2) % 7 == 0 || (integer_inID + 1) % 7 == 0 || integer_inID % 7 == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 //*** END: ROTATE Z SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
