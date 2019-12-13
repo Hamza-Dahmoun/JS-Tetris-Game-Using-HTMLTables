@@ -1340,13 +1340,20 @@ function rotateFourDotsLetter_Z(){
 }
 function isFourDotsLetter_Z_Horizental() {
     //this function checks if the FourDotsLetter_Z is Horizental
-    //it is Horizental when 'cell2_Id' is the brotherBeneath of 'cell2_Id' in the player object
+    //it is Horizental when 'cell2_Id' is the rightBrother of 'cell1_Id' in the player object
     if (table[currentPlayerObject.cell1_Id].rightBrotherId == currentPlayerObject.cell2_Id) {
         return true;
     }
     else return false;
 }
-
+function isFourDotsLetter_Z_Vertical() {
+    //this function checks if the FourDotsLetter_Z is Vertical
+    //it is Vertical when 'cell1_Id' is the brotherBeneath of 'cell2_Id' in the player object
+    if (table[currentPlayerObject.cell2_Id].brotherBeneathId == currentPlayerObject.cell2_Id) {
+        return true;
+    }
+    else return false;
+}
 //*** END: ROTATE Z SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
