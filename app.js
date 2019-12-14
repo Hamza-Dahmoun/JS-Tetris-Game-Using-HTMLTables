@@ -1546,6 +1546,14 @@ function rotateFourDots_threePlusOne(){
         return;
     }
 }
+function isFourDots_threePlusOne_Horizental() {
+    //this function checks if the FourDots_threePlusOne is Horizental
+    //it is Horizental when 'cell3_Id' is the rightBrother of 'cell2_Id' in the player object
+    if (table[currentPlayerObject.cell2_Id].rightBrotherId == currentPlayerObject.cell3_Id) {
+        return true;
+    }
+    else return false;
+}
 //*** END: ROTATE 'THREE PLUS ONE' SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
