@@ -1478,6 +1478,50 @@ function makeFourDotsLetter_Z_Horizental() {
     document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
     document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
 }
+function makeFourDotsLetter_Z_Vertical() {
+    //this function takes a FourDotsLetter_Z that is horizental and makes it vertical
+
+    //the dots of this FourDotsLetter_Z from left to right and from top to down are in the following order:
+    //currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id
+
+    //How?
+    //cell1_Id is replaced by its beneathBrother
+    //cell2_Id is replaced by its leftBrother
+    //cell3_Id is replaced by its topBrother
+    //cell4_Id is replaced by the topBrother of the new cell3_Id
+
+    
+
+    //lets 1- switch off: cell1_Id & cell2_Id & cell3_Id & cell4_Id,
+    //2- assign the beneath brother of currentPlayerObject.cell1_Id to currentPlayerObject.cell1_Id
+    //3- assign the left brother of the currentPlayerObject.cell2_Id to currentPlayerObject.cell2_Id
+    //4- assign the top brother of the currentPlayerObject.cell3_Id to currentPlayerObject.cell3_Id 
+    //5- assign the top brother of the new currentPlayerObject.cell3_Id to currentPlayerObject.cell4_Id 
+    //6- switch on: cell1_Id & cell2_Id & cell3_Id & cell4_Id,
+
+    //1-
+    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
+    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
+    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
+    //2-   
+    currentPlayerObject.cell1_Id = table[currentPlayerObject.cell1_Id].brotherBeneathId; 
+    //3-
+    currentPlayerObject.cell2_Id = table[currentPlayerObject.cell2_Id].leftBrotherId;
+    //4-
+    let integer_inCell3Id = numberInCellId(currentPlayerObject.cell3_Id);
+    let integer_inCell3Id_topBrotherID = integer_inCell3Id -7; 
+    currentPlayerObject.cell3_Id = "cell" + integer_inCell3Id_topBrotherID;    
+    //5-    
+    integer_inCell3Id = numberInCellId(currentPlayerObject.cell3_Id);
+    integer_inCell3Id_topBrotherID = integer_inCell3Id -7; 
+    currentPlayerObject.cell4_Id = "cell" + integer_inCell3Id_topBrotherID;   
+    //6-
+    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
+    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
+    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
+}
 //*** END: ROTATE Z SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
