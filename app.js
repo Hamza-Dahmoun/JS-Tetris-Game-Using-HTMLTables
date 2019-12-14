@@ -1532,16 +1532,19 @@ function rotateFourDots_threePlusOne() {
     //vertical FourDots_threePlusOne shape will be rotated to be horizental only if some brothers <td> tags are not switched on
     //horizental FourDots_threePlusOne shape will be rotated to be vertical only if some brothers <td> tags are not switched on
     if (isFourDots_threePlusOne_Vertical() && !isFourDots_threePlusOne_tableRightSideLimit()) {
+        console.log("going to rotate FourDots_threePlusOne from vertical to horizental");
         if (!isFourDots_threePlusOne_Brothers_switchedOn("vertical to horizental")) {
             makeFourDots_threePlusOne_Horizental();
         }
     }
     else if (isFourDots_threePlusOne_Horizental() && !isFourDots_threePlusOne_tableTopLimit()) {
+        console.log("going to rotate FourDots_threePlusOne from horizental to vertical");
         if (!isFourDots_threePlusOne_Brothers_switchedOn("horizental to vertical")) {
             makeFourDots_threePlusOne_Vertical();
         }
     }
     else {
+        console.log("cant rotate FourDots_threePlusOne");
         //do nothing ... it is not possible to rotate this FourDots_threePlusOne shape
         return;
     }
@@ -1556,8 +1559,8 @@ function isFourDots_threePlusOne_Horizental() {
 }
 function isFourDots_threePlusOne_Vertical() {
     //this function checks if the FourDots_threePlusOne is Vertical
-    //it is Vertical when 'cell3_Id' is the brotherBeneath of 'cell1_Id' in the player object
-    if (table[currentPlayerObject.cell1_Id].brotherBeneathId == currentPlayerObject.cell3_Id) {
+    //it is Vertical when 'cell3_Id' is the brotherBeneath of 'cell4_Id' in the player object
+    if (table[currentPlayerObject.cell4_Id].brotherBeneathId == currentPlayerObject.cell3_Id) {
         return true;
     }
     else return false;
