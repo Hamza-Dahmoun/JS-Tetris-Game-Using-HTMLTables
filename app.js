@@ -1322,9 +1322,10 @@ function isStickShape_Horizental() {
 //*** BEGIN: ROTATE Z SHAPE ***//
 function rotateFourDotsLetter_Z() {
     //vertical FourDotsLetter_Z shape will be rotated to be horizental only if some brothers <td> tags are not switched on
-    //horizental FourDotsLetter_Z shape will be rotated to be vertical only if some brothers <td> tags are not switched on 
+    //horizental FourDotsLetter_Z shape will be rotated to be vertical only if some brothers <td> tags are not switched on
+    console.log("vertical? " + isFourDotsLetter_Z_Vertical() + " --- horizental?" + isFourDotsLetter_Z_Horizental()); 
     if (isFourDotsLetter_Z_Vertical() && !isFourDotsLetter_Z_tableRightSideLimit()) {
-        if (!isFourDotsLetter_Z_Brothers_switchedOn("vertical to horizental")) {
+        if (!isFourDotsLetter_Z_Brothers_switchedOn("vertical to horizental")) {            
             makeFourDotsLetter_Z_Horizental();
         }
     }
@@ -1349,12 +1350,13 @@ function isFourDotsLetter_Z_Horizental() {
 function isFourDotsLetter_Z_Vertical() {
     //this function checks if the FourDotsLetter_Z is Vertical
     //it is Vertical when 'cell1_Id' is the brotherBeneath of 'cell2_Id' in the player object
-    if (table[currentPlayerObject.cell2_Id].brotherBeneathId == currentPlayerObject.cell2_Id) {
+    if (table[currentPlayerObject.cell2_Id].brotherBeneathId == currentPlayerObject.cell1_Id) {
         return true;
     }
     else return false;
 }
 function isFourDotsLetter_Z_tableRightSideLimit() {
+    console.log("going to check right side limit");
     //this function returns true if the right side limit of the table is only two cells far, or less
     //this function is used when trying to rotate a FourDotsLetter_Z FROM VERTICAL TO HORIZENTAL so that the player doesn't step out of the table
 
@@ -1365,6 +1367,7 @@ function isFourDotsLetter_Z_tableRightSideLimit() {
     //But How??
     //if (integerOf(cellID)+2) modulo 7 == 0 OR integerOf(cellID)+1) modulo 7 == 0 OR integerOf(cellID) modulo 7 == 0) then return true
     let integer_inID = numberInCellId(currentPlayerObject.cell4_Id);
+    console.log(integer_inID);
     if ((integer_inID + 2) % 7 == 0 || (integer_inID + 1) % 7 == 0 || integer_inID % 7 == 0) {
         return true;
     }
@@ -1391,6 +1394,7 @@ function isFourDotsLetter_Z_tableTopLimit() {
     else return false;
 }
 function isFourDotsLetter_Z_Brothers_switchedOn(str) {
+    console.log("going to check if brothers are on");
     //based on the rotation direction, we'll check two cells if they are switched on or not
     switch (str) {
         case "vertical to horizental":
@@ -1419,7 +1423,7 @@ function isFourDotsLetter_Z_Brothers_switchedOn(str) {
             let integer_inCell4ID = numberInCellId(currentPlayerObject.cell4_Id);
             let topBrother_ofCell4 = integer_inCell4ID - 7;
             let topBrother_of_topBrother_ofCell4 = topBrother_ofCell4 - 7;
-            if (topBrother_ofCell < 0 || topBrother_of_topBrother_ofCell4 < 0) {
+            if (topBrother_ofCell4 < 0 || topBrother_of_topBrother_ofCell4 < 0) {
                 //so here we are already out of the table from the top side .. it will be considered as there are switched on cells
                 return true;
             }
