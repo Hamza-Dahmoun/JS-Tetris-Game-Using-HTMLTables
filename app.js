@@ -722,7 +722,7 @@ function rotateShape() {
             rotateSquare();
             break;
         case "fourDots_threePlusOne":
-                rotateFourDots_threePlusOne();
+            rotateFourDots_threePlusOne();
             break;
         case "fourDotsLetter_Z":
             rotateFourDotsLetter_Z();
@@ -1325,7 +1325,7 @@ function rotateFourDotsLetter_Z() {
     //horizental FourDotsLetter_Z shape will be rotated to be vertical only if some brothers <td> tags are not switched on
     console.log("isFourDotsLetter_Z_tableRightSideLimit() " + isFourDotsLetter_Z_tableRightSideLimit());
     if (isFourDotsLetter_Z_Vertical() && !isFourDotsLetter_Z_tableRightSideLimit()) {
-        if (!isFourDotsLetter_Z_Brothers_switchedOn("vertical to horizental")) {            
+        if (!isFourDotsLetter_Z_Brothers_switchedOn("vertical to horizental")) {
             makeFourDotsLetter_Z_Horizental();
         }
     }
@@ -1450,7 +1450,7 @@ function makeFourDotsLetter_Z_Horizental() {
     //cell3_Id is replaced by its brotherBeneath
     //cell4_Id is replaced by the rightBrother of the new cell3_Id
 
-    
+
 
     //lets 1- switch off: cell1_Id & cell2_Id & cell3_Id & cell4_Id,
     //2- assign the top brother of currentPlayerObject.cell1_Id to currentPlayerObject.cell1_Id
@@ -1466,7 +1466,7 @@ function makeFourDotsLetter_Z_Horizental() {
     document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
     //2-    
     let integer_inCell1Id = numberInCellId(currentPlayerObject.cell1_Id);
-    let integer_inCell1Id_topBrotherID = integer_inCell1Id -7; 
+    let integer_inCell1Id_topBrotherID = integer_inCell1Id - 7;
     currentPlayerObject.cell1_Id = "cell" + integer_inCell1Id_topBrotherID;
     //3-
     currentPlayerObject.cell2_Id = table[currentPlayerObject.cell2_Id].rightBrotherId;
@@ -1492,7 +1492,7 @@ function makeFourDotsLetter_Z_Vertical() {
     //cell3_Id is replaced by its topBrother
     //cell4_Id is replaced by the topBrother of the new cell3_Id
 
-    
+
 
     //lets 1- switch off: cell1_Id & cell2_Id & cell3_Id & cell4_Id,
     //2- assign the beneath brother of currentPlayerObject.cell1_Id to currentPlayerObject.cell1_Id
@@ -1507,17 +1507,17 @@ function makeFourDotsLetter_Z_Vertical() {
     document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
     document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
     //2-   
-    currentPlayerObject.cell1_Id = table[currentPlayerObject.cell1_Id].brotherBeneathId; 
+    currentPlayerObject.cell1_Id = table[currentPlayerObject.cell1_Id].brotherBeneathId;
     //3-
     currentPlayerObject.cell2_Id = table[currentPlayerObject.cell2_Id].leftBrotherId;
     //4-
     let integer_inCell3Id = numberInCellId(currentPlayerObject.cell3_Id);
-    let integer_inCell3Id_topBrotherID = integer_inCell3Id -7; 
-    currentPlayerObject.cell3_Id = "cell" + integer_inCell3Id_topBrotherID;    
+    let integer_inCell3Id_topBrotherID = integer_inCell3Id - 7;
+    currentPlayerObject.cell3_Id = "cell" + integer_inCell3Id_topBrotherID;
     //5-    
     integer_inCell3Id = numberInCellId(currentPlayerObject.cell3_Id);
-    integer_inCell3Id_topBrotherID = integer_inCell3Id -7; 
-    currentPlayerObject.cell4_Id = "cell" + integer_inCell3Id_topBrotherID;   
+    integer_inCell3Id_topBrotherID = integer_inCell3Id - 7;
+    currentPlayerObject.cell4_Id = "cell" + integer_inCell3Id_topBrotherID;
     //6-
     document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
     document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
@@ -1528,11 +1528,11 @@ function makeFourDotsLetter_Z_Vertical() {
 //
 //
 //*** BEGIN: ROTATE 'THREE PLUS ONE' SHAPE ***//
-function rotateFourDots_threePlusOne(){
+function rotateFourDots_threePlusOne() {
     //vertical FourDots_threePlusOne shape will be rotated to be horizental only if some brothers <td> tags are not switched on
     //horizental FourDots_threePlusOne shape will be rotated to be vertical only if some brothers <td> tags are not switched on
     if (isFourDots_threePlusOne_Vertical() && !isFourDots_threePlusOne_tableRightSideLimit()) {
-        if (!isFourDots_threePlusOne_Brothers_switchedOn("vertical to horizental")) {            
+        if (!isFourDots_threePlusOne_Brothers_switchedOn("vertical to horizental")) {
             makeFourDots_threePlusOne_Horizental();
         }
     }
@@ -1598,6 +1598,58 @@ function isFourDots_threePlusOne_tableTopLimit() {
         return true;
     }
     else return false;
+}
+function isFourDots_threePlusOne_Brothers_switchedOn(str) {
+    //based on the rotation direction, we'll check three cells if they are switched on or not
+    switch (str) {
+        case "vertical to horizental":
+            //so the player FourDots_threePlusOne is vertical and is going to be rotated to horizental
+
+            //the three cells that we're going to check are:
+            //1- rightBrother of cell4
+            //2- rightBrother of cell3
+            //3- leftBrother of cell2
+            let cell2LeftBrother = document.getElementById(table[currentPlayerObject.cell2_Id].leftBrotherId);
+            let cell3RightBrother = document.getElementById(table[currentPlayerObject.cell3_Id].rightBrotherId);
+            let cell4RightBrother = document.getElementById(table[currentPlayerObject.cell4_Id].rightBrotherId);
+            if (cell2LeftBrother.className.includes("cell-on")
+                || cell3RightBrother.className.includes("cell-on")
+                || cell4RightBrother.className.includes("cell-on")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+            break;
+
+        case "horizental to vertical":
+            //so the player FourDots_threePlusOne is horizental and is going to be rotated to vertical
+
+            //the three cells that we're going to check are:
+            //1- rightBrother of cell1
+            //2- leftBrother of cell1
+            //3- topBrother of leftBrother of cell1
+            let cell1LeftBrother = document.getElementById(table[currentPlayerObject.cell1_Id].leftBrotherId);
+            let cell1RightBrother = document.getElementById(table[currentPlayerObject.cell1_Id].rightBrotherId);
+            let integer_in_cell1RightBrother = numberInCellId(table[currentPlayerObject.cell1_Id].rightBrotherId);
+            let integer_in_topBrother_of_cell1RightBrother = integer_in_cell1RightBrother - 7;
+            if (integer_in_topBrother_of_cell1RightBrother < 0) {
+                //so here we are already out of the table from the top side .. it will be considered as there are switched on cells
+                return true;
+            }
+            else {
+                let cell1RightBrother_topBrother = document.getElementById("cell" + integer_in_topBrother_of_cell1RightBrother);
+                if (cell1LeftBrother.className.includes("cell-on")
+                    || cell1RightBrother.className.includes("cell-on")
+                    || cell1RightBrother_topBrother.className.includes("cell-on")) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }            
+            break;
+    }
 }
 //*** END: ROTATE 'THREE PLUS ONE' SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
