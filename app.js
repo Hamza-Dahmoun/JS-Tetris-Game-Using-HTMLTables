@@ -1554,6 +1554,14 @@ function isFourDots_threePlusOne_Horizental() {
     }
     else return false;
 }
+function isFourDots_threePlusOne_Vertical() {
+    //this function checks if the FourDots_threePlusOne is Vertical
+    //it is Vertical when 'cell3_Id' is the brotherBeneath of 'cell1_Id' in the player object
+    if (table[currentPlayerObject.cell1_Id].brotherBeneathId == currentPlayerObject.cell3_Id) {
+        return true;
+    }
+    else return false;
+}
 //*** END: ROTATE 'THREE PLUS ONE' SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
