@@ -1651,6 +1651,46 @@ function isFourDots_threePlusOne_Brothers_switchedOn(str) {
             break;
     }
 }
+function makeFourDots_threePlusOne_Horizental() {
+    //this function takes a FourDots_threePlusOne that is vertical and makes it horizental
+
+    //the dots of this FourDots_threePlusOne from down to top and from left to right are in the following order:
+    //currentPlayerObject.cell1_Id, currentPlayerObject.cell4_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell2_Id
+
+    //How?
+    //cell1_Id is replaced by its rightBrother
+    //cell2_Id is replaced by its leftBrother
+    //cell3_Id is replaced by its brotherBeneath
+    //cell4_Id is replaced by the rightBrother of the new cell3_Id
+
+
+
+    //lets 1- switch off: cell1_Id & cell2_Id & cell3_Id & cell4_Id,
+    //2- assign the right brother of currentPlayerObject.cell1_Id to currentPlayerObject.cell1_Id
+    //3- assign the left brother of the currentPlayerObject.cell2_Id to currentPlayerObject.cell2_Id
+    //4- assign the beneath brother of the currentPlayerObject.cell3_Id to currentPlayerObject.cell3_Id 
+    //5- assign the right brother of the new currentPlayerObject.cell3_Id to currentPlayerObject.cell4_Id 
+    //6- switch on: cell1_Id & cell2_Id & cell3_Id & cell4_Id,
+
+    //1-
+    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
+    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
+    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
+    //2-
+    currentPlayerObject.cell1_Id = table[currentPlayerObject.cell1_Id].rightBrotherId;
+    //3-
+    currentPlayerObject.cell2_Id = table[currentPlayerObject.cell2_Id].leftBrotherId;
+    //4-
+    currentPlayerObject.cell3_Id = table[currentPlayerObject.cell3_Id].brotherBeneathId;
+    //5- 
+    currentPlayerObject.cell4_Id = table[currentPlayerObject.cell3_Id].rightBrotherId;
+    //6-
+    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
+    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
+    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
+}
 //*** END: ROTATE 'THREE PLUS ONE' SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
