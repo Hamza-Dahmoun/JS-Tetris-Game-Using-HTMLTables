@@ -722,7 +722,7 @@ function rotateShape() {
             rotateSquare();
             break;
         case "fourDots_threePlusOne":
-
+                rotateFourDots_threePlusOne();
             break;
         case "fourDotsLetter_Z":
             rotateFourDotsLetter_Z();
@@ -1525,6 +1525,28 @@ function makeFourDotsLetter_Z_Vertical() {
     document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
 }
 //*** END: ROTATE Z SHAPE ***//
+//
+//
+//*** BEGIN: ROTATE 'THREE PLUS ONE' SHAPE ***//
+function rotateFourDots_threePlusOne(){
+    //vertical FourDots_threePlusOne shape will be rotated to be horizental only if some brothers <td> tags are not switched on
+    //horizental FourDots_threePlusOne shape will be rotated to be vertical only if some brothers <td> tags are not switched on
+    if (isFourDots_threePlusOne_Vertical() && !isFourDots_threePlusOne_tableRightSideLimit()) {
+        if (!isFourDots_threePlusOne_Brothers_switchedOn("vertical to horizental")) {            
+            makeFourDots_threePlusOne_Horizental();
+        }
+    }
+    else if (isFourDots_threePlusOne_Horizental() && !isFourDots_threePlusOne_tableTopLimit()) {
+        if (!isFourDots_threePlusOne_Brothers_switchedOn("horizental to vertical")) {
+            makeFourDots_threePlusOne_Vertical();
+        }
+    }
+    else {
+        //do nothing ... it is not possible to rotate this FourDots_threePlusOne shape
+        return;
+    }
+}
+//*** END: ROTATE 'THREE PLUS ONE' SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
 //
