@@ -1582,6 +1582,23 @@ function isFourDots_threePlusOne_tableRightSideLimit() {
         return false;
     }
 }
+function isFourDots_threePlusOne_tableTopLimit() {
+    //this function returns true only if the top limit of the table is just above the shape
+    //this functino is used when trying to rotate a FourDots_threePlusOne FROM HORIZENTAL TO VERTICAL
+
+    //How?
+    //if what seperates the top limit of the table from the top dot of FourDots_threePlusOne (cell1_Id) is nothing then return true
+
+    //But How??
+    //the integer in the id of the top dot of the FourDots_threePlusOne (cell1_Id) should be less or equal to 7 (first tr tag)
+
+    //cell1 is supposed to be the top dot of the shape
+    let integer_inTopCellID1 = numberInCellId(currentPlayerObject.cell1_Id);
+    if (integer_inTopCellID1 < 8) {
+        return true;
+    }
+    else return false;
+}
 //*** END: ROTATE 'THREE PLUS ONE' SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
