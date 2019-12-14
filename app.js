@@ -1323,7 +1323,7 @@ function isStickShape_Horizental() {
 function rotateFourDotsLetter_Z() {
     //vertical FourDotsLetter_Z shape will be rotated to be horizental only if some brothers <td> tags are not switched on
     //horizental FourDotsLetter_Z shape will be rotated to be vertical only if some brothers <td> tags are not switched on
-    console.log("vertical? " + isFourDotsLetter_Z_Vertical() + " --- horizental?" + isFourDotsLetter_Z_Horizental()); 
+    console.log("isFourDotsLetter_Z_tableRightSideLimit() " + isFourDotsLetter_Z_tableRightSideLimit());
     if (isFourDotsLetter_Z_Vertical() && !isFourDotsLetter_Z_tableRightSideLimit()) {
         if (!isFourDotsLetter_Z_Brothers_switchedOn("vertical to horizental")) {            
             makeFourDotsLetter_Z_Horizental();
@@ -1356,19 +1356,18 @@ function isFourDotsLetter_Z_Vertical() {
     else return false;
 }
 function isFourDotsLetter_Z_tableRightSideLimit() {
-    console.log("going to check right side limit");
-    //this function returns true if the right side limit of the table is only two cells far, or less
+    //this function returns true if the right side limit of the table next to the shape
     //this function is used when trying to rotate a FourDotsLetter_Z FROM VERTICAL TO HORIZENTAL so that the player doesn't step out of the table
 
     //How?
     //FourDotsLetter_Z is vertical
-    //if what seperate this FourDotsLetter_Z from the rightSideLimit of the table is only two cells off or less, then, return true
+    //if what seperate this FourDotsLetter_Z from the rightSideLimit of the table is nothing, then, return true
     //else return false
     //But How??
     //if (integerOf(cellID)+2) modulo 7 == 0 OR integerOf(cellID)+1) modulo 7 == 0 OR integerOf(cellID) modulo 7 == 0) then return true
     let integer_inID = numberInCellId(currentPlayerObject.cell4_Id);
     console.log(integer_inID);
-    if ((integer_inID + 2) % 7 == 0 || (integer_inID + 1) % 7 == 0 || integer_inID % 7 == 0) {
+    if (integer_inID % 7 == 0) {
         return true;
     }
     else {
@@ -1394,7 +1393,6 @@ function isFourDotsLetter_Z_tableTopLimit() {
     else return false;
 }
 function isFourDotsLetter_Z_Brothers_switchedOn(str) {
-    console.log("going to check if brothers are on");
     //based on the rotation direction, we'll check two cells if they are switched on or not
     switch (str) {
         case "vertical to horizental":
