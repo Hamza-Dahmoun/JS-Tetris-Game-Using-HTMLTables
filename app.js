@@ -1562,6 +1562,26 @@ function isFourDots_threePlusOne_Vertical() {
     }
     else return false;
 }
+function isFourDots_threePlusOne_tableRightSideLimit() {
+    //this function returns true if the right side limit of the table next to the shape
+    //this function is used when trying to rotate a FourDots_threePlusOne FROM VERTICAL TO HORIZENTAL so that the player doesn't step out of the table
+
+    //How?
+    //FourDots_threePlusOne is vertical
+    //if what seperate this FourDots_threePlusOne from the rightSideLimit of the table is nothing, then, return true
+    //else return false
+    //But How??
+    //in the player: cell1 is apart, cell4 cell3 cell2 are one above another
+    //so if cell4 cell3 and cell2 are divisible by 7 then they are next to the rightSideLimit of the table
+    //if (integerOf(cellID2)) modulo 7 == 0) then return true
+    let integer_inID = numberInCellId(currentPlayerObject.cell4_Id);
+    if (integer_inID % 7 == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 //*** END: ROTATE 'THREE PLUS ONE' SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
