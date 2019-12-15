@@ -82,8 +82,8 @@ displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
 //we'll move down the player every second, the player is passed in as a parameter
 //'currentPlayerObject' was assigned a random player in the function switchOnPlayer() 
 var timeInterval=1000;
-var myInterval= window.setInterval(function(){movePlayerDown(currentPlayerObject);},timeInterval);*/
-//setTimeout(function(){clearInterval(myInterval);},5*timeInterval);
+var myInterval= window.setInterval(function(){movePlayerDown(currentPlayerObject);},timeInterval);
+//setTimeout(function(){clearInterval(myInterval);},5*timeInterval);*/
 
 
 function switchOnPlayer(playerNumber) {
@@ -651,7 +651,7 @@ function startNewGame() {
     displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
     //we'll move down the player every second, the player is passed in as a parameter
     //'currentPlayerObject' was assigned a random player in the function switchOnPlayer()     
-    //myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
+    myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
     //now lets activate the pause button
     activatePauseBtn();
 }
