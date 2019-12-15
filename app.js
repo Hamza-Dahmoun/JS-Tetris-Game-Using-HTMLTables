@@ -160,7 +160,7 @@ function switchoffPlayerCells_andAssignNewCells(currentPlayerObject) {
         //now lets get this cellID
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
         //now lets use cellID_in_currentPlayer to switch it off in the UI
-        document.getElementById(cellID_in_currentPlayer).className = "cell-off";
+        switchOffCells(cellID_in_currentPlayer);
         //now lets use cellID_in_currentPlayer to get its brotherBeneathID from'table' object
         let brotherBeneath_thisCell = table[cellID_in_currentPlayer].brotherBeneathId;
         //now lets take this brotherBeneath_thisCell as a cell of the currentPlayerObject instead of cellID_in_currentPlayer
@@ -285,7 +285,7 @@ function switchoffPlayerCells_andAssignNewCells_toTheRight(currentPlayerObject) 
         //now lets get this cellID
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
         //now lets use cellID_in_currentPlayer to switch it off in the UI
-        document.getElementById(cellID_in_currentPlayer).className = "cell-off";
+        switchOffCells(cellID_in_currentPlayer);
         //now lets use cellID_in_currentPlayer to get its rightBrotherID from'table' object
         let rightBrother_ofThisCell = table[cellID_in_currentPlayer].rightBrotherId;
         //now lets take this rightBrother_ofThisCell as a cell of the currentPlayerObject instead of cellID_in_currentPlayer
@@ -395,7 +395,7 @@ function switchoffPlayerCells_andAssignNewCells_toTheLeft(currentPlayerObject) {
         //now lets get this cellID
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
         //now lets use cellID_in_currentPlayer to switch it off in the UI
-        document.getElementById(cellID_in_currentPlayer).className = "cell-off";
+        switchOffCells(cellID_in_currentPlayer);
         //now lets use cellID_in_currentPlayer to get its leftBrotherID from'table' object
         let leftBrother_ofThisCell = table[cellID_in_currentPlayer].leftBrotherId;
         //now lets take this leftBrother_ofThisCell as a cell of the currentPlayerObject instead of cellID_in_currentPlayer
@@ -813,14 +813,14 @@ function makeTwoDotsHorizental() {
     if (numberInCellId(currentPlayerObject.cell1_Id) > numberInCellId(currentPlayerObject.cell2_Id)) {
         //so the upper dot of the shape is currentPlayerObject.cell2_Id
         //lets 1- switch it off, 2- assign it the right brother of currentPlayerObject.cell1_Id and then 3- switch it on
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+        switchOffCells(currentPlayerObject.cell2_Id);
         currentPlayerObject.cell2_Id = table[currentPlayerObject.cell1_Id].rightBrotherId;
         document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
     }
     else {
         //so the upper dot of the shape is currentPlayerObject.cell1_Id
         //lets 1- switch it off, 2- assign it the right brother of currentPlayerObject.cell2_Id and then 3- switch it on
-        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
+        switchOffCells(currentPlayerObject.cell1_Id);
         currentPlayerObject.cell1_Id = table[currentPlayerObject.cell2_Id].rightBrotherId;
         document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
     }
@@ -834,7 +834,7 @@ function makeTwoDotsVertical() {
     if (numberInCellId(currentPlayerObject.cell1_Id) < numberInCellId(currentPlayerObject.cell2_Id)) {
         //so the right dot of the shape is currentPlayerObject.cell2_Id
         //lets 1- switch it off, 2- assign it the upper brother of the currentPlayerObject.cell1_Id
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+        switchOffCells(currentPlayerObject.cell2_Id);
         let digit_in_topBro1ID = numberInCellId(currentPlayerObject.cell1_Id) - 7;//parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
         let topBro1ID = "cell" + digit_in_topBro1ID;
         currentPlayerObject.cell2_Id = topBro1ID;
@@ -957,8 +957,7 @@ function makeThreeDotsHorizental() {
         //4- switch on currentPlayerObject.cell3_Id & currentPlayerObject.cell2_Id
 
         //1-
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
+        switchOffCells(currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id);
         //2-
         currentPlayerObject.cell2_Id = table[currentPlayerObject.cell1_Id].rightBrotherId;
         //3-
@@ -978,8 +977,7 @@ function makeThreeDotsHorizental() {
 
 
         //1-
-        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
+        switchOffCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id);
         //2-
         currentPlayerObject.cell2_Id = table[currentPlayerObject.cell3_Id].rightBrotherId;
         //3-
@@ -1005,8 +1003,7 @@ function makeThreeDotsVertical() {
         //4- switch on currentPlayerObject.cell2_Id & currentPlayerObject.cell1_Id
 
         //1-
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
+        switchOffCells(currentPlayerObject.cell2_Id, currentPlayerObject.cell1_Id);
         //2-
         let digit_in_topBro3ID = numberInCellId(currentPlayerObject.cell3_Id) - 7;//parseInt(currentPlayerObject.cell3_Id.slice(4)) - 7;
         let topBro3ID = "cell" + digit_in_topBro3ID;
@@ -1029,8 +1026,7 @@ function makeThreeDotsVertical() {
         //4- switch on currentPlayerObject.cell2_Id & currentPlayerObject.cell3_Id
 
         //1-
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
+        switchOffCells(currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id);
         //2-
         let digit_in_topBro1ID = numberInCellId(currentPlayerObject.cell1_Id) - 7;//parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;
         let topBro1ID = "cell" + digit_in_topBro1ID;
@@ -1181,9 +1177,7 @@ function makeFourDotsStickHorizental() {
         //5- switch on currentPlayerObject.cell4_Id & currentPlayerObject.cell3_Id & currentPlayerObject.cell2_Id
 
         //1-
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
-        document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
+        switchOffCells(currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
         //2-
         currentPlayerObject.cell2_Id = table[currentPlayerObject.cell1_Id].rightBrotherId;
         //3-
@@ -1207,9 +1201,7 @@ function makeFourDotsStickHorizental() {
 
 
         //1-
-        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
+        switchOffCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id);
         //2-
         currentPlayerObject.cell4_Id = table[currentPlayerObject.cell4_Id].rightBrotherId;
         //3-
@@ -1243,9 +1235,7 @@ function makeFourDotsStickVertical() {
         //5- switch on currentPlayerObject.cell3_Id & currentPlayerObject.cell2_Id & currentPlayerObject.cell1_Id
 
         //1-
-        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
+        switchOffCells(currentPlayerObject.cell3_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell1_Id);
         //2-
         let digit_in_topBro4ID = numberInCellId(currentPlayerObject.cell4_Id) - 7;
         let topBro4ID = "cell" + digit_in_topBro4ID;
@@ -1274,9 +1264,7 @@ function makeFourDotsStickVertical() {
         //4- switch on currentPlayerObject.cell2_Id & currentPlayerObject.cell3_Id & currentPlayerObject.cell4_Id
 
         //1-
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
-        document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
+        switchOffCells(currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
         //2-
         let digit_in_topBro1ID = numberInCellId(currentPlayerObject.cell1_Id) - 7;
         let topBro1ID = "cell" + digit_in_topBro1ID;
@@ -1460,10 +1448,7 @@ function makeFourDotsLetter_Z_Horizental() {
     //6- switch on: cell1_Id & cell2_Id & cell3_Id & cell4_Id,
 
     //1-
-    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
+    switchOffCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
     //2-    
     let integer_inCell1Id = numberInCellId(currentPlayerObject.cell1_Id);
     let integer_inCell1Id_topBrotherID = integer_inCell1Id - 7;
@@ -1502,10 +1487,7 @@ function makeFourDotsLetter_Z_Vertical() {
     //6- switch on: cell1_Id & cell2_Id & cell3_Id & cell4_Id,
 
     //1-
-    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
+    switchOffCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
     //2-   
     currentPlayerObject.cell1_Id = table[currentPlayerObject.cell1_Id].brotherBeneathId;
     //3-
@@ -1676,10 +1658,7 @@ function makeFourDots_threePlusOne_Horizental() {
     //6- switch on: cell1_Id & cell2_Id & cell3_Id & cell4_Id,
 
     //1-
-    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
+    switchOffCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
     //2-
     currentPlayerObject.cell1_Id = table[currentPlayerObject.cell1_Id].rightBrotherId;
     //3-
@@ -1716,10 +1695,7 @@ function makeFourDots_threePlusOne_Vertical() {
     //6- switch on: cell1_Id & cell2_Id & cell3_Id & cell4_Id,
 
     //1-
-    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
+    switchOffCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
     //2-   
     currentPlayerObject.cell1_Id = table[currentPlayerObject.cell1_Id].leftBrotherId;
     //3-
@@ -1901,10 +1877,7 @@ function makeFourDotsLetter_L_Horizental() {
     //6- switch on: cell1_Id & cell2_Id & cell3_Id & cell4_Id,
 
     //1-
-    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
+    switchOffCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
     //2-
     currentPlayerObject.cell1_Id = currentPlayerObject.cell2_Id;
     //3-
@@ -1941,10 +1914,7 @@ function makeFourDotsLetter_L_Vertical() {
     //6- switch on: cell1_Id & cell2_Id & cell3_Id & cell4_Id,
 
     //1-
-    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-off";
-    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-off";
+    switchOffCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
     //2-   
     currentPlayerObject.cell1_Id = table[currentPlayerObject.cell1_Id].brotherBeneathId;
     //3-
