@@ -1779,6 +1779,26 @@ function isFourDotsLetter_L_Vertical() {
     }
     else return false;
 }
+function isFourDotsLetter_L_tableRightSideLimit() {
+    //this function returns true if the right side limit of the table is only one empty column far from the shape
+    //this function is used when trying to rotate a FourDotsLetter_L FROM VERTICAL TO HORIZENTAL so that the player doesn't step out of the table
+
+    //How?
+    //FourDotsLetter_L is vertical
+    //if what seperate this FourDotsLetter_L from the rightSideLimit of the table is one empty column, then, return true
+    //else return false
+    //But How??
+    //in the player: cell4 is on the right of cell3, celll3 is above cell2, cell2 is above cell1 ... so cell4 is the extreme right of this player
+    //so if cell4 is divisible by 6 then it is one column far from the rightSideLimit of the table
+    //if (integerOf(cellID4)) modulo 6 == 0) then return true
+    let integer_inID = numberInCellId(currentPlayerObject.cell4_Id);
+    if (integer_inID % 6 == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 //*** BEGIN: ROTATE L SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
