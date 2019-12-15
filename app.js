@@ -1771,6 +1771,14 @@ function isFourDotsLetter_L_Horizental() {
     }
     else return false;
 }
+function isFourDotsLetter_L_Vertical() {
+    //this function checks if the FourDotsLetter_L is Vertical
+    //it is Vertical when 'cell4_Id' is the rightBrother of 'cell3_Id' in the player object
+    if (table[currentPlayerObject.cell3_Id].rightBrotherId == currentPlayerObject.cell4_Id) {
+        return true;
+    }
+    else return false;
+}
 //*** BEGIN: ROTATE L SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
