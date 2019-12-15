@@ -1763,6 +1763,14 @@ function rotate_fourDotsLetter_L(){
         return;
     }
 }
+function isFourDotsLetter_L_Horizental() {
+    //this function checks if the FourDotsLetter_L is Horizental
+    //it is Horizental when 'cell2_Id' is the rightBrother of 'cell1_Id' in the player object
+    if (table[currentPlayerObject.cell1_Id].rightBrotherId == currentPlayerObject.cell2_Id) {
+        return true;
+    }
+    else return false;
+}
 //*** BEGIN: ROTATE L SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
