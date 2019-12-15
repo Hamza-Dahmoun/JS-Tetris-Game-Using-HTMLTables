@@ -1992,3 +1992,12 @@ function playerBehave(e) {
 function numberInCellId(cellIDString) {
     return parseInt(cellIDString.slice(4));
 }
+function switchOffCells(...cellsIdsArray){
+    //I used Rest Parameter as an argument to be able to handle one cell and more than one cell in the same function 
+    //and to avoid writing two functions: one fr handling one cell, and one for handling many cells
+
+    //this function receives an array containing Ids of cells (as string) to switch off
+    for(let i=0; i<cellsIdsArray.length; i++){
+        document.getElementById(cellsIdsArray[i]).className = "cell-off";
+    }
+}
