@@ -1829,9 +1829,9 @@ function isFourDotsLetter_L_Brothers_switchedOn(str) {
             //4- rightBrother of rightBrother of cell1
             let cell4RightBrother = document.getElementById(table[currentPlayerObject.cell4_Id].rightBrotherId);
             let cell2RightBrother = document.getElementById(table[currentPlayerObject.cell2_Id].rightBrotherId);
-            let rightBrotherOf_cell2RightBrother = document.getElementById(table[cell2RightBrother].rightBrotherId);
+            let rightBrotherOf_cell2RightBrother = document.getElementById(table[cell2RightBrother.id].rightBrotherId);
             let cell1RightBrother = document.getElementById(table[currentPlayerObject.cell1_Id].rightBrotherId);
-            let rightBrotherOf_cell1RightBrother = document.getElementById(table[cell1RightBrother].rightBrotherId);
+            let rightBrotherOf_cell1RightBrother = document.getElementById(table[cell1RightBrother.id].rightBrotherId);
             if (cell4RightBrother.className.includes("cell-on")
                 || cell2RightBrother.className.includes("cell-on")
                 || rightBrotherOf_cell2RightBrother.className.includes("cell-on")
