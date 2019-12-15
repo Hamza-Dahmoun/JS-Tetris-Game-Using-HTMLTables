@@ -121,7 +121,7 @@ function switchOnPlayer(playerNumber) {
     for (let i = 1; i < player_propertiesCount; i++) {
         let idPropertyName_in_currentPlayer = "cell" + i + "_Id";
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
-        document.getElementById(cellID_in_currentPlayer).className = "cell-on";
+        switchOnCells(cellID_in_currentPlayer);
     }
 }
 
@@ -181,7 +181,7 @@ function switchonPlayerCells(currentPlayerObject) {
         //now lets get this cellID
         let cellID_in_currentPlayer = currentPlayerObject[idPropertyName_in_currentPlayer];
         //now lets use cellID_in_currentPlayer to switch it on in the UI
-        document.getElementById(cellID_in_currentPlayer).className = "cell-on";
+        switchOnCells(cellID_in_currentPlayer);
     }
 }
 function isMovingDownPossible() {
@@ -531,7 +531,7 @@ function eraseFullRows_moveDownNotFullRows() {
                     for (let h = 0; h < previousTDTags.length; h++) {
                         if (previousTDTags[h].className.includes("cell-on")) {
                             previousTDTags[h].className = "cell-off";
-                            document.getElementById(table[previousTDTags[h].id].brotherBeneathId).className = "cell-on";
+                            switchOnCells(table[previousTDTags[h].id].brotherBeneathId);
                         }
                     }
                 }
@@ -607,7 +607,7 @@ function displayNextPlayer(nextPlayerNumber) {
         //console.log(idPropertyName_in_currentPlayer);
         let cellID_in_currentPlayer = nextPlayerObject[idPropertyName_in_currentPlayer];
         //console.log(cellID_in_currentPlayer);
-        document.getElementById(cellID_in_currentPlayer).className = "cell-on";
+        switchOnCells(cellID_in_currentPlayer);
     }
 }
 function switchoffNextPlayerArea() {
@@ -815,14 +815,14 @@ function makeTwoDotsHorizental() {
         //lets 1- switch it off, 2- assign it the right brother of currentPlayerObject.cell1_Id and then 3- switch it on
         switchOffCells(currentPlayerObject.cell2_Id);
         currentPlayerObject.cell2_Id = table[currentPlayerObject.cell1_Id].rightBrotherId;
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+        switchOnCells(currentPlayerObject.cell2_Id);
     }
     else {
         //so the upper dot of the shape is currentPlayerObject.cell1_Id
         //lets 1- switch it off, 2- assign it the right brother of currentPlayerObject.cell2_Id and then 3- switch it on
         switchOffCells(currentPlayerObject.cell1_Id);
         currentPlayerObject.cell1_Id = table[currentPlayerObject.cell2_Id].rightBrotherId;
-        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
+        switchOnCells(currentPlayerObject.cell1_Id);
     }
 }
 function makeTwoDotsVertical() {
@@ -838,7 +838,7 @@ function makeTwoDotsVertical() {
         let digit_in_topBro1ID = numberInCellId(currentPlayerObject.cell1_Id) - 7;//parseInt(currentPlayerObject.cell1_Id.slice(4)) - 7;//parseInt(currentPlayerObject.cell1_Id.splice(0, 4)) - 7;
         let topBro1ID = "cell" + digit_in_topBro1ID;
         currentPlayerObject.cell2_Id = topBro1ID;
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+        switchOnCells(currentPlayerObject.cell2_Id);
     }
 }
 //***/
@@ -963,8 +963,7 @@ function makeThreeDotsHorizental() {
         //3-
         currentPlayerObject.cell3_Id = table[currentPlayerObject.cell2_Id].rightBrotherId;
         //4-
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
+        switchOnCells(currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id);
     }
     else {
         //so the dots of this threeDots stick from top to down are in the following order:
@@ -983,8 +982,7 @@ function makeThreeDotsHorizental() {
         //3-
         currentPlayerObject.cell1_Id = table[currentPlayerObject.cell2_Id].rightBrotherId;
         //4-
-        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
+        switchOnCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id);
     }
 }
 function makeThreeDotsVertical() {
@@ -1013,8 +1011,7 @@ function makeThreeDotsVertical() {
         let topBro2ID = "cell" + digit_in_topBro2ID;
         currentPlayerObject.cell1_Id = topBro2ID;
         //4-
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
+        switchOnCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id);
     }
     else {
         //so the dots of this threeDots stick from left to right are in the following order:
@@ -1036,8 +1033,7 @@ function makeThreeDotsVertical() {
         let topBro2ID = "cell" + digit_in_topBro2ID;
         currentPlayerObject.cell3_Id = topBro2ID;
         //4-
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
+        switchOnCells(currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id);
     }
 }
 //***/
@@ -1185,9 +1181,7 @@ function makeFourDotsStickHorizental() {
         //4-
         currentPlayerObject.cell4_Id = table[currentPlayerObject.cell3_Id].rightBrotherId;
         //5-
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
-        document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
+        switchOnCells(currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
     }
     else {
         //so the dots of this fourDots stick from top to down are in the following order:
@@ -1209,9 +1203,7 @@ function makeFourDotsStickHorizental() {
         //4-
         currentPlayerObject.cell1_Id = table[currentPlayerObject.cell2_Id].rightBrotherId;
         //5-
-        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
+        switchOnCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id);
     }
 }
 function makeFourDotsStickVertical() {
@@ -1248,10 +1240,8 @@ function makeFourDotsStickVertical() {
         let digit_in_topBro2ID = numberInCellId(currentPlayerObject.cell2_Id) - 7;
         let topBro2ID = "cell" + digit_in_topBro2ID;
         currentPlayerObject.cell1_Id = topBro2ID;
-        //5-
-        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-        document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
+        //5-    
+        switchOnCells(currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell1_Id);
     }
     else {
         //so the dots of this fourDots stick from left to right are in the following order:
@@ -1277,10 +1267,8 @@ function makeFourDotsStickVertical() {
         let digit_in_topBro3ID = numberInCellId(currentPlayerObject.cell3_Id) - 7;
         let topBro3ID = "cell" + digit_in_topBro3ID;
         currentPlayerObject.cell4_Id = topBro3ID;
-        //5-
-        document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-        document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
-        document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
+        //5-    
+        switchOnCells(currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
     }
 }
 //***/
@@ -1459,11 +1447,8 @@ function makeFourDotsLetter_Z_Horizental() {
     currentPlayerObject.cell3_Id = table[currentPlayerObject.cell3_Id].brotherBeneathId;
     //5-
     currentPlayerObject.cell4_Id = table[currentPlayerObject.cell3_Id].rightBrotherId;
-    //6-
-    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
+    //6- 
+    switchOnCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
 }
 function makeFourDotsLetter_Z_Vertical() {
     //this function takes a FourDotsLetter_Z that is horizental and makes it vertical
@@ -1501,10 +1486,7 @@ function makeFourDotsLetter_Z_Vertical() {
     integer_inCell3Id_topBrotherID = integer_inCell3Id - 7;
     currentPlayerObject.cell4_Id = "cell" + integer_inCell3Id_topBrotherID;
     //6-
-    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
+    switchOnCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
 }
 //*** END: ROTATE Z SHAPE ***//
 //
@@ -1668,10 +1650,7 @@ function makeFourDots_threePlusOne_Horizental() {
     //5- 
     currentPlayerObject.cell4_Id = table[currentPlayerObject.cell3_Id].rightBrotherId;
     //6-
-    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
+    switchOnCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
 }
 function makeFourDots_threePlusOne_Vertical() {
     //this function takes a FourDots_threePlusOne that is horizental and makes it vertical
@@ -1709,10 +1688,7 @@ function makeFourDots_threePlusOne_Vertical() {
     integer_inCell3Id_topBrotherID = integer_inCell3Id - 7;
     currentPlayerObject.cell4_Id = "cell" + integer_inCell3Id_topBrotherID;
     //6-
-    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
+    switchOnCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
 }
 //*** END: ROTATE 'THREE PLUS ONE' SHAPE ***//
 //
@@ -1887,10 +1863,7 @@ function makeFourDotsLetter_L_Horizental() {
     //5- 
     currentPlayerObject.cell4_Id = table[currentPlayerObject.cell3_Id].brotherBeneathId;
     //6-
-    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
+    switchOnCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
 }
 function makeFourDotsLetter_L_Vertical() {
     //this function takes a FourDotsLetter_L that is horizental and makes it vertical
@@ -1926,10 +1899,7 @@ function makeFourDotsLetter_L_Vertical() {
     //5-    
     currentPlayerObject.cell4_Id = table[currentPlayerObject.cell3_Id].rightBrotherId;
     //6-
-    document.getElementById(currentPlayerObject.cell1_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell2_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell3_Id).className = "cell-on";
-    document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
+    switchOnCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
 }
 //*** BEGIN: ROTATE L SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
@@ -1962,12 +1932,21 @@ function playerBehave(e) {
 function numberInCellId(cellIDString) {
     return parseInt(cellIDString.slice(4));
 }
-function switchOffCells(...cellsIdsArray){
+function switchOffCells(...cellsIds){
     //I used Rest Parameter as an argument to be able to handle one cell and more than one cell in the same function 
     //and to avoid writing two functions: one fr handling one cell, and one for handling many cells
 
     //this function receives an array containing Ids of cells (as string) to switch off
-    for(let i=0; i<cellsIdsArray.length; i++){
-        document.getElementById(cellsIdsArray[i]).className = "cell-off";
+    for(let i=0; i<cellsIds.length; i++){
+        document.getElementById(cellsIds[i]).className = "cell-off";
+    }
+}
+function switchOnCells(...cellsIds){
+    //I used Rest Parameter as an argument to be able to handle one cell and more than one cell in the same function 
+    //and to avoid writing two functions: one fr handling one cell, and one for handling many cells
+
+    //this function receives an array containing Ids of cells (as string) to switch on
+    for(let i=0; i<cellsIds.length; i++){
+        document.getElementById(cellsIds[i]).className = "cell-on";
     }
 }
