@@ -1816,6 +1816,69 @@ function isFourDotsLetter_L_tableTopLimit() {
     }
     else return false;
 }
+function isFourDotsLetter_L_Brothers_switchedOn(str) {
+    //based on the rotation direction, we'll check four cells if they are switched on or not
+    switch (str) {
+        case "vertical to horizental":
+            //so the player FourDotsLetter_L is vertical and is going to be rotated to horizental
+
+            //the four cells that we're going to check are:
+            //1- rightBrother of cell4
+            //2- rightBrother of cell2
+            //3- rightBrother of rightBrother of cell2
+            //4- rightBrother of rightBrother of cell1
+            let cell4RightBrother = document.getElementById(table[currentPlayerObject.cell4_Id].rightBrotherId);
+            let cell2RightBrother = document.getElementById(table[currentPlayerObject.cell2_Id].rightBrotherId);
+            let rightBrotherOf_cell2RightBrother = document.getElementById(table[cell2RightBrother].rightBrotherId);
+            let cell1RightBrother = document.getElementById(table[currentPlayerObject.cell1_Id].rightBrotherId);
+            let rightBrotherOf_cell1RightBrother = document.getElementById(table[cell1RightBrother].rightBrotherId);
+            if (cell4RightBrother.className.includes("cell-on")
+                || cell2RightBrother.className.includes("cell-on")
+                || rightBrotherOf_cell2RightBrother.className.includes("cell-on")
+                || rightBrotherOf_cell1RightBrother.className.includes("cell-on")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+            break;
+
+        case "horizental to vertical":
+            //so the player FourDotsLetter_L is horizental and is going to be rotated to vertical
+
+            //the four cells that we're going to check are:
+            //1- topBrother of cell1
+            //2- topBrother of cell2
+            //3- topBrother of cell3
+            //4- Brother beneath of cell1
+            let integer_inCell1ID = numberInCellId(currentPlayerObject.cell1_Id);
+            let topBrother_ofCell1 = integer_inCell1ID - 7;
+            let integer_inCell2ID = numberInCellId(currentPlayerObject.cell2_Id);
+            let topBrother_ofCell2 = integer_inCell2ID - 7;
+            let integer_inCell3ID = numberInCellId(currentPlayerObject.cell3_Id);
+            let topBrother_ofCell3 = integer_inCell3ID - 7;
+            if (topBrother_ofCell1 < 0 || topBrother_ofCell2 < 0 || topBrother_ofCell3 < 0) {
+                //so here we are already out of the table from the top side .. it will be considered as there are switched on cells
+                return true;
+            }
+            else {
+                let topCell1 = document.getElementById("cell" + topBrother_ofCell1);
+                let topCell2 = document.getElementById("cell" + topBrother_ofCell2);
+                let topCell3 = document.getElementById("cell" + topBrother_ofCell3);
+                let cell1BrotherBeneath = document.getElementById(table[currentPlayerObject.cell1_Id].brotherBeneathId);
+                if (topCell1.className.includes("cell-on")
+                || topCell2.className.includes("cell-on")
+                || topCell3.className.includes("cell-on")
+                || cell1BrotherBeneath.className.includes("cell-on")) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }            
+            break;
+    }
+}
 //*** BEGIN: ROTATE L SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
