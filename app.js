@@ -716,7 +716,7 @@ function rotateShape() {
             rotate_fourDotsStick();
             break;
         case "fourDotsLetter_L":
-
+            rotate_fourDotsLetter_L();
             break;
         case "fourDotsSquare":
             rotateSquare();
@@ -1739,6 +1739,31 @@ function makeFourDots_threePlusOne_Vertical() {
     document.getElementById(currentPlayerObject.cell4_Id).className = "cell-on";
 }
 //*** END: ROTATE 'THREE PLUS ONE' SHAPE ***//
+//
+//
+//*** BEGIN: ROTATE L SHAPE ***//
+function rotate_fourDotsLetter_L(){
+    //vertical FourDotsLetter_L shape will be rotated to be horizental only if some brothers <td> tags are not switched on
+    //horizental FourDotsLetter_L shape will be rotated to be vertical only if some brothers <td> tags are not switched on
+    if (isFourDotsLetter_L_Vertical() && !isFourDotsLetter_L_tableRightSideLimit()) {
+        console.log("going to rotate FourDotsLetter_L from vertical to horizental");
+        if (!isFourDotsLetter_L_Brothers_switchedOn("vertical to horizental")) {
+            makeFourDotsLetter_L_Horizental();
+        }
+    }
+    else if (isFourDotsLetter_L_Horizental() && !isFourDotsLetter_L_tableTopLimit()) {
+        console.log("going to rotate FourDotsLetter_L from horizental to vertical");
+        if (!isFourDotsLetter_L_Brothers_switchedOn("horizental to vertical")) {
+            makeFourDotsLetter_L_Vertical();
+        }
+    }
+    else {
+        console.log("cant rotate FourDotsLetter_L");
+        //do nothing ... it is not possible to rotate this FourDotsLetter_L shape
+        return;
+    }
+}
+//*** BEGIN: ROTATE L SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
 //
