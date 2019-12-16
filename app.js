@@ -541,9 +541,20 @@ function eraseFullRows_moveDownNotFullRows() {
 }
 function incrementScore() {
     let oldScore = parseInt(document.getElementById("current-score").innerText);
-    //console.log(oldScore);
+    console.log(oldScore);
     let newScore = oldScore + 10;
-    document.getElementById("current-score").innerText = newScore;
+    console.log(newScore);
+    let newScoreText = newScore.toString();
+    let scoreTextLength = newScoreText.length;
+    if(scoreTextLength < 5){
+        //so lets add some 'zeroes' to the left of the score
+        let zeros = "";
+        for(let i=1; i<=5-scoreTextLength; i++){
+            zeros = zeros + "0";
+        }
+        newScoreText = zeros + newScoreText;
+    }
+    document.getElementById("current-score").innerText = newScoreText;
 }
 //******************** END ERASING FULL ROWS AND INCREMENT SCORE ******************//
 //
