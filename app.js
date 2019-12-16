@@ -541,9 +541,9 @@ function eraseFullRows_moveDownNotFullRows() {
 }
 function incrementScore() {
     let oldScore = parseInt(document.getElementById("current-score").innerText);
-    console.log(oldScore);
+    //console.log(oldScore);
     let newScore = oldScore + 10;
-    console.log(newScore);
+    //console.log(newScore);
     let newScoreText = newScore.toString();
     let scoreTextLength = newScoreText.length;
     if(scoreTextLength < 5){
@@ -1923,6 +1923,7 @@ function makeFourDotsLetter_L_Vertical() {
 
 function playerBehave(e) {
     //Based on the key pressed, this function make the player move down/left/right or just make it rotate
+    e.preventDefault();
     if (e.keyCode == 40) {
         //move down
         movePlayerDown(currentPlayerObject);
