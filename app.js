@@ -540,10 +540,10 @@ function eraseFullRows_moveDownNotFullRows() {
     }
 }
 function incrementScore() {
-    let oldScore = parseInt(document.querySelector(".current-score strong").innerHTML);
+    let oldScore = parseInt(document.getElementById("current-score").innerText);
     //console.log(oldScore);
     let newScore = oldScore + 10;
-    document.querySelector(".current-score strong").innerHTML = newScore;
+    document.getElementById("current-score").innerText = newScore;
 }
 //******************** END ERASING FULL ROWS AND INCREMENT SCORE ******************//
 //
