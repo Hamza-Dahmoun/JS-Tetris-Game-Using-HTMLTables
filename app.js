@@ -105,6 +105,7 @@ function switchOnPlayer(playerNumber) {
         //alert("game over!");
         deleteKeyDownEvents();
         displayGameOverMsg();
+        stopChoosingNextPlayer();
         return;
     }
 
@@ -586,6 +587,9 @@ function deleteKeyDownEvents() {
 }
 function displayGameOverMsg() {
     document.getElementById("gameOverMsg").style.display = "block";
+}
+function stopChoosingNextPlayer(){
+    window.clearInterval(myInterval);
 }
 
 //******************** END GAME OVER CHECKING ******************//
