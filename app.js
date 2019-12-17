@@ -108,6 +108,7 @@ function switchOnPlayer(playerNumber) {
         stopChoosingNextPlayer();
         let gameOver = true;
         adjust_startBtnEventListener(gameOver);
+        hideButtons_inMobile();
         return;
     }
 
@@ -729,15 +730,23 @@ function deactivatePauseBtn() {
     document.getElementById("pauseBtn").style.cursor = "not-allowed";
 }
 function adjust_startBtnEventListener(gameOver) {
-    if(gameOver){
+    if (gameOver === true) {
+        //large screens buttons
         document.getElementById("startBtn").removeEventListener("click", startGame);
         document.getElementById("startBtn").addEventListener("click", startNewGame);
+        //small screens buttons
+        document.getElementById("smallscreen_startBtn").removeEventListener("touchstart", startGame_inMobile);
+        document.getElementById("smallscreen_startBtn").addEventListener("touchstart", startNewGame_inMobile);
     }
-    else{
+    else {
+        //large screens buttons
         document.getElementById("startBtn").removeEventListener("click", startNewGame);
-    document.getElementById("startBtn").addEventListener("click", startGame);
+        document.getElementById("startBtn").addEventListener("click", startGame);
+        //small screens buttons
+        document.getElementById("smallscreen_startBtn").removeEventListener("touchstart", startNewGame_inMobile);
+        document.getElementById("smallscreen_startBtn").addEventListener("touchstart", startGame_inMobile);
     }
-    
+
 
 }
 //******************** END: START AND PAUSE BUTTONS ******************//
@@ -1962,7 +1971,13 @@ document.getElementById("moverightBtn").addEventListener("touchstart", movePlaye
 document.getElementById("moveleftBtn").addEventListener("touchstart", movePlayerLeft);
 document.getElementById("rotateBtn").addEventListener("touchstart", rotateShape_inMobile);
 function startNewGame_inMobile() {
+    console.log("startNewGame_inMobile()");
     startNewGame();
+    displayButtons_inMobile();
+}
+function startGame_inMobile() {
+    console.log("startGame_inMobile()");
+    startGame();
     displayButtons_inMobile();
 }
 function pauseGame_inMobile() {
