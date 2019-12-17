@@ -681,8 +681,7 @@ function pauseGame() {
     //lets deactivate pause button
     deactivatePauseBtn();
     //now lets add the function 'startGame()' to the click event of start game button
-    document.getElementById("startBtn").removeEventListener("click", startNewGame);
-    document.getElementById("startBtn").addEventListener("click", startGame);
+    adjust_startBtnEventListener();    
     //now lets remove key down event listener from arrows so that user can't play anymore
     document.removeEventListener("keydown", playerBehave);
 }
@@ -691,7 +690,7 @@ function startGame() {
     document.addEventListener("keydown", playerBehave);
 
     //lets restart the game
-    //myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
+    myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
     //lets readd the click event to the start button for starting a new game
     document.getElementById("startBtn").addEventListener("click", startNewGame);
     //lets activate pause button
@@ -713,6 +712,10 @@ function activatePauseBtn() {
 function deactivatePauseBtn() {
     document.getElementById("pauseBtn").setAttribute("disabled", "");
     document.getElementById("pauseBtn").style.cursor = "not-allowed";
+}
+function adjust_startBtnEventListener(){
+    document.getElementById("startBtn").removeEventListener("click", startNewGame);
+    document.getElementById("startBtn").addEventListener("click", startGame);
 }
 //******************** END: START AND PAUSE BUTTONS ******************//
 //
