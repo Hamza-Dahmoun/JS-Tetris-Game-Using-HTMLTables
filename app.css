@@ -19,6 +19,7 @@ body {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+    padding-top:10px;
 }
 
 @media screen and (max-width: 650px) {
@@ -27,7 +28,12 @@ body {
         ;
     }
 }
-
+@media screen and (max-width: 250px) {
+    .container {
+        padding-top:2px;
+        ;
+    }
+}
 .game-container {
     margin-right: 20px;
     padding:1px;
