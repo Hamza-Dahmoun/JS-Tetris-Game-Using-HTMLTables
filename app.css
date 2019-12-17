@@ -112,15 +112,15 @@ td {
     }
 }
 
-@media screen and (max-width: 200px) {
+@media screen and (max-width: 250px) {
     /*cells dimensions will be based on the viewport width when the screen width is less than 201px*/
     td {
         height: 10vw;
         width: 10vw;
     }
     .small-td {
-        height: 9vw;
-        width: 9vw;
+        height: 7vw;
+        width: 7vw;
     }
 }
 
