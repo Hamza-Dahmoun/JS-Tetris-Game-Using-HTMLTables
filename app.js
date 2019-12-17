@@ -126,7 +126,8 @@ function switchOnPlayer(playerNumber) {
 }
 
 //******************** START MOVING DOWN A PLAYER ******************//
-function movePlayerDown(currentPlayerObject) {
+/*currentPlayerObject */
+function movePlayerDown() {
     //currentPlayerObject is an object that have up-to four properties
     //this properties store the value of cellID
     //by moving down a player we mean moving down all its cells he is composed of
@@ -253,7 +254,9 @@ function existSwitchedOnCellsBelow() {
 //
 //
 //******************** START MOVING RIGHT A PLAYER ******************//
-function movePlayerRight(currentPlayerObject) {
+/*currentPlayerObject*/
+function movePlayerRight() {
+    //I removed the argument 'currentPlayerObject' becuz it will cause errors when we add touchstart event with in the begining
     //currentPlayerObject is an object that have up-to four properties
     //this properties store the value of cellID
     //by moving right a player we mean moving right all its cells he is composed of
@@ -363,7 +366,9 @@ function existSwitchedOnCellsToRight() {
 //
 //
 //******************** START MOVING LEFT A PLAYER ******************//
-function movePlayerLeft(currentPlayerObject) {
+/*currentPlayerObject */
+function movePlayerLeft() {
+    //I removed the argument 'currentPlayerObject' becuz it will cause errors when we add touchstart event with in the begining
     //currentPlayerObject is an object that have up-to four properties
     //this properties store the value of cellID
     //by moving left a player we mean moving left all its cells he is composed of
@@ -1912,7 +1917,7 @@ function makeFourDotsLetter_L_Vertical() {
     //6-
     switchOnCells(currentPlayerObject.cell1_Id, currentPlayerObject.cell2_Id, currentPlayerObject.cell3_Id, currentPlayerObject.cell4_Id);
 }
-//*** BEGIN: ROTATE L SHAPE ***//
+//*** END: ROTATE L SHAPE ***//
 //******************** END: ROTATE SHAPE AREA ******************//
 //
 //
@@ -1921,20 +1926,24 @@ function makeFourDotsLetter_L_Vertical() {
 //*************** keyDown events ***************/
 
 
+
 function playerBehave(e) {
     //Based on the key pressed, this function make the player move down/left/right or just make it rotate
     e.preventDefault();
     if (e.keyCode == 40) {
         //move down
-        movePlayerDown(currentPlayerObject);
+        //movePlayerDown(currentPlayerObject);
+        movePlayerDown();
     }
     else if (e.keyCode == 39) {
         //move right
-        movePlayerRight(currentPlayerObject);
+        //movePlayerRight(currentPlayerObject);
+        movePlayerRight();
     }
     else if (e.keyCode == 37) {
         //move left
-        movePlayerLeft(currentPlayerObject);
+        //movePlayerLeft(currentPlayerObject);
+        movePlayerLeft();
     }
     else if (e.keyCode == 38) {
         //rotate the current shape
