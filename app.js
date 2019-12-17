@@ -1930,13 +1930,25 @@ document.getElementById("smallscreen_pauseBtn").addEventListener("touchstart", p
 document.getElementById("movedownBtn").addEventListener("touchstart", movePlayerDown);
 document.getElementById("moverightBtn").addEventListener("touchstart", movePlayerRight);
 document.getElementById("moveleftBtn").addEventListener("touchstart", movePlayerLeft);
-document.getElementById("rotateBtn").addEventListener("touchstart", rotateShape);
+document.getElementById("rotateBtn").addEventListener("touchstart", rotateShape_inMobile);
 function startNewGame_inMobile(){
     startNewGame();
     document.getElementById("rotateBtn").style.display = "block";
     document.getElementById("moveleftBtn").style.display = "block";
     document.getElementById("moverightBtn").style.display = "block";
     document.getElementById("movedownBtn").style.display = "block";
+}
+function rotateShape_inMobile(){
+    rotateShape();
+    let rotateBtnIcon = document.querySelector("#rotateBtn i");
+    if(rotateBtnIcon.className.includes("fa-repeat")){
+        //it includes the icon 'rotate to right', lets replace it by 'rotate to left'
+        rotateBtnIcon.className="fa fa-undo";
+    }
+    else{
+        //it includes the icon 'rotate to right', lets replace it by 'rotate to left'
+        rotateBtnIcon.className="fa fa-repeat";
+    }
 }
 function playerBehave(e) {
     //Based on the key pressed, this function make the player move down/left/right or just make it rotate
