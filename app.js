@@ -624,7 +624,7 @@ function displayNextPlayer(nextPlayerNumber) {
 function switchoffNextPlayerArea() {
     let tdTags_inSecondTable = document.getElementById("nextPlayersArea").getElementsByTagName("td");
     for (let i = 0; i < tdTags_inSecondTable.length; i++) {
-        tdTags_inSecondTable[i].className = "cell-off small-td";
+        tdTags_inSecondTable[i].className = "small-td";
     }
 }
 function displayNextPlayer_asCurrentPlayer(nextPlayerNumber) {
