@@ -214,7 +214,8 @@ td {
         flex-wrap: wrap; justify-content:center;
     }
     .small-screen-buttons-container #rotate-button-container{
-        display:flex; flex-direction:row; justify-content: end;
+        display:flex; flex-direction:row; justify-content: space-between;
+        padding-bottom: 4px;padding-top: 4px;
     }
     .small-screen-buttons-container #move-leftright-buttons-container{
         display:flex; flex-direction: row; justify-content: space-between; flex-wrap:wrap;
