@@ -64,6 +64,10 @@ td {
     height: 22px;
     width: 22px;
 }
+.small-td {
+    height: 17px;
+    width: 17px;
+}
 
 .game-tools-container {
     display: flex;
