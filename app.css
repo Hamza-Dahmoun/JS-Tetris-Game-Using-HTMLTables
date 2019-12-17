@@ -166,6 +166,11 @@ td {
 .small-screen-buttons-container{
     display:none;
 }
+#movedownBtn,#moverightBtn,#moveleftBtn,#rotateBtn{
+    /*these are buttons for mobile user*/
+    /*these buttons will be shown once user touch start button*/
+    display:none;
+}
 @media screen and (max-width: 250px) {
     .buttons-container {
         display:none;

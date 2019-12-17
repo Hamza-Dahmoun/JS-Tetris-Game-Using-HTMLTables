@@ -1925,13 +1925,19 @@ function makeFourDotsLetter_L_Vertical() {
 //
 //*************** keyDown events ***************/
 
-document.getElementById("smallscreen_startBtn").addEventListener("touchstart", startNewGame);
+document.getElementById("smallscreen_startBtn").addEventListener("touchstart", startNewGame_inMobile);
 document.getElementById("smallscreen_pauseBtn").addEventListener("touchstart", pauseGame);
 document.getElementById("movedownBtn").addEventListener("touchstart", movePlayerDown);
 document.getElementById("moverightBtn").addEventListener("touchstart", movePlayerRight);
 document.getElementById("moveleftBtn").addEventListener("touchstart", movePlayerLeft);
 document.getElementById("rotateBtn").addEventListener("touchstart", rotateShape);
-
+function startNewGame_inMobile(){
+    startNewGame();
+    document.getElementById("rotateBtn").style.display = "block";
+    document.getElementById("moveleftBtn").style.display = "block";
+    document.getElementById("moverightBtn").style.display = "block";
+    document.getElementById("movedownBtn").style.display = "block";
+}
 function playerBehave(e) {
     //Based on the key pressed, this function make the player move down/left/right or just make it rotate
     e.preventDefault();
