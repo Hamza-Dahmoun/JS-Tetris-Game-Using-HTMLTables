@@ -178,6 +178,7 @@ td {
     .small-screen-buttons-container{
         display:flex;
         flex-direction: column;
+        padding: 2px;
     }
 
     .small-screen-buttons-container button{
@@ -188,11 +189,16 @@ td {
         height:40px;width:40px;
         border-radius:50%;
         transition-duration:0.5s;
+        cursor:pointer;
     }
     .small-screen-buttons-container button:hover{
         background-color: var(--text-color);
         color:var(--body-bg-color);
         transition-duration: 0.5s;
+    }
+    .small-screen-buttons-container #start-pause-mobile-buttons-container{
+        display:flex; flex-direction: row;
+        flex-wrap: wrap; justify-content:space-between;
     }
 }
 
