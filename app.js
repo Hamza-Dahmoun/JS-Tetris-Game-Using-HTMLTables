@@ -106,6 +106,8 @@ function switchOnPlayer(playerNumber) {
         deleteKeyDownEvents();
         displayGameOverMsg();
         stopChoosingNextPlayer();
+        let gameOver = true;
+        adjust_startBtnEventListener(gameOver);
         return;
     }
 
@@ -552,10 +554,10 @@ function incrementScore() {
     //console.log(newScore);
     let newScoreText = newScore.toString();
     let scoreTextLength = newScoreText.length;
-    if(scoreTextLength < 5){
+    if (scoreTextLength < 5) {
         //so lets add some 'zeroes' to the left of the score
         let zeros = "";
-        for(let i=1; i<=5-scoreTextLength; i++){
+        for (let i = 1; i <= 5 - scoreTextLength; i++) {
             zeros = zeros + "0";
         }
         newScoreText = zeros + newScoreText;
@@ -588,7 +590,10 @@ function deleteKeyDownEvents() {
 function displayGameOverMsg() {
     document.getElementById("gameOverMsg").style.display = "block";
 }
-function stopChoosingNextPlayer(){
+function hideGameOverMsg() {
+    document.getElementById("gameOverMsg").style.display = "none";
+}
+function stopChoosingNextPlayer() {
     window.clearInterval(myInterval);
 }
 
@@ -660,20 +665,26 @@ document.getElementById("startBtn").addEventListener("click", startNewGame);
 document.getElementById("pauseBtn").addEventListener("click", pauseGame);
 var myInterval;
 var timeInterval = 1000;
-var isGamePaused = false;
+var isGamePaused = null;
 function startNewGame() {
+    //this function always starts a new game
+
     //lets add the key down event listener for keyboard arrows
     document.addEventListener("keydown", playerBehave);
 
     initializeAllGameElts();
+    hideGameOverMsg();
     //Inside the following function will switch on a player and randomly choose a new player
     //we'll pass in a random number to represent a random player
     displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
     //we'll move down the player every second, the player is passed in as a parameter
     //'currentPlayerObject' was assigned a random player in the function switchOnPlayer()     
+    window.clearInterval(myInterval);
     myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
     //now lets activate the pause button
     activatePauseBtn();
+
+
 }
 function pauseGame() {
     window.clearInterval(myInterval);
@@ -681,20 +692,24 @@ function pauseGame() {
     //lets deactivate pause button
     deactivatePauseBtn();
     //now lets add the function 'startGame()' to the click event of start game button
-    adjust_startBtnEventListener();    
+    adjust_startBtnEventListener();
     //now lets remove key down event listener from arrows so that user can't play anymore
     document.removeEventListener("keydown", playerBehave);
 }
 function startGame() {
-    //lets add the key down event listener for keyboard arrows
-    document.addEventListener("keydown", playerBehave);
+    if (isGamePaused == true) {
+        //lets add the key down event listener for keyboard arrows
+        document.addEventListener("keydown", playerBehave);
 
-    //lets restart the game
-    myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
-    //lets readd the click event to the start button for starting a new game
-    document.getElementById("startBtn").addEventListener("click", startNewGame);
-    //lets activate pause button
-    activatePauseBtn();
+        //lets restart the game
+        myInterval = window.setInterval(function () { movePlayerDown(currentPlayerObject); }, timeInterval);
+        //lets set isGamePaused to false
+        isGamePaused = false;
+        //lets readd the click event to the start button for starting a new game
+        adjust_startBtnEventListener();
+        //lets activate pause button
+        activatePauseBtn();
+    }
 }
 function initializeAllGameElts() {
     let cells = document.getElementById("stadium").querySelectorAll("td");
@@ -713,9 +728,17 @@ function deactivatePauseBtn() {
     document.getElementById("pauseBtn").setAttribute("disabled", "");
     document.getElementById("pauseBtn").style.cursor = "not-allowed";
 }
-function adjust_startBtnEventListener(){
-    document.getElementById("startBtn").removeEventListener("click", startNewGame);
+function adjust_startBtnEventListener(gameOver) {
+    if(gameOver){
+        document.getElementById("startBtn").removeEventListener("click", startGame);
+        document.getElementById("startBtn").addEventListener("click", startNewGame);
+    }
+    else{
+        document.getElementById("startBtn").removeEventListener("click", startNewGame);
     document.getElementById("startBtn").addEventListener("click", startGame);
+    }
+    
+
 }
 //******************** END: START AND PAUSE BUTTONS ******************//
 //
@@ -1637,7 +1660,7 @@ function isFourDots_threePlusOne_Brothers_switchedOn(str) {
                 else {
                     return false;
                 }
-            }            
+            }
             break;
     }
 }
@@ -1717,7 +1740,7 @@ function makeFourDots_threePlusOne_Vertical() {
 //
 //
 //*** BEGIN: ROTATE L SHAPE ***//
-function rotate_fourDotsLetter_L(){
+function rotate_fourDotsLetter_L() {
     //vertical FourDotsLetter_L shape will be rotated to be horizental only if some brothers <td> tags are not switched on
     //horizental FourDotsLetter_L shape will be rotated to be vertical only if some brothers <td> tags are not switched on
     if (isFourDotsLetter_L_Vertical() && !isFourDotsLetter_L_tableRightSideLimit()) {
@@ -1842,15 +1865,15 @@ function isFourDotsLetter_L_Brothers_switchedOn(str) {
                 let topCell3 = document.getElementById("cell" + topBrother_ofCell3);
                 let cell1BrotherBeneath = document.getElementById(table[currentPlayerObject.cell1_Id].brotherBeneathId);
                 if (topCell1.className.includes("cell-on")
-                || topCell2.className.includes("cell-on")
-                || topCell3.className.includes("cell-on")
-                || cell1BrotherBeneath.className.includes("cell-on")) {
+                    || topCell2.className.includes("cell-on")
+                    || topCell3.className.includes("cell-on")
+                    || cell1BrotherBeneath.className.includes("cell-on")) {
                     return true;
                 }
                 else {
                     return false;
                 }
-            }            
+            }
             break;
     }
 }
@@ -1938,15 +1961,15 @@ document.getElementById("movedownBtn").addEventListener("touchstart", movePlayer
 document.getElementById("moverightBtn").addEventListener("touchstart", movePlayerRight);
 document.getElementById("moveleftBtn").addEventListener("touchstart", movePlayerLeft);
 document.getElementById("rotateBtn").addEventListener("touchstart", rotateShape_inMobile);
-function startNewGame_inMobile(){
+function startNewGame_inMobile() {
     startNewGame();
     displayButtons_inMobile();
 }
-function pauseGame_inMobile(){
+function pauseGame_inMobile() {
     pauseGame();
     hideButtons_inMobile();
 }
-function displayButtons_inMobile(){
+function displayButtons_inMobile() {
     document.getElementById("rotateBtn").style.display = "block";
     document.getElementById("moveleftBtn").style.display = "block";
     document.getElementById("moverightBtn").style.display = "block";
@@ -1954,7 +1977,7 @@ function displayButtons_inMobile(){
     document.getElementById("smallscreen_startBtn").style.display = "none";
     document.getElementById("smallscreen_pauseBtn").style.display = "block";
 }
-function hideButtons_inMobile(){
+function hideButtons_inMobile() {
     document.getElementById("rotateBtn").style.display = "none";
     document.getElementById("moveleftBtn").style.display = "none";
     document.getElementById("moverightBtn").style.display = "none";
@@ -1962,16 +1985,16 @@ function hideButtons_inMobile(){
     document.getElementById("smallscreen_startBtn").style.display = "block";
     document.getElementById("smallscreen_pauseBtn").style.display = "none";
 }
-function rotateShape_inMobile(){
+function rotateShape_inMobile() {
     rotateShape();
     let rotateBtnIcon = document.querySelector("#rotateBtn i");
-    if(rotateBtnIcon.className.includes("fa-repeat")){
+    if (rotateBtnIcon.className.includes("fa-repeat")) {
         //it includes the icon 'rotate to right', lets replace it by 'rotate to left'
-        rotateBtnIcon.className="fa fa-undo";
+        rotateBtnIcon.className = "fa fa-undo";
     }
-    else{
+    else {
         //it includes the icon 'rotate to right', lets replace it by 'rotate to left'
-        rotateBtnIcon.className="fa fa-repeat";
+        rotateBtnIcon.className = "fa fa-repeat";
     }
 }
 function playerBehave(e) {
@@ -2000,21 +2023,21 @@ function playerBehave(e) {
 function numberInCellId(cellIDString) {
     return parseInt(cellIDString.slice(4));
 }
-function switchOffCells(...cellsIds){
+function switchOffCells(...cellsIds) {
     //I used Rest Parameter as an argument to be able to handle one cell and more than one cell in the same function 
     //and to avoid writing two functions: one fr handling one cell, and one for handling many cells
 
     //this function receives an array containing Ids of cells (as string) to switch off
-    for(let i=0; i<cellsIds.length; i++){
+    for (let i = 0; i < cellsIds.length; i++) {
         document.getElementById(cellsIds[i]).className = "cell-off";
     }
 }
-function switchOnCells(...cellsIds){
+function switchOnCells(...cellsIds) {
     //I used Rest Parameter as an argument to be able to handle one cell and more than one cell in the same function 
     //and to avoid writing two functions: one fr handling one cell, and one for handling many cells
 
     //this function receives an array containing Ids of cells (as string) to switch on
-    for(let i=0; i<cellsIds.length; i++){
+    for (let i = 0; i < cellsIds.length; i++) {
         document.getElementById(cellsIds[i]).className = "cell-on";
     }
 }
