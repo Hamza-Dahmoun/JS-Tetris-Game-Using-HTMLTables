@@ -189,6 +189,11 @@ td {
         border-radius:50%;
         transition-duration:0.5s;
     }
+    .small-screen-buttons-container button:hover{
+        background-color: var(--text-color);
+        color:var(--body-bg-color);
+        transition-duration: 0.5s;
+    }
 }
 
 #gameOverMsg {
