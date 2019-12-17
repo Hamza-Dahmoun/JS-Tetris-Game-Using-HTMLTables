@@ -29,6 +29,7 @@ body {
 .game-container {
     margin-right: 20px;
     width: 190px;
+    padding:2px;
     margin-top: auto;
     margin-bottom: auto;
     background-color: rgba( 247, 200, 132, 0.7);
