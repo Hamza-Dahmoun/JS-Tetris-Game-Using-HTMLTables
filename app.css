@@ -178,7 +178,10 @@ td {
     .small-screen-buttons-container{
         display:flex;
         flex-direction: column;
-        padding: 2px;    
+        padding: 5%;
+        padding-top:0px;    
+        border:1px solid black;
+        width: 100%;
     }
 
     .small-screen-buttons-container button{
