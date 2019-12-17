@@ -192,21 +192,11 @@ td {
         transition-duration:0.5s;
         cursor:pointer;
     }
-    .small-screen-buttons-container button:hover{
-        background-color: var(--text-color);
-        color:var(--body-bg-color);
-        transition-duration: 0.5s;
-    }
 
     .small-screen-buttons-container .play-buttons{
         border:1px solid var(--text-color);
         background-color: var(--body-bg-color);
         color:var(--text-color);
-        transition-duration:0.5s;
-    }
-    .small-screen-buttons-container .play-buttons:hover{
-        color: var(--body-bg-color);
-        background-color:var(--text-color);
         transition-duration:0.5s;
     }
     .small-screen-buttons-container #start-pause-mobile-buttons-container{
