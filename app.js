@@ -2088,4 +2088,23 @@ function handleHighScores() {
     //6-
     localStorage.setItem("highScores", JSON.stringify(highScores));
 }
+
+function displayHighScores(arr) {
+    //let get the gameOverMsg and remove its rpevious children
+    let gameOverMsg = document.getElementById("gameOverMsg");
+    gameOverMsg.innerHTML = "";
+    //now lets create an unordered list
+    let ol = document.createElement("OL");
+    for(let i=0; i<arr.length; i++){
+        //foreach score we'll create an <li> tag and append it to the created 'ol' tag
+        let li = document.createElement("LI");
+        li.innerText = arr[i].value + " - (" + arr[i].date + ")";
+        li.style.fontSize = "15px";
+        ol.appendChild(li);
+    }
+    ol.style.textAlign= "center";
+    ol.style.paddingLeft = "5px";
+    //lets append 'ol' to the gameOverMsg
+    gameOverMsg.appendChild(ol);
+}
 //*************** END: HIGH SCORES AREA ***************/
