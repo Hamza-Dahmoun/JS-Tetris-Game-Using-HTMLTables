@@ -109,7 +109,7 @@ function switchOnPlayer(playerNumber) {
         let gameOver = true;
         adjust_startBtnEventListener(gameOver);
         hideButtons_inMobile();
-        displayHighScores();
+        handleHighScores();
         return;
     }
 
@@ -2078,16 +2078,14 @@ function handleHighScores() {
     }
     highScores.push(scoreObj);
     //3-
-    highScores.sort((a,b) => b.value - a.value);
+    highScores.sort((a, b) => b.value - a.value);
     //4-
     highScores.splice(5);
     //5-
+    console.log(highScores);
     displayHighScores(highScores);
     //console.log(highScores);
     //6-
     localStorage.setItem("highScores", JSON.stringify(highScores));
-}
-function displayHighScores(){
-
 }
 //*************** END: HIGH SCORES AREA ***************/
