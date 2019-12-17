@@ -177,7 +177,14 @@ td {
     /*these buttons will be shown once user touch start button*/
     display:none;
 }
+
+.mobile-only{
+    display:none;
+}
 @media screen and (max-width: 250px) {
+    .mobile-only{
+        display:block;
+    }
     .buttons-container {
         display:none;
     }

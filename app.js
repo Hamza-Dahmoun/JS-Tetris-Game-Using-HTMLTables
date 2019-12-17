@@ -691,7 +691,8 @@ function startNewGame() {
     //now lets activate the pause button
     activatePauseBtn();
 
-
+//lets prepare buttons of mobile screen to be displayed if user adjusted the width of the screen
+//displayButtons_inMobile_fromScreen();
 }
 function pauseGame() {
     window.clearInterval(myInterval);
@@ -702,6 +703,9 @@ function pauseGame() {
     adjust_startBtnEventListener();
     //now lets remove key down event listener from arrows so that user can't play anymore
     document.removeEventListener("keydown", playerBehave);
+
+    //lets prepare buttons of mobile screen to be displayed if user adjusted the width of the screen
+    hideButtons_inMobile();
 }
 function startGame() {
     if (isGamePaused == true) {
@@ -716,6 +720,9 @@ function startGame() {
         adjust_startBtnEventListener();
         //lets activate pause button
         activatePauseBtn();
+
+        //lets prepare buttons of mobile screen to be displayed if user adjusted the width of the screen
+        //displayButtons_inMobile_fromScreen();
     }
 }
 function initializeAllGameElts() {
@@ -2006,6 +2013,22 @@ function hideButtons_inMobile() {
     document.getElementById("smallscreen_startBtn").style.display = "block";
     document.getElementById("smallscreen_pauseBtn").style.display = "none";
 }
+/*function displayButtons_inMobile_fromScreen() {
+    document.getElementById("rotateBtn").className = document.getElementById("rotateBtn").className  + " mobile-only";
+    document.getElementById("moveleftBtn").classList.add("mobile-only");
+    document.getElementById("moverightBtn").classList.add("mobile-only");
+    document.getElementById("movedownBtn").classList.add("mobile-only");
+    document.getElementById("smallscreen_startBtn").style.display = "none";
+    document.getElementById("smallscreen_pauseBtn").classList.add("mobile-only");
+}*/
+/*function hideButtons_inMobile_fromScreen() {
+    document.getElementById("rotateBtn").style.display = "none";
+    document.getElementById("moveleftBtn").style.display = "none";
+    document.getElementById("moverightBtn").style.display = "none";
+    document.getElementById("movedownBtn").style.display = "none";
+    document.getElementById("smallscreen_startBtn").className.push("mobile-only");
+    document.getElementById("smallscreen_pauseBtn").style.display = "none";
+}*/
 function rotateShape_inMobile() {
     rotateShape();
     let rotateBtnIcon = document.querySelector("#rotateBtn i");
@@ -2098,6 +2121,7 @@ function displayHighScores(arr) {
     //let get the gameOverMsg and remove its rpevious children
     let gameOverMsg = document.getElementById("gameOverMsg");
     gameOverMsg.innerHTML = "";
+    gameOverMsg.innerText = "Game Over!";
     //now lets create an unordered list
     let ol = document.createElement("OL");
     for (let i = 0; i < arr.length; i++) {
