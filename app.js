@@ -109,6 +109,7 @@ function switchOnPlayer(playerNumber) {
         let gameOver = true;
         adjust_startBtnEventListener(gameOver);
         hideButtons_inMobile();
+        displayHighScores();
         return;
     }
 
@@ -2056,3 +2057,37 @@ function switchOnCells(...cellsIds) {
         document.getElementById(cellsIds[i]).className = "cell-on";
     }
 }
+
+//*************** BEGIN: HIGH SCORES AREA ***************/
+function handleHighScores() {
+    //Step1: get the array of highScores from localStorage
+    //Step2: push the new score to the array highScores
+    //Step3: sort the array from biggest score to smallest one
+    //Step4: splice (delete) all elements from the array after index '5'
+    //Step5: Display High Scores list below GameOver Msg
+    //Step6: reStore the new array in localStorage
+    //but only if his score is among top 5 scores
+    //1-
+    let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    //2-
+    let score = parseInt(document.getElementById("current-score").innerText);
+    var d = new Date();
+    const scoreObj = {
+        date: d.toDateString(),
+        value: score
+    }
+    highScores.push(scoreObj);
+    //3-
+    highScores.sort((a,b) => b.value - a.value);
+    //4-
+    highScores.splice(5);
+    //5-
+    displayHighScores(highScores);
+    //console.log(highScores);
+    //6-
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+}
+function displayHighScores(){
+
+}
+//*************** END: HIGH SCORES AREA ***************/
