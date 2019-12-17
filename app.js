@@ -1930,17 +1930,34 @@ function makeFourDotsLetter_L_Vertical() {
 //*************** keyDown events ***************/
 
 document.getElementById("smallscreen_startBtn").addEventListener("touchstart", startNewGame_inMobile);
-document.getElementById("smallscreen_pauseBtn").addEventListener("touchstart", pauseGame);
+document.getElementById("smallscreen_pauseBtn").addEventListener("touchstart", pauseGame_inMobile);
 document.getElementById("movedownBtn").addEventListener("touchstart", movePlayerDown);
 document.getElementById("moverightBtn").addEventListener("touchstart", movePlayerRight);
 document.getElementById("moveleftBtn").addEventListener("touchstart", movePlayerLeft);
 document.getElementById("rotateBtn").addEventListener("touchstart", rotateShape_inMobile);
 function startNewGame_inMobile(){
     startNewGame();
+    displayButtons_inMobile();
+}
+function pauseGame_inMobile(){
+    pauseGame();
+    hideButtons_inMobile();
+}
+function displayButtons_inMobile(){
     document.getElementById("rotateBtn").style.display = "block";
     document.getElementById("moveleftBtn").style.display = "block";
     document.getElementById("moverightBtn").style.display = "block";
     document.getElementById("movedownBtn").style.display = "block";
+    document.getElementById("smallscreen_startBtn").style.display = "none";
+    document.getElementById("smallscreen_pauseBtn").style.display = "block";
+}
+function hideButtons_inMobile(){
+    document.getElementById("rotateBtn").style.display = "none";
+    document.getElementById("moveleftBtn").style.display = "none";
+    document.getElementById("moverightBtn").style.display = "none";
+    document.getElementById("movedownBtn").style.display = "none";
+    document.getElementById("smallscreen_startBtn").style.display = "block";
+    document.getElementById("smallscreen_pauseBtn").style.display = "none";
 }
 function rotateShape_inMobile(){
     rotateShape();
