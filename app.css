@@ -198,6 +198,17 @@ td {
         color:var(--body-bg-color);
         transition-duration: 0.5s;
     }
+
+    .small-screen-buttons-container .play-buttons{
+        color: var(--body-bg-color);
+        background-color:var(--text-color);
+        transition-duration:0.5s;
+    }
+    .small-screen-buttons-container .play-buttons:hover{
+        background-color: var(--body-bg-color);
+        color:var(--text-color);
+        transition-duration:0.5s;
+    }
     .small-screen-buttons-container #start-pause-mobile-buttons-container{
         display:flex; flex-direction: row;
         flex-wrap: wrap; justify-content:center;
