@@ -218,7 +218,10 @@ td {
         padding-bottom: 4px;padding-top: 4px;
     }
     .small-screen-buttons-container #move-leftright-buttons-container{
-        display:flex; flex-direction: row; justify-content: space-between; flex-wrap:wrap;
+        display:flex; flex-direction: row; justify-content: center; flex-wrap:wrap;
+    }
+    .small-screen-buttons-container #move-leftright-buttons-container button{
+        margin-left:4px; margin-right:4px;
     }
     .small-screen-buttons-container #move-down-player-button-container{
         display:flex; flex-direction: row; justify-content: center;
