@@ -106,9 +106,13 @@ td {
 }
 
 .buttons-container {
-    width: 300px;
+    width: 100%/*300px*/;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
     text-align: center;
     padding: 2%;
 }
@@ -116,6 +120,7 @@ td {
 .buttons-container button {
     height: 35px;
     width: 100px;
+    margin:2px;
     border: none;
     background-color: var(--text-color);
     color: var(--body-bg-color);
@@ -132,6 +137,14 @@ td {
 
 .buttons-container #pauseBtn {
     cursor: not-allowed;
+}
+
+@media screen and (max-width: 250px) {
+    .buttons-container button {
+        height: 30px;
+        width: 90px;
+        font-size: 12px;
+    }
 }
 
 #gameOverMsg {
