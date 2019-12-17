@@ -206,7 +206,10 @@ td {
         display:flex; flex-direction:row; justify-content: end;
     }
     .small-screen-buttons-container #move-leftright-buttons-container{
-        display:flex; flex-direction: row; justify-content: space-between;
+        display:flex; flex-direction: row; justify-content: space-between; flex-wrap:wrap;
+    }
+    .small-screen-buttons-container #move-down-player-button-container{
+        display:flex; flex-direction: row; justify-content: center;
     }
 }
 
