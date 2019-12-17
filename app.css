@@ -19,7 +19,7 @@ body {
     flex-wrap: wrap;
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 650px) {
     .container {
         width: auto;
         ;
@@ -35,6 +35,13 @@ body {
     background-color: rgba( 247, 200, 132, 0.7);
 }
 
+@media screen and (max-width: 350px) {
+    .game-container {
+        margin-right: auto; margin-left:auto;
+        order: 0;
+        /*we made its order bigger than .game-tools-container so that it comes after it (below it) in mobile screens*/
+    }
+}
 .cell-test {
     background-color: red;
 }
