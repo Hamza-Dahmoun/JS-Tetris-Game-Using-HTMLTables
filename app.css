@@ -178,8 +178,7 @@ td {
     .small-screen-buttons-container{
         display:flex;
         flex-direction: column;
-        padding: 5%;
-        padding-top:0px;    
+        padding:0px;    
         width: 100%;
     }
 
@@ -211,21 +210,25 @@ td {
         transition-duration:0.5s;
     }
     .small-screen-buttons-container #start-pause-mobile-buttons-container{
-        display:flex; flex-direction: row;
-        flex-wrap: wrap; justify-content:center;
+        position:fixed; top:80%;left:0%;
+        border:1px solid var(--text-color);border-left:none;
+        padding:0%;        
     }
     .small-screen-buttons-container #rotate-button-container{
-        display:flex; flex-direction:row; justify-content: space-between;
-        padding-bottom: 4px;padding-top: 4px;
+        position:fixed; top:80%;right:0%;
+        padding:0%;  
     }
     .small-screen-buttons-container #move-leftright-buttons-container{
         display:flex; flex-direction: row; justify-content: center; flex-wrap:wrap;
+        position:fixed; top:80%;width:100%;
+        border:1px solid black;
     }
     .small-screen-buttons-container #move-leftright-buttons-container button{
-        margin-left:4px; margin-right:4px;
+        margin-left:5px; margin-right:5px;
     }
     .small-screen-buttons-container #move-down-player-button-container{
         display:flex; flex-direction: row; justify-content: center;
+        margin-right: auto;; margin-left: auto;width:100%;
     }
 }
 
