@@ -618,7 +618,7 @@ function displayNextPlayer(nextPlayerNumber) {
         //console.log(idPropertyName_in_currentPlayer);
         let cellID_in_currentPlayer = nextPlayerObject[idPropertyName_in_currentPlayer];
         //console.log(cellID_in_currentPlayer);
-        switchOnCells(cellID_in_currentPlayer);
+        document.getElementById(cellID_in_currentPlayer).className = "cell-on small-td";
     }
 }
 function switchoffNextPlayerArea() {
