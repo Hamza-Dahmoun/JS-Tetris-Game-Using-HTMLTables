@@ -205,6 +205,9 @@ td {
     .small-screen-buttons-container #rotate-button-container{
         display:flex; flex-direction:row; justify-content: end;
     }
+    .small-screen-buttons-container #move-leftright-buttons-container{
+        display:flex; flex-direction: row; justify-content: space-between;
+    }
 }
 
 #gameOverMsg {
