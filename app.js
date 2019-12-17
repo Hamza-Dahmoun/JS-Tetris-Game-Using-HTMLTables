@@ -105,6 +105,7 @@ function switchOnPlayer(playerNumber) {
         //alert("game over!");
         deleteKeyDownEvents();
         displayGameOverMsg();
+        reinitializeScore();
         stopChoosingNextPlayer();
         let gameOver = true;
         adjust_startBtnEventListener(gameOver);
@@ -591,6 +592,10 @@ function deleteKeyDownEvents() {
 }
 function displayGameOverMsg() {
     document.getElementById("gameOverMsg").style.display = "block";
+}
+function reinitializeScore() {
+    //lets reinitialize the score to '00000'
+    document.getElementById("current-score").innerText = '00000';
 }
 function hideGameOverMsg() {
     document.getElementById("gameOverMsg").style.display = "none";
@@ -2095,14 +2100,14 @@ function displayHighScores(arr) {
     gameOverMsg.innerHTML = "";
     //now lets create an unordered list
     let ol = document.createElement("OL");
-    for(let i=0; i<arr.length; i++){
+    for (let i = 0; i < arr.length; i++) {
         //foreach score we'll create an <li> tag and append it to the created 'ol' tag
         let li = document.createElement("LI");
         li.innerText = arr[i].value + " - (" + arr[i].date + ")";
         li.style.fontSize = "15px";
         ol.appendChild(li);
     }
-    ol.style.textAlign= "center";
+    ol.style.textAlign = "center";
     ol.style.paddingLeft = "5px";
     //lets append 'ol' to the gameOverMsg
     gameOverMsg.appendChild(ol);
