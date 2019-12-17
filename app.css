@@ -124,9 +124,7 @@ td {
     }
 }
 
-.small-screen-buttons-container{
-    display:none;
-}
+
 .buttons-container {
     width: 100%/*300px*/
     ;
@@ -170,12 +168,26 @@ td {
         font-size: 12px;
     }
 }
+.small-screen-buttons-container{
+    display:none;
+}
 @media screen and (max-width: 250px) {
     .buttons-container {
         display:none;
     }
     .small-screen-buttons-container{
-        display:block;
+        display:flex;
+        flex-direction: column;
+    }
+
+    .small-screen-buttons-container button{
+        background-color: transparent;
+        color:var(--text-color);
+        border:none;
+        font-size:18px;
+        height:40px;width:40px;
+        border-radius:50%;
+        transition-duration:0.5s;
     }
 }
 
