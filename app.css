@@ -124,6 +124,9 @@ td {
     }
 }
 
+.small-screen-buttons-container{
+    display:none;
+}
 .buttons-container {
     width: 100%/*300px*/
     ;
@@ -149,6 +152,8 @@ td {
     transition-duration: 0.5s;
 }
 
+
+
 .buttons-container button:hover {
     transition-duration: 0.5s;
     color: var(--text-color);
@@ -159,10 +164,18 @@ td {
     cursor: not-allowed;
 }
 
-@media screen and (max-width: 250px) {
+@media screen and (max-width: 350px) {
     .buttons-container button {
         height: 30px;
         font-size: 12px;
+    }
+}
+@media screen and (max-width: 250px) {
+    .buttons-container {
+        display:none;
+    }
+    .small-screen-buttons-container{
+        display:block;
     }
 }
 
