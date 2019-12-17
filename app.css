@@ -93,8 +93,9 @@ td {
     .game-tools-container {
         flex-direction: row-reverse;
         justify-content: space-around;
-        width: 100%;
+        width: 190px;
         order: -1;
+        margin-bottom: 8px;
         /*we changed the order in of this area so that it precedes the gamecontainer in the small screens, it will be above it...for more, check it effects in ui*/
     }
     .information-container p {
