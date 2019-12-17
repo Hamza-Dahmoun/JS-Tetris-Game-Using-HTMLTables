@@ -1,96 +1,141 @@
-:root{
-    --cell-color: #FFC300 ;
-    --text-color: #900C3F ;
-    --body-bg-color:#DAF7A6 ;
-   --dark-color:  #581845 ;
+:root {
+    --cell-color: #FFC300;
+    --text-color: #900C3F;
+    --body-bg-color: #DAF7A6;
+    --dark-color: #581845;
 }
-body{
-    background-color:  var(--body-bg-color);    
+
+body {
+    background-color: var(--body-bg-color);
 }
-.container{
-    width:600px;margin-left: auto; margin-right: auto;
+
+.container {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
 }
-.game-container{
+
+@media screen and (max-width: 350px) {
+    .container {
+        width: auto;
+        ;
+    }
+}
+
+.game-container {
     margin-right: 20px;
     width: 190px;
     height: 320px;
-    margin-top:auto; margin-bottom:auto;
-    background-color: rgba( 247, 200, 132 , 0.7);    
-}
-.cell-test{
-    background-color: red;
-}
-.cell-on{
-    background-color: var(--text-color);
-}
-.cell-off{
-    background-color: rgba( 247, 200, 132 , 0.7);/*same as .game-container bgColor*/
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: rgba( 247, 200, 132, 0.7);
 }
 
-table{
-    margin-left:auto; margin-right:auto;
+.cell-test {
+    background-color: red;
 }
-td{
+
+.cell-on {
+    background-color: var(--text-color);
+}
+
+.cell-off {
+    background-color: rgba( 247, 200, 132, 0.7);
+    /*same as .game-container bgColor*/
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td {
     height: 22px;
     width: 22px;
 }
 
-.game-tools-container{
+.game-tools-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
 }
-.information-container{
-    color:var(--text-color);
+
+
+.information-container {
+    color: var(--text-color);
 }
-.information-container *{
+
+.information-container * {
     margin: 2px;
 }
-.information-container p{
-    font-size:22px;
+
+.information-container p {
+    font-size: 22px;
 }
-.information-container strong{
-    font-size:28px;
+
+.information-container strong {
+    font-size: 28px;
 }
-.buttons-container{
-    width:300px;
-    margin-left: auto; margin-right: auto;
-    text-align:center;
+
+@media screen and (max-width: 350px) {
+    .game-tools-container {
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        width: 100%;
+        order: -1;
+        /*we changed the order in of this area so that it precedes the gamecontainer in the small screens, it will be above it...for more, check it effects in ui*/
+    }
+    .information-container p {
+        font-size: 18px;
+    }
+    .information-container strong {
+        font-size: 23px;
+    }
+}
+
+.buttons-container {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
     padding: 2%;
 }
-.buttons-container button{
-    height:35px;
+
+.buttons-container button {
+    height: 35px;
     width: 100px;
-    border:none;
+    border: none;
     background-color: var(--text-color);
-    color:var(--body-bg-color);
-    font-size:15px;
-    cursor:pointer;
+    color: var(--body-bg-color);
+    font-size: 15px;
+    cursor: pointer;
     transition-duration: 0.5s;
 }
-.buttons-container button:hover{
+
+.buttons-container button:hover {
     transition-duration: 0.5s;
     color: var(--text-color);
-    background-color:var(--body-bg-color);
+    background-color: var(--body-bg-color);
 }
-.buttons-container #pauseBtn{
+
+.buttons-container #pauseBtn {
     cursor: not-allowed;
 }
 
-#gameOverMsg{
+#gameOverMsg {
     position: fixed;
-    top:20%;
-    background-color:var(--text-color);
-    color:var(--body-bg-color);
+    top: 20%;
+    background-color: var(--text-color);
+    color: var(--body-bg-color);
     padding: 15px;
-    box-shadow:0px 2px 20px var(--text-color);
-    font-size:45px;
-    border-radius:2px;
-    border:1px solid var(--cell-color);
-    display:none;
+    box-shadow: 0px 2px 20px var(--text-color);
+    font-size: 45px;
+    border-radius: 2px;
+    border: 1px solid var(--cell-color);
+    display: none;
 }
