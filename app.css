@@ -29,7 +29,7 @@ body {
 .game-container {
     margin-right: 20px;
     width: 190px;
-    padding:2px;
+    padding:1px;
     margin-top: auto;
     margin-bottom: auto;
     background-color: rgba( 247, 200, 132, 0.7);
@@ -77,6 +77,7 @@ td {
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
+    padding:0px;
 }
 
 .information-container {
