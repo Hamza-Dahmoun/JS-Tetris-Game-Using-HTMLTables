@@ -200,10 +200,9 @@ td {
     }
     .small-screen-buttons-container #start-pause-mobile-buttons-container{
         display:flex; flex-direction: row;
-        flex-wrap: wrap; justify-content:space-between;
+        flex-wrap: wrap; justify-content:center;
     }
     .small-screen-buttons-container #rotate-button-container{
-        width:100%;
         display:flex; flex-direction:row; justify-content: end;
     }
 }
