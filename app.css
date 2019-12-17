@@ -81,14 +81,7 @@ td {
 
 .information-container {
     color: var(--text-color);
-}
-
-.information-container * {
-    margin: 2px;
-}
-
-.information-container p {
-    font-size: 22px;
+    display:flex;flex-direction:column;justify-content: center;
 }
 
 .information-container strong {
@@ -101,11 +94,8 @@ td {
         justify-content: space-around;
         width: 190px;
         order: -1;
-        margin-bottom: 8px;
+        margin-bottom: 3px;
         /*we changed the order in of this area so that it precedes the gamecontainer in the small screens, it will be above it...for more, check it effects in ui*/
-    }
-    .information-container p {
-        font-size: 18px;
     }
     .information-container strong {
         font-size: 23px;
