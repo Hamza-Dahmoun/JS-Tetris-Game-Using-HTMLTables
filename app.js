@@ -2108,18 +2108,27 @@ function displayHighScores(arr) {
     let gameOverMsg = document.getElementById("gameOverMsg");
     gameOverMsg.innerHTML = "";
     gameOverMsg.innerText = "Game Over!";
-    //now lets create an unordered list
+    //now lets create a div with an unordered list
+    let newDiv = document.createElement("div");
     let ol = document.createElement("OL");
     for (let i = 0; i < arr.length; i++) {
         //foreach score we'll create an <li> tag and append it to the created 'ol' tag
         let li = document.createElement("LI");
-        li.innerText = arr[i].value + " - (" + arr[i].date + ")";
+        //lets convert the score into a string. exp: 120 --> 00120
+        let scoreString="";
+        for(let j=1; j<=5-arr[i].value.toString().length; j++){
+            scoreString=scoreString+"0";
+        };
+        scoreString = scoreString + arr[i].value;
+        li.innerText = scoreString + " -- " + arr[i].date;
         li.style.fontSize = "15px";
         ol.appendChild(li);
     }
-    ol.style.textAlign = "center";
+    ol.style.textAlign = "left";
     ol.style.paddingLeft = "5px";
+    newDiv.style.textAlign = "left";
+    newDiv.appendChild(ol);
     //lets append 'ol' to the gameOverMsg
-    gameOverMsg.appendChild(ol);
+    gameOverMsg.appendChild(newDiv);
 }
 //*************** END: HIGH SCORES AREA ***************/
