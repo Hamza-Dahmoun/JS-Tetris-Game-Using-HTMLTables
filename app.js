@@ -105,7 +105,7 @@ function switchOnPlayer(playerNumber) {
         //alert("game over!");
         deleteKeyDownEvents();
         displayGameOverMsg();
-        reinitializeScore();
+        //reinitializeScore();
         stopChoosingNextPlayer();
         let gameOver = true;
         adjust_startBtnEventListener(gameOver);
@@ -681,6 +681,7 @@ function startNewGame() {
 
     initializeAllGameElts();
     hideGameOverMsg();
+    reinitializeScore();
     //Inside the following function will switch on a player and randomly choose a new player
     //we'll pass in a random number to represent a random player
     displayNextPlayer_asCurrentPlayer(Math.floor(Math.random() * 8));
@@ -2013,22 +2014,7 @@ function hideButtons_inMobile() {
     document.getElementById("smallscreen_startBtn").style.display = "block";
     document.getElementById("smallscreen_pauseBtn").style.display = "none";
 }
-/*function displayButtons_inMobile_fromScreen() {
-    document.getElementById("rotateBtn").className = document.getElementById("rotateBtn").className  + " mobile-only";
-    document.getElementById("moveleftBtn").classList.add("mobile-only");
-    document.getElementById("moverightBtn").classList.add("mobile-only");
-    document.getElementById("movedownBtn").classList.add("mobile-only");
-    document.getElementById("smallscreen_startBtn").style.display = "none";
-    document.getElementById("smallscreen_pauseBtn").classList.add("mobile-only");
-}*/
-/*function hideButtons_inMobile_fromScreen() {
-    document.getElementById("rotateBtn").style.display = "none";
-    document.getElementById("moveleftBtn").style.display = "none";
-    document.getElementById("moverightBtn").style.display = "none";
-    document.getElementById("movedownBtn").style.display = "none";
-    document.getElementById("smallscreen_startBtn").className.push("mobile-only");
-    document.getElementById("smallscreen_pauseBtn").style.display = "none";
-}*/
+
 function rotateShape_inMobile() {
     rotateShape();
     let rotateBtnIcon = document.querySelector("#rotateBtn i");
